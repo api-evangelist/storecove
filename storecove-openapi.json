@@ -1,0 +1,885 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "2.0.1",
+        "title": "Storecove",
+        "description": "Storecove API",
+        "termsOfService": ""
+    },
+    "servers": [
+        "httpsapi.storecove.com\/api\/v2"
+    ],
+    "paths": {
+        "\/invoice_submissions": {
+            "post": {
+                "summary": "Submit a new invoice",
+                "description": "Submit an invoice for delivery.\ninclude::examples\/invoice_submissions\/create_invoice_submission\/tabs.adoc[]",
+                "operationId": "CreateInvoiceSubmission",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "invoice_submission",
+                        "in": "body",
+                        "description": "Invoice to submit"
+                    }
+                ]
+            }
+        },
+        "\/invoice_submissions\/preflight": {
+            "post": {
+                "summary": "Preflight an invoice recipient",
+                "description": "Check whether Storecove can deliver an invoice for a list of ids.\ninclude::examples\/invoice_submissions\/preflight_invoice_recipient\/tabs.adoc[]",
+                "operationId": "PreflightInvoiceRecipient",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "invoice_recipient_preflight",
+                        "in": "body",
+                        "description": "The invoice recipient to preflight"
+                    }
+                ]
+            }
+        },
+        "\/legal_entities": {
+            "post": {
+                "summary": "Create a new LegalEntity",
+                "description": "Create a new LegalEntity.",
+                "operationId": "CreateLegalEntity",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "legal_entity",
+                        "in": "body",
+                        "description": "LegalEntity to create"
+                    }
+                ]
+            }
+        },
+        "\/legal_entities\/{id}": {
+            "delete": {
+                "summary": "Delete LegalEntity",
+                "description": "Delete a specific LegalEntity.",
+                "operationId": "DeleteLegalEntity",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    }
+                ]
+            },
+            "get": {
+                "summary": "Get LegalEntity",
+                "description": "Get a specific LegalEntity.",
+                "operationId": "GetLegalEntity",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "Update LegalEntity",
+                "description": "Update a specific LegalEntity.",
+                "operationId": "UpdateLegalEntity",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    },
+                    {
+                        "name": "legal_entity",
+                        "in": "body",
+                        "description": "LegalEntity to create"
+                    }
+                ]
+            }
+        },
+        "\/legal_entities\/{legal_entity_id}\/peppol_identifiers": {
+            "post": {
+                "summary": "Create a new PeppolIdentifier",
+                "description": "Create a new PeppolIdentifier.",
+                "operationId": "CreatePeppolIdentifier",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "peppol_identifier",
+                        "in": "body",
+                        "description": "PeppolIdentifier to create"
+                    },
+                    {
+                        "name": "legal_entity_id",
+                        "in": "path",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/legal_entities\/{legal_entity_id}\/peppol_identifiers\/iso6523-actorid-upis\/{scheme}\/{identifier}": {
+            "delete": {
+                "summary": "Delete PeppolIdentifier",
+                "description": "Delete a specific PeppolIdentifier.",
+                "operationId": "DeletePeppolIdentifier",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "legal_entity_id",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "scheme",
+                        "in": "path",
+                        "description": "PEPPOL identifier scheme id, e.g. \"DE:VAT\". For a full list see <<_company>>."
+                    },
+                    {
+                        "name": "identifier",
+                        "in": "path",
+                        "description": "PEPPOL identifier"
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "Update PeppolIdentifier",
+                "description": "Update a specific PeppolIdentifier.",
+                "operationId": "UpdatePeppolIdentifier",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "legal_entity_id",
+                        "in": "path",
+                        "description": ""
+                    },
+                    {
+                        "name": "scheme",
+                        "in": "path",
+                        "description": "PEPPOL identifier scheme id, e.g. \"DE:VAT\". For a full list see <<_company>>."
+                    },
+                    {
+                        "name": "identifier",
+                        "in": "path",
+                        "description": "PEPPOL identifier"
+                    },
+                    {
+                        "name": "peppol_identifier",
+                        "in": "body",
+                        "description": "PeppolIdentifier to create"
+                    }
+                ]
+            }
+        },
+        "\/shop_account_requests": {
+            "get": {
+                "summary": "Get ShopAccountRequests",
+                "description": "Retrieve all active ShopAccountRequests for one of your entities.\ninclude::examples\/shop_account_requests\/shop_account_requests_index\/tabs.adoc[]",
+                "operationId": "ShopAccountRequestsIndex",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "external_user_id",
+                        "in": "query",
+                        "description": "Filter by the external_user_id"
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create ShopAccountRequest",
+                "description": "Create a new ShopAccountRequest\ninclude::examples\/shop_account_requests\/create_shop_account_request\/tabs.adoc[]",
+                "operationId": "CreateShopAccountRequest",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "shop_account_request",
+                        "in": "body",
+                        "description": "ShopAccountRequest to add"
+                    }
+                ]
+            }
+        },
+        "\/shop_account_requests\/{id}": {
+            "delete": {
+                "summary": "Delete ShopAccountRequest",
+                "description": "Delete a specific ShopAccountRequest\ninclude::examples\/shop_account_requests\/delete_shop_account_request\/tabs.adoc[]",
+                "operationId": "DeleteShopAccountRequest",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    }
+                ]
+            },
+            "get": {
+                "summary": "Get ShopAccountRequest",
+                "description": "Show a specific ShopAccountRequest\ninclude::examples\/shop_account_requests\/get_shop_account_request\/tabs.adoc[]",
+                "operationId": "GetShopAccountRequest",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "Update ShopAccountRequest",
+                "description": "Update a specific ShopAccountRequest\ninclude::examples\/shop_account_requests\/update_shop_account_request\/tabs.adoc[]",
+                "operationId": "UpdateShopAccountRequest",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    },
+                    {
+                        "name": "shop_account_request",
+                        "in": "body",
+                        "description": "ShopAccountRequest to add"
+                    }
+                ]
+            }
+        },
+        "\/shop_accounts": {
+            "get": {
+                "summary": "Get ShopAccounts for an entity",
+                "description": "Retrieve all active ShopAccounts for one of your entities.\ninclude::examples\/shop_accounts\/shop_accounts_index\/tabs.adoc[]",
+                "operationId": "ShopAccountsIndex",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "external_user_id",
+                        "in": "query",
+                        "description": "Filter by the external_user_id"
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create ShopAccount",
+                "description": "Create a new ShopAccount.\ninclude::examples\/shop_accounts\/create_shop_account\/tabs.adoc[]",
+                "operationId": "CreateShopAccount",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "shop_account",
+                        "in": "body",
+                        "description": "ShopAccount to add"
+                    }
+                ]
+            }
+        },
+        "\/shop_accounts\/auth_failures": {
+            "get": {
+                "summary": "Get ShopAccounts with authorization failures",
+                "description": "Get ShopAccounts with authorization failures.\ninclude::examples\/shop_accounts\/shop_accounts_auth_failures\/tabs.adoc[]",
+                "operationId": "ShopAccountsAuthFailures",
+                "deprecated": 0,
+                "parameters": []
+            }
+        },
+        "\/shop_accounts\/{id}": {
+            "delete": {
+                "summary": "Delete ShopAccount",
+                "description": "Delete a specific ShopAccount.\ninclude::examples\/shop_accounts\/delete_shop_account\/tabs.adoc[]",
+                "operationId": "DeleteShopAccount",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    }
+                ]
+            },
+            "get": {
+                "summary": "Get ShopAccount",
+                "description": "Get a specific ShopAccount.\ninclude::examples\/shop_accounts\/get_shop_account\/tabs.adoc[]",
+                "operationId": "GetShopAccount",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    }
+                ]
+            },
+            "patch": {
+                "summary": "Update ShopAccount",
+                "description": "Update a specific ShopAccount.\ninclude::examples\/shop_accounts\/update_shop_account\/tabs.adoc[]",
+                "operationId": "UpdateShopAccount",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "legal_entity id"
+                    },
+                    {
+                        "name": "shop_account",
+                        "in": "body",
+                        "description": "ShopAccount to add"
+                    }
+                ]
+            }
+        },
+        "\/shops": {
+            "get": {
+                "summary": "Get Shops",
+                "description": "Get all available shops.\ninclude::examples\/shops\/shops_index\/tabs.adoc[]",
+                "operationId": "ShopsIndex",
+                "deprecated": 0,
+                "parameters": []
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "AccountingCostCode": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "list": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "listAgency": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "listVersion": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "AccountingCustomerParty": {
+                "type": "object",
+                "properties": {
+                    "accountId": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ErrorModel": {
+                "type": "object",
+                "properties": {
+                    "details": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "source": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "InvoiceLine": {
+                "type": "object",
+                "properties": {
+                    "amountExcludingVat": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupArticlegroupAccount": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupArticlegroupCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupArticlegroupDescription": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupCustomerAccount": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupCustomerCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupCustomerDescription": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupNziAccount": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupNziCode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "groupNziDescription": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "imageUrl": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "invoicePeriod": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "itemPrice": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "quantity": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "tax": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "InvoiceRecipient": {
+                "type": "object",
+                "properties": {
+                    "emails": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "InvoiceRecipientPreflight": {
+                "type": "object",
+                "properties": {
+                    "supplierId": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "InvoiceSubmission": {
+                "type": "object",
+                "properties": {
+                    "document": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "documentUrl": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "invoice": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "legalSupplierId": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "mode": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "supplierId": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "InvoiceSubmissionResult": {
+                "type": "object",
+                "properties": {
+                    "guid": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "LegalEntityCreate": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "county": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "line1": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "line2": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "party_name": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "zip": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "LegalEntityIdentifier": {
+                "type": "object",
+                "properties": {
+                    "identifier": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "scheme": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "scheme_agency": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "LegalEntityShop": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "country": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "county": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "identifiers": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "line1": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "line2": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "zip": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "LegalEntityUpdate": {
+                "type": "object",
+                "properties": {
+                    "city": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "county": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "line1": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "line2": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "party_name": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "zip": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Logos": {
+                "type": "object",
+                "properties": {
+                    "medium": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "small": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "thumb": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Party": {
+                "type": "object",
+                "properties": {
+                    "address": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "companyName": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "contact": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "PeppolIdentifierCreate": {
+                "type": "object",
+                "properties": {
+                    "identifier": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "scheme": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "PeppolIdentifierUpdate": {
+                "type": "object",
+                "properties": {
+                    "identifier": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "scheme": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "PreflightInvoiceRecipientResult": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "PublicIdentifier": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "scheme": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "Shop": {
+                "type": "object",
+                "properties": {
+                    "description": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "legal_entities": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ShopAccountInput": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "external_user_id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "password": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "shop_id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ShopAccountRequestInput": {
+                "type": "object",
+                "properties": {
+                    "external_user_id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "password": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "request_name": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "request_url": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ShopAccountRequestResult": {
+                "type": "object",
+                "properties": {
+                    "external_user_id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "request_name": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "request_url": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ShopAccountRequestUpdate": {
+                "type": "object",
+                "properties": {
+                    "password": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "request_name": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "request_url": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ShopAccountResult": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "external_user_id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "from_date": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "id": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "sign_in_error_confirmed": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "sign_in_error_confirmed_at": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            },
+            "ShopAccountUpdate": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "password": {
+                        "description": "",
+                        "type": "get"
+                    },
+                    "username": {
+                        "description": "",
+                        "type": "get"
+                    }
+                }
+            }
+        }
+    }
+}
