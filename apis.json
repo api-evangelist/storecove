@@ -1,0 +1,105 @@
+{
+    "name": "Storecove",
+    "description": "<p>Storecove is Netherlands&rsquo; first online platform that provides people and companies with a way to view all their invoices in one online overview. Dolf Kars, founder and former owner of Videostrip (acquired by RTL Nederland), established Storecove in 2014 with cofounder Michael Riviera and Willem Stemfoort. Storecove mainly focuses on automatically collecting invoices, which saves time and money.<\/p>",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/storecove-logo.jpg",
+    "tags": [
+        "have api",
+        "have swagger",
+        "invoices",
+        "relative data",
+        "service api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/storecove\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Storecove API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/storecove-logo.jpg",
+            "humanURL": "http:\/\/www.storecove.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/storecove-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/storecove-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "Storecove",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/logos\/storecove-logo.jpg",
+            "humanURL": "http:\/\/www.storecove.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/storecove.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/storecove-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "http:\/\/www.storecove.com"
+        },
+        {
+            "type": "Blog",
+            "url": "https:\/\/www.storecove.com\/blog\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "https:\/\/www.storecove.com\/blog\/rss\/"
+        },
+        {
+            "type": "Documentation",
+            "url": "https:\/\/www.storecove.com\/en\/docs"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/storecove"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/28512-2019-09-03-16-19-08.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/28512-2019-09-04-00-59-24.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/28512-2019-09-04-00-20-11.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/28512-2019-09-04-00-20-37.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/28512-2019-09-04-01-01-24.json"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/storecove"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/storecove.com"
+        }
+    ]
+}
