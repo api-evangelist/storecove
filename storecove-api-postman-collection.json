@@ -1,5 +1,5 @@
 {
-    "id": "e620c4851ecf92221410da817e772240",
+    "id": "7d6b01526fb9040b7c0a3ae6f45f0387",
     "name": "Storecove API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "9bbeb533d5e783db2564bc3cd84fd925",
+            "id": "3f24a6d2eaff2db4f5bd638e667831aa",
             "name": "Get Shops",
             "url": "httpsapi.storecove.com\/api\/v2\/shops",
             "description": "Get all available shops.\ninclude::examples\/shops\/shops_index\/tabs.adoc[]",
@@ -37,11 +37,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "7ec703a194bdc6fbb78a153513a35cfc",
+            "id": "87e2b8a9d89705c09943761d9b09e283",
             "name": "Get ShopAccounts for an entity",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_accounts",
             "description": "Retrieve all active ShopAccounts for one of your entities.\ninclude::examples\/shop_accounts\/shop_accounts_index\/tabs.adoc[]",
@@ -68,11 +68,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "5e3b220127c354211a5633efb5d42734",
+            "id": "096a85001d435ce83974fbe6c4dfd3ff",
             "name": "Create ShopAccount",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_accounts",
             "description": "Create a new ShopAccount.\ninclude::examples\/shop_accounts\/create_shop_account\/tabs.adoc[]",
@@ -91,11 +91,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "5ff442546d4fc05a4230a8b4a368bebc",
+            "id": "04829215c5c5a453245b25d1f500e723",
             "name": "Get ShopAccounts with authorization failures",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_accounts\/auth_failures",
             "description": "Get ShopAccounts with authorization failures.\ninclude::examples\/shop_accounts\/shop_accounts_auth_failures\/tabs.adoc[]",
@@ -114,11 +114,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "2887341f51a8690a0ba9e8fef73428bd",
+            "id": "f23e05650fdd35c5f6d7c7ba50ff24b2",
             "name": "Get ShopAccount",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_accounts\/{id}",
             "description": "Get a specific ShopAccount.\ninclude::examples\/shop_accounts\/get_shop_account\/tabs.adoc[]",
@@ -145,11 +145,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "4d217999e5e9898b4f07fa3ea7ed4706",
+            "id": "23afb1907de70218fffefa95cee68767",
             "name": "Delete ShopAccount",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_accounts\/{id}",
             "description": "Delete a specific ShopAccount.\ninclude::examples\/shop_accounts\/delete_shop_account\/tabs.adoc[]",
@@ -176,11 +176,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "42150ea7ab11454e94a2c373c6c5c386",
+            "id": "284c836289761c25a3162d502f36c453",
             "name": "Update ShopAccount",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_accounts\/{id}",
             "description": "Update a specific ShopAccount.\ninclude::examples\/shop_accounts\/update_shop_account\/tabs.adoc[]",
@@ -207,11 +207,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "a4952e0fff295beda28bd3b98f2d2b84",
+            "id": "4435c9b2021d4f7db4dde1b57bd13426",
             "name": "Get ShopAccountRequests",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_account_requests",
             "description": "Retrieve all active ShopAccountRequests for one of your entities.\ninclude::examples\/shop_account_requests\/shop_account_requests_index\/tabs.adoc[]",
@@ -238,11 +238,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "50bc100d6df72d6d747875a8ea2867e0",
+            "id": "65efa1c78f4b0c7eecb32c352ac81c0b",
             "name": "Create ShopAccountRequest",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_account_requests",
             "description": "Create a new ShopAccountRequest\ninclude::examples\/shop_account_requests\/create_shop_account_request\/tabs.adoc[]",
@@ -261,11 +261,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "2ad50c661339edb5a0f977ee6efe88fd",
+            "id": "f3b89efe132ef0d2645f8068726200c8",
             "name": "Get ShopAccountRequest",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_account_requests\/{id}",
             "description": "Show a specific ShopAccountRequest\ninclude::examples\/shop_account_requests\/get_shop_account_request\/tabs.adoc[]",
@@ -292,11 +292,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "d8cb81629dc00dbd98513c447a7628af",
+            "id": "eb13f80ef0058ed42e5aa987b0ac181e",
             "name": "Delete ShopAccountRequest",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_account_requests\/{id}",
             "description": "Delete a specific ShopAccountRequest\ninclude::examples\/shop_account_requests\/delete_shop_account_request\/tabs.adoc[]",
@@ -323,11 +323,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "5e0f3f5a0ee57a3d31b77c5e3f58a211",
+            "id": "28bef58dfa93521d02b9268cd250b2ed",
             "name": "Update ShopAccountRequest",
             "url": "httpsapi.storecove.com\/api\/v2\/shop_account_requests\/{id}",
             "description": "Update a specific ShopAccountRequest\ninclude::examples\/shop_account_requests\/update_shop_account_request\/tabs.adoc[]",
@@ -354,11 +354,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "27ad8be15be98e34d30707d8388092c5",
+            "id": "a5d7bc4e89013be44fc6cadb5bcf7326",
             "name": "Submit a new invoice",
             "url": "httpsapi.storecove.com\/api\/v2\/invoice_submissions",
             "description": "Submit an invoice for delivery.\ninclude::examples\/invoice_submissions\/create_invoice_submission\/tabs.adoc[]",
@@ -377,11 +377,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "4381a167d9f785c5d194684693bc3789",
+            "id": "82b9d03a4555be2d9f8ba92884fe5c3b",
             "name": "Preflight an invoice recipient",
             "url": "httpsapi.storecove.com\/api\/v2\/invoice_submissions\/preflight",
             "description": "Check whether Storecove can deliver an invoice for a list of ids.\ninclude::examples\/invoice_submissions\/preflight_invoice_recipient\/tabs.adoc[]",
@@ -400,11 +400,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "066ab6eefd99c5e86347d18890600903",
+            "id": "9faf21b53f383d4c55df0d9d6135670b",
             "name": "Create a new LegalEntity",
             "url": "httpsapi.storecove.com\/api\/v2\/legal_entities",
             "description": "Create a new LegalEntity.",
@@ -423,11 +423,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "c69754e6811afaf442475cf50595d57a",
+            "id": "47214df2948fe96c847720b2e4f1a08c",
             "name": "Get LegalEntity",
             "url": "httpsapi.storecove.com\/api\/v2\/legal_entities\/{id}",
             "description": "Get a specific LegalEntity.",
@@ -454,11 +454,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "3e2e4c23e7b62946b92c8a8022401ec2",
+            "id": "c91fc06ddbd444457ff0de7db5330170",
             "name": "Delete LegalEntity",
             "url": "httpsapi.storecove.com\/api\/v2\/legal_entities\/{id}",
             "description": "Delete a specific LegalEntity.",
@@ -485,11 +485,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "3e8ccfa977c194f86088bc0eb04acf34",
+            "id": "5d1f9840e1a23d956d8678da5fe9528c",
             "name": "Update LegalEntity",
             "url": "httpsapi.storecove.com\/api\/v2\/legal_entities\/{id}",
             "description": "Update a specific LegalEntity.",
@@ -516,11 +516,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "5def2daa3c14b33e0f9f2f57f7e369b0",
+            "id": "48d6408ae46ddb183fbe188aee785d41",
             "name": "Create a new PeppolIdentifier",
             "url": "httpsapi.storecove.com\/api\/v2\/legal_entities\/{legal_entity_id}\/peppol_identifiers",
             "description": "Create a new PeppolIdentifier.",
@@ -547,11 +547,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "466ce41b67b2f070273e4bd547af5577",
+            "id": "3b06a331c1e38f2dd6522684e9a428fe",
             "name": "Delete PeppolIdentifier",
             "url": "httpsapi.storecove.com\/api\/v2\/legal_entities\/{legal_entity_id}\/peppol_identifiers\/{superscheme}\/{scheme}\/{identifier}",
             "description": "Delete a PeppolIdentifier.",
@@ -599,11 +599,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         },
         {
-            "id": "966388101fcc3cd0c6f4f6c7e7ecaac1",
+            "id": "ce053e3099e16af2d2a96f6e96d13566",
             "name": "Get Purchase invoice data",
             "url": "httpsapi.storecove.com\/api\/v2\/purchase_invoices\/{guid}\/{packaging}\/{package_version}",
             "description": "Get a specific Invoice.",
@@ -644,7 +644,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "e620c4851ecf92221410da817e772240",
+            "collectionId": "7d6b01526fb9040b7c0a3ae6f45f0387",
             "rawModeData": ""
         }
     ]
