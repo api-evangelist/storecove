@@ -1,0 +1,666 @@
+openapi: 3.2.0
+info:
+  title: Storecove C5Activation API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged C5Activation across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: C5Activation
+paths:
+  /api/v2/legal_entities/{legal_entity_id}/c5_activation/activate:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5ActivationResponse'
+      summary: DEPRECATED. Request a new C5 Activation
+      description: DEPRECATED. Request a new C5 Activation. Currently only used for SG:UEN identifiers towards SG IRAS. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: create_c5_activation
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the C5ActivationRequest
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: The C5ActivationRequest to initiate
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5ActivationRequest'
+      x-codegen-request-body-name: c5_activation_request
+      x-deployment-regions:
+      - global
+      deprecated: true
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /api/v2/legal_entities/{legal_entity_id}/c5_deactivation/deactivate:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5DeactivationResponse'
+      summary: DEPRECATED. Request a new C5 Deactivation
+      description: DEPRECATED. Request a new C5 Deactivation. Currently only used for SG:UEN identifiers towards SG IRAS. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: create_c5_deactivation
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the C5DeactivationRequest
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: The C5DeactivationRequest to initiate
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5DeactivationRequest'
+      x-codegen-request-body-name: c5_deactivation_request
+      x-deployment-regions:
+      - global
+      deprecated: true
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /api/v2/legal_entities/{legal_entity_id}/c5/iras/email/activate:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5EmailResponse'
+        '404':
+          description: Not Found
+        '204':
+          description: Empty success response
+      summary: Request a new C5 Email Activation
+      description: Request a new C5 Email Activation. Currently only used for SG:UEN identifiers towards SG IRAS. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: create_c5_email
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the C5EmailRequest
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: The C5EmailRequest to initiate
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5EmailRequest'
+      x-codegen-request-body-name: c5_email_request
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /api/v2/legal_entities/{legal_entity_id}/c5/iras/email/deactivate:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5ErrorResponse'
+        '404':
+          description: Not Found
+        '204':
+          description: Empty success response
+      summary: Request a new C5 Email Deactivation
+      description: Request a new C5 Email Deactivation. Currently only used for SG:UEN identifiers towards SG IRAS. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: deactivate_c5_email
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the C5EmailRequest
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: The C5EmailRequest to initiate
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5EmailRequest'
+      x-codegen-request-body-name: c5_email_request
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /api/v2/legal_entities/{legal_entity_id}/c5/iras/email/cancel:
+    put:
+      summary: Cancel a C5 email activation or deactivation
+      description: Cancel an initiated C5 email activation or deactivation. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: Legal entity ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The C5EmailCancellationRequest to cancel
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5EmailCancellationRequest'
+      x-codegen-request-body-name: c5_email_cancellation_request
+      responses:
+        '204':
+          description: If cancellation of a initiated C5 activation / C5 deactivation is successful.
+        '422':
+          description: The C5 activation/deactivation is in an incorrect state and can not be cancelled.
+      x-deployment-regions:
+      - global
+      operationId: putApiV2LegalEntitiesByLegalEntityIdC5IrasEmailCancel
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/activate:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5RedirectResponse'
+        '404':
+          description: Not Found
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5RedirectResponse'
+      summary: Request a new C5 Redirect Activation
+      description: Request a new C5 Redirect Activation. Currently only used for SG:UEN identifiers towards SG IRAS. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: activate_c5_redirect
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the C5RedirectRequest
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: The C5RedirectRequest to initiate
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5RedirectRequest'
+      x-codegen-request-body-name: c5_redirect_request
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/deactivate:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5ErrorResponse'
+        '404':
+          description: Not Found
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/C5RedirectResponse'
+      summary: Request a new C5 Redirect Deactivation
+      description: Request a new C5 Redirect Deactivation. Currently only used for SG:UEN identifiers towards SG IRAS. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: deactivate_c5_redirect
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the C5RedirectRequest
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: The C5RedirectRequest to initiate
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5RedirectRequest'
+      x-codegen-request-body-name: c5_redirect_request
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/cancel:
+    put:
+      summary: Cancel a C5 redirect activation or deactivation
+      description: Cancel an initiated C5 redirect activation or deactivation. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      tags:
+      - C5Activation
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: Legal entity ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The C5RedirectCancellationRequest to cancel
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/C5RedirectCancellationRequest'
+      x-codegen-request-body-name: c5_redirect_cancellation_request
+      responses:
+        '204':
+          description: If cancellation of a initiated C5 activation / C5 deactivation is successful.
+        '422':
+          description: The C5 activation/deactivation is in an incorrect state and can not be cancelled.
+      x-deployment-regions:
+      - global
+      operationId: putApiV2LegalEntitiesByLegalEntityIdC5IrasRedirectCancel
+      x-operation-id-source: derived
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    C5EmailRequest:
+      title: C5 Email Request
+      description: The C5 email request object for both activation and deactivation
+      type: object
+      properties:
+        email:
+          title: Email
+          description: Email of the signer
+          type: string
+          format: email
+        name:
+          title: Name
+          description: Name of the signer
+          type: string
+        identifier:
+          title: Identifier
+          description: The identifier
+          type: string
+        scheme:
+          title: Scheme
+          description: The scheme
+          type: string
+          enum:
+          - SG:UEN
+        superscheme:
+          title: Superscheme
+          description: The superscheme
+          type: string
+          enum:
+          - iso6523-actorid-upis
+      required:
+      - email
+      - name
+      - identifier
+      - scheme
+      - superscheme
+    C5ActivationResponse:
+      title: C5 Activation Response
+      description: The response to a C5 activation request
+      type: object
+      properties:
+        redirect_url:
+          title: Redirect URL
+          description: The URL to redirect to
+          type: string
+      required:
+      - redirect_url
+    ErrorModel:
+      properties:
+        source:
+          type: string
+        details:
+          type: string
+    C5RedirectCancellationRequest:
+      title: C5 Redirect Cancellation Request
+      description: The C5 redirect cancellation request object
+      type: object
+      properties:
+        identifier:
+          title: Identifier
+          description: The identifier
+          type: string
+        scheme:
+          title: Scheme
+          description: The scheme
+          type: string
+          enum:
+          - SG:UEN
+        superscheme:
+          title: Superscheme
+          description: The superscheme
+          type: string
+          enum:
+          - iso6523-actorid-upis
+      required:
+      - identifier
+      - scheme
+      - superscheme
+    C5ErrorResponse:
+      title: C5 Error Response
+      description: The response to a C5 error
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              source:
+                type: string
+              details:
+                type: string
+            required:
+            - source
+            - details
+      required:
+      - errors
+    C5RedirectResponse:
+      title: C5 Redirect Response
+      description: The response to a C5 redirect request
+      type: object
+      properties:
+        redirect_url:
+          title: Redirect URL
+          description: The URL to redirect to
+          type: string
+          format: uri
+      required:
+      - redirect_url
+    C5EmailCancellationRequest:
+      title: C5 Email Cancellation Request
+      description: The C5 email cancellation request object
+      type: object
+      properties:
+        identifier:
+          title: Identifier
+          description: The identifier
+          type: string
+        scheme:
+          title: Scheme
+          description: The scheme
+          type: string
+          enum:
+          - SG:UEN
+        superscheme:
+          title: Superscheme
+          description: The superscheme
+          type: string
+          enum:
+          - iso6523-actorid-upis
+      required:
+      - identifier
+      - scheme
+      - superscheme
+    C5ActivationRequest:
+      title: C5 Activation Request
+      description: The C5 activation request
+      type: object
+      properties:
+        client_redirect_fail_url:
+          title: Client Redirect Fail URL
+          description: The URL to redirect to in case of a C5 authorization fail.
+          type: string
+        client_redirect_success_url:
+          title: Client Redirect Success URL
+          description: The URL to redirect to in case of a C5 authorization success.
+          type: string
+        flow_type:
+          title: Flow Type
+          description: The flow type.
+          type: string
+          enum:
+          - flow_redirect
+        simulate:
+          title: Simulate
+          description: Whether to simulate the C5 activation.
+          type: boolean
+        identifier:
+          title: Identifier
+          description: The identifier.
+          type: string
+        scheme:
+          title: Scheme
+          description: The scheme.
+          type: string
+          enum:
+          - SG:UEN
+        superscheme:
+          title: Superscheme
+          description: The superscheme of the identifier. Should always be 'iso6523-actorid-upis'.
+          type: string
+          enum:
+          - iso6523-actorid-upis
+      required:
+      - client_redirect_fail_url
+      - client_redirect_success_url
+      - flow_type
+      - simulate
+      - identifier
+      - scheme
+      - superscheme
+    C5RedirectRequest:
+      title: C5 Redirect Request
+      description: The C5 redirect request object for both activation and deactivation
+      type: object
+      properties:
+        client_redirect_success_url:
+          title: Client Redirect Success URL
+          description: The URL to redirect to in case of a C5 authorization success
+          type: string
+          format: uri
+        client_redirect_fail_url:
+          title: Client Redirect Fail URL
+          description: The URL to redirect to in case of a C5 authorization fail
+          type: string
+          format: uri
+        name:
+          title: Representative Name
+          description: The representative name. Required by Dex when it is not stored on the Peppol identifier.
+          type: string
+        email:
+          title: Representative Email
+          description: The representative email. Required by Dex when it is not stored on the Peppol identifier.
+          type: string
+          format: email
+        simulate:
+          title: Simulate
+          description: Whether to simulate the C5 request
+          type: boolean
+        identifier:
+          title: Identifier
+          description: The identifier
+          type: string
+        scheme:
+          title: Scheme
+          description: The scheme
+          type: string
+          enum:
+          - SG:UEN
+        superscheme:
+          title: Superscheme
+          description: The superscheme
+          type: string
+          enum:
+          - iso6523-actorid-upis
+      required:
+      - client_redirect_success_url
+      - client_redirect_fail_url
+      - identifier
+      - scheme
+      - superscheme
+    C5DeactivationResponse:
+      title: C5 Deactivation Response
+      description: The response to a C5 deactivation request
+      type: object
+      properties:
+        redirect_url:
+          title: Redirect URL
+          description: The URL to redirect to
+          type: string
+      required:
+      - redirect_url
+    C5EmailResponse:
+      title: C5 Email Response
+      description: The response to a C5 email request. A successful request returns 204 with no body.
+      type: object
+      properties: {}
+    C5DeactivationRequest:
+      title: C5 Deactivation Request
+      description: The C5 deactivation request
+      type: object
+      properties:
+        client_redirect_fail_url:
+          title: Client Redirect Fail URL
+          description: The URL to redirect to in case of a C5 authorization fail.
+          type: string
+        client_redirect_success_url:
+          title: Client Redirect Success URL
+          description: The URL to redirect to in case of a C5 authorization success.
+          type: string
+        flow_type:
+          title: Flow Type
+          description: The flow type.
+          type: string
+          enum:
+          - flow_redirect
+        simulate:
+          title: Simulate
+          description: Whether to simulate the C5 deactivation.
+          type: boolean
+        identifier:
+          title: Identifier
+          description: The identifier.
+          type: string
+        scheme:
+          title: Scheme
+          description: The scheme.
+          type: string
+          enum:
+          - SG:UEN
+        superscheme:
+          title: Superscheme
+          description: The superscheme of the identifier. Should always be 'iso6523-actorid-upis'.
+          type: string
+          enum:
+          - iso6523-actorid-upis
+      required:
+      - client_redirect_fail_url
+      - client_redirect_success_url
+      - flow_type
+      - simulate
+      - identifier
+      - scheme
+      - superscheme
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

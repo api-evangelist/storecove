@@ -1,0 +1,97 @@
+generated: '2026-10-18'
+method: searched
+source:
+- https://zapier.com/apps/storecove/integrations
+- https://n8n.io/integrations/storecove/
+- https://composio.dev/toolkits/storecove
+- https://monid.ai/tools/storecove
+checked:
+- https://composio.dev/toolkits/storecove
+- https://monid.ai/tools/storecove
+- https://n8n.io/integrations/storecove/
+- https://www.storecove.com/us/en/integrators
+- https://www.storecove.com/us/en/integrators/certinia
+- https://www.storecove.com/us/en/integrators/microsoft
+- https://www.storecove.com/us/en/integrators/odoo
+- https://www.storecove.com/us/en/integrators/oracle
+- https://www.storecove.com/us/en/integrators/quickbooks
+- https://www.storecove.com/us/en/integrators/sage
+- https://www.storecove.com/us/en/integrators/sap
+- https://www.storecove.com/us/en/integrators/zoho
+- https://zapier.com/apps/storecove/integrations
+summary: null
+marketplace_apps: []
+edges:
+- partner: certinia
+  partner_name: Certinia
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/certinia
+  evidence: https://www.storecove.com/us/en/integrators/certinia
+  marketplace: null
+  operations: []
+  notes: Certinia integration partner page
+- partner: microsoft
+  partner_name: Microsoft
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/microsoft
+  evidence: https://www.storecove.com/us/en/integrators/microsoft
+  marketplace: null
+  operations: []
+  notes: Microsoft Dynamics integration partner page
+- partner: odoo
+  partner_name: Odoo
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/odoo
+  evidence: https://www.storecove.com/us/en/integrators/odoo
+  marketplace: null
+  operations: []
+  notes: Odoo integration partner page
+- partner: oracle
+  partner_name: Oracle
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/oracle
+  evidence: https://www.storecove.com/us/en/integrators/oracle
+  marketplace: null
+  operations: []
+  notes: Oracle integration partner page
+- partner: quickbooks
+  partner_name: QuickBooks
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/quickbooks
+  evidence: https://www.storecove.com/us/en/integrators/quickbooks
+  marketplace: null
+  operations: []
+  notes: QuickBooks integration partner page
+- partner: sage
+  partner_name: Sage
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/sage
+  evidence: https://www.storecove.com/us/en/integrators/sage
+  marketplace: null
+  operations: []
+  notes: Sage integration partner page
+- partner: sap
+  partner_name: SAP
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/sap
+  evidence: https://www.storecove.com/us/en/integrators/sap
+  marketplace: null
+  operations: []
+  notes: SAP integration partner page
+- partner: zoho
+  partner_name: Zoho
+  direction: partner-built
+  type: claimed
+  evidence_url: https://www.storecove.com/us/en/integrators/zoho
+  evidence: https://www.storecove.com/us/en/integrators/zoho
+  marketplace: null
+  operations: []
+  notes: Zoho integration partner page
+templates: []

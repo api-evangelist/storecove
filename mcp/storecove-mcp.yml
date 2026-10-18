@@ -1,0 +1,228 @@
+name: Storecove MCP server (candidate)
+type: MCPServer
+generated: '2026-10-18'
+method: derived
+source: openapi/storecove-openapi.yml
+status: candidate
+description: No official Storecove MCP server was found (web search 2026-10-18 surfaced only third-party community Peppol servers on mcp.so, not published by Storecove). This is a candidate tool list derived
+  from the non-deprecated operations of the Storecove API v2 OpenAPI contract.
+deployment:
+  mode: none
+  auth: unknown
+  verified: derived
+search:
+  query: Storecove MCP server e-invoicing Model Context Protocol
+  date: '2026-10-18'
+  result: no official server
+api:
+  base_url: https://api.storecove.com/api/v2
+  auth: bearerAuth (HTTP bearer API key)
+tools:
+- name: create_additional_tax_identifier
+  description: Create a new AdditionalTaxIdentifier
+  operationId: create_additional_tax_identifier
+  method: POST
+  path: /legal_entities/{legal_entity_id}/additional_tax_identifiers
+  category: AdditionalTaxIdentifiers
+  readOnlyHint: false
+  destructiveHint: false
+- name: get_additional_tax_identifier
+  description: Get AdditionalTaxIdentifier
+  operationId: get_additional_tax_identifier
+  method: GET
+  path: /legal_entities/{legal_entity_id}/additional_tax_identifiers/{id}
+  category: AdditionalTaxIdentifiers
+  readOnlyHint: true
+  destructiveHint: false
+- name: delete_additional_tax_identifier
+  description: Delete AdditionalTaxIdentifier
+  operationId: delete_additional_tax_identifier
+  method: DELETE
+  path: /legal_entities/{legal_entity_id}/additional_tax_identifiers/{id}
+  category: AdditionalTaxIdentifiers
+  readOnlyHint: false
+  destructiveHint: true
+- name: update_additional_tax_identifier
+  description: Update AdditionalTaxIdentifier
+  operationId: update_additional_tax_identifier
+  method: PATCH
+  path: /legal_entities/{legal_entity_id}/additional_tax_identifiers/{id}
+  category: AdditionalTaxIdentifiers
+  readOnlyHint: false
+  destructiveHint: false
+- name: create_c5_email
+  description: Request a new C5 Email Activation
+  operationId: create_c5_email
+  method: POST
+  path: /api/v2/legal_entities/{legal_entity_id}/c5/iras/email/activate
+  category: C5Activation
+  readOnlyHint: false
+  destructiveHint: false
+- name: deactivate_c5_email
+  description: Request a new C5 Email Deactivation
+  operationId: deactivate_c5_email
+  method: POST
+  path: /api/v2/legal_entities/{legal_entity_id}/c5/iras/email/deactivate
+  category: C5Activation
+  readOnlyHint: false
+  destructiveHint: false
+- name: activate_c5_redirect
+  description: Request a new C5 Redirect Activation
+  operationId: activate_c5_redirect
+  method: POST
+  path: /api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/activate
+  category: C5Activation
+  readOnlyHint: false
+  destructiveHint: false
+- name: deactivate_c5_redirect
+  description: Request a new C5 Redirect Deactivation
+  operationId: deactivate_c5_redirect
+  method: POST
+  path: /api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/deactivate
+  category: C5Activation
+  readOnlyHint: false
+  destructiveHint: false
+- name: discovery_receives
+  description: Discover Network Participant Capabilites
+  operationId: discovery_receives
+  method: POST
+  path: /discovery/receives
+  category: Discovery
+  readOnlyHint: false
+  destructiveHint: false
+- name: discovery_exists
+  description: Discover Network Participant Existence
+  operationId: discovery_exists
+  method: POST
+  path: /discovery/exists
+  category: Discovery
+  readOnlyHint: false
+  destructiveHint: false
+- name: discovery_identifiers
+  description: Discover Country Identifiers ** EXPERIMENTAL
+  operationId: discovery_identifiers
+  method: GET
+  path: /discovery/identifiers
+  category: Discovery
+  readOnlyHint: true
+  destructiveHint: false
+- name: create_document_submission
+  description: Submit a new document.
+  operationId: create_document_submission
+  method: POST
+  path: /document_submissions
+  category: DocumentSubmissions
+  readOnlyHint: false
+  destructiveHint: false
+- name: show_document_submission_evidence
+  description: Get DocumentSubmission Evidence
+  operationId: show_document_submission_evidence
+  method: GET
+  path: /document_submissions/{guid}/evidence
+  category: DocumentSubmissions
+  readOnlyHint: true
+  destructiveHint: false
+- name: show_document_submission_evidence_by_type
+  description: Get DocumentSubmission Evidence by type
+  operationId: show_document_submission_evidence_by_type
+  method: GET
+  path: /document_submissions/{guid}/evidence/{evidence_type}
+  category: DocumentSubmissions
+  readOnlyHint: true
+  destructiveHint: false
+- name: create_legal_entity
+  description: Create a new LegalEntity
+  operationId: create_legal_entity
+  method: POST
+  path: /legal_entities
+  category: LegalEntities
+  readOnlyHint: false
+  destructiveHint: false
+- name: get_legal_entity
+  description: Get LegalEntity
+  operationId: get_legal_entity
+  method: GET
+  path: /legal_entities/{id}
+  category: LegalEntities
+  readOnlyHint: true
+  destructiveHint: false
+- name: delete_legal_entity
+  description: Delete LegalEntity
+  operationId: delete_legal_entity
+  method: DELETE
+  path: /legal_entities/{id}
+  category: LegalEntities
+  readOnlyHint: false
+  destructiveHint: true
+- name: update_legal_entity
+  description: Update LegalEntity
+  operationId: update_legal_entity
+  method: PATCH
+  path: /legal_entities/{id}
+  category: LegalEntities
+  readOnlyHint: false
+  destructiveHint: false
+- name: create_peppol_identifier
+  description: Create a new PeppolIdentifier
+  operationId: create_peppol_identifier
+  method: POST
+  path: /legal_entities/{legal_entity_id}/peppol_identifiers
+  category: PeppolIdentifiers
+  readOnlyHint: false
+  destructiveHint: false
+- name: update_peppol_identifier
+  description: Update a PeppolIdentifier
+  operationId: update_peppol_identifier
+  method: PATCH
+  path: /legal_entities/{legal_entity_id}/peppol_identifiers/{superscheme}/{scheme}/{identifier}
+  category: PeppolIdentifiers
+  readOnlyHint: false
+  destructiveHint: false
+- name: delete_peppol_identifier
+  description: Delete PeppolIdentifier
+  operationId: delete_peppol_identifier
+  method: DELETE
+  path: /legal_entities/{legal_entity_id}/peppol_identifiers/{superscheme}/{scheme}/{identifier}
+  category: PeppolIdentifiers
+  readOnlyHint: false
+  destructiveHint: true
+- name: receive_document
+  description: Receive a new Document
+  operationId: receive_document
+  method: POST
+  path: /legal_entities/{legal_entity_id}/received_documents
+  category: ReceivedDocuments
+  readOnlyHint: false
+  destructiveHint: false
+- name: get_received_document
+  description: Get a new ReceivedDocument
+  operationId: get_received_document
+  method: GET
+  path: /received_documents/{guid}
+  category: ReceivedDocuments
+  readOnlyHint: true
+  destructiveHint: false
+- name: get_received_document_in_format
+  description: Get a new ReceivedDocument in a specific format
+  operationId: get_received_document_in_format
+  method: GET
+  path: /received_documents/{guid}/{format}
+  category: ReceivedDocuments
+  readOnlyHint: true
+  destructiveHint: false
+- name: get_webhook_instances
+  description: GET a WebhookInstance
+  operationId: get_webhook_instances
+  method: GET
+  path: /webhook_instances/
+  category: WebhookInstances
+  readOnlyHint: true
+  destructiveHint: false
+- name: delete_webhook_instance
+  description: DELETE a WebhookInstance
+  operationId: delete_webhook_instance
+  method: DELETE
+  path: /webhook_instances/{guid}
+  category: WebhookInstances
+  readOnlyHint: false
+  destructiveHint: true

@@ -1,0 +1,7 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.storecove.com/docs/
+name: Storecove rate limits
+limit_count: 0
+note: No published rate limits found in documentation. The API uses bearer token authentication but no specific rate limiting information is documented.
+limits: []

@@ -1,0 +1,252 @@
+overlay: 1.0.0
+info:
+  title: Storecove API v2 — API Evangelist enhancements
+  version: '2026-10-18'
+extends: ../openapi/_original/storecove-openapi.yml
+actions:
+- target: $.info
+  description: Provenance of this profile.
+  update:
+    x-apievangelist:
+      generated: '2026-10-18'
+      method: generated
+      source: openapi/storecove-openapi.yml
+      docs: https://www.storecove.com/docs/
+- target: $.paths['/legal_entities/{legal_entity_id}/additional_tax_identifiers'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: create_additional_tax_identifier
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/legal_entities/{legal_entity_id}/additional_tax_identifiers/{id}'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: get_additional_tax_identifier
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/legal_entities/{legal_entity_id}/additional_tax_identifiers/{id}'].delete
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: delete_additional_tax_identifier
+    x-mcp-hints:
+      readOnly: false
+      destructive: true
+- target: $.paths['/legal_entities/{legal_entity_id}/additional_tax_identifiers/{id}'].patch
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: update_additional_tax_identifier
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/legal_entities/{legal_entity_id}/administrations'].post
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/legal_entities/{legal_entity_id}/administrations/{id}'].get
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/legal_entities/{legal_entity_id}/administrations/{id}'].delete
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/legal_entities/{legal_entity_id}/administrations/{id}'].patch
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5_activation/activate'].post
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5_deactivation/deactivate'].post
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5/iras/email/activate'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: create_c5_email
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5/iras/email/deactivate'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: deactivate_c5_email
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5/iras/email/cancel'].put
+  description: Spec omits operationId; record that it is missing (no id invented).
+  update:
+    x-apievangelist-note: operationId missing in provider spec
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/activate'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: activate_c5_redirect
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/deactivate'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: deactivate_c5_redirect
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/api/v2/legal_entities/{legal_entity_id}/c5/iras/redirect/cancel'].put
+  description: Spec omits operationId; record that it is missing (no id invented).
+  update:
+    x-apievangelist-note: operationId missing in provider spec
+- target: $.paths['/discovery/receives'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: discovery_receives
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/discovery/exists'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: discovery_exists
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/discovery/identifiers'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: discovery_identifiers
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/invoice_submissions/{guid}/evidence'].get
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/invoice_submissions'].post
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/document_submissions'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: create_document_submission
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/document_submissions/{guid}/evidence'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: show_document_submission_evidence
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/document_submissions/{guid}/evidence/{evidence_type}'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: show_document_submission_evidence_by_type
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/invoice_submissions/preflight'].post
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/legal_entities'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: create_legal_entity
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/legal_entities/{id}'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: get_legal_entity
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/legal_entities/{id}'].delete
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: delete_legal_entity
+    x-mcp-hints:
+      readOnly: false
+      destructive: true
+- target: $.paths['/legal_entities/{id}'].patch
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: update_legal_entity
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/purchase_invoices/{guid}'].get
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/purchase_invoices/{guid}/{packaging}'].get
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/purchase_invoices/{guid}/{packaging}/{package_version}'].get
+  description: Mark deprecated operation as excluded from agent tooling.
+  update:
+    x-mcp-tool: false
+- target: $.paths['/legal_entities/{legal_entity_id}/peppol_identifiers'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: create_peppol_identifier
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/legal_entities/{legal_entity_id}/peppol_identifiers/{superscheme}/{scheme}/{identifier}'].patch
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: update_peppol_identifier
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/legal_entities/{legal_entity_id}/peppol_identifiers/{superscheme}/{scheme}/{identifier}'].delete
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: delete_peppol_identifier
+    x-mcp-hints:
+      readOnly: false
+      destructive: true
+- target: $.paths['/legal_entities/{legal_entity_id}/received_documents'].post
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: receive_document
+    x-mcp-hints:
+      readOnly: false
+      destructive: false
+- target: $.paths['/received_documents/{guid}'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: get_received_document
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/received_documents/{guid}/{format}'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: get_received_document_in_format
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/webhook_instances/'].get
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: get_webhook_instances
+    x-mcp-hints:
+      readOnly: true
+      destructive: false
+- target: $.paths['/webhook_instances/{guid}'].delete
+  description: Bind to candidate MCP tool.
+  update:
+    x-mcp-tool: delete_webhook_instance
+    x-mcp-hints:
+      readOnly: false
+      destructive: true

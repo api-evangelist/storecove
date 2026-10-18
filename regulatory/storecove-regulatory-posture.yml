@@ -1,0 +1,60 @@
+generated: '2026-10-18'
+method: searched
+source:
+- https://www.storecove.com/fileadmin/editors-filemount/documents/Data_Privacy_Policy_Storecove_final_website.pdf
+- https://www.storecove.com/fileadmin/editors-filemount/documents/Security_Principals_2023.pdf
+notes: >-
+  Both legal/trust documents are PDFs linked from storecove.com (the privacy document is a single page;
+  the security document is dated 2022-11-18). Text was extracted with pdftotext; quotes are joined
+  across PDF line breaks. Neither document speaks to subprocessors, data subject rights, incident
+  notification, AI, GPC, exit assistance or accessibility, so no signal is recorded for those.
+signals:
+  data_residency:
+    url: https://www.storecove.com/fileadmin/editors-filemount/documents/Data_Privacy_Policy_Storecove_final_website.pdf
+    section: Data Storage and Security
+    stated_region: Ireland (EU)
+    evidence:
+    - source: https://www.storecove.com/fileadmin/editors-filemount/documents/Data_Privacy_Policy_Storecove_final_website.pdf
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        Your data is currently stored in Ireland, a country known for its robust compliance with EU data
+        protection standards and regulations.
+    - source: https://www.storecove.com/fileadmin/editors-filemount/documents/Data_Privacy_Policy_Storecove_final_website.pdf
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        We will implement regional data hubs to optimize the efficiency and security of your data. This
+        enables us to manage data locally contributing to enhanced protection and compliance with relevant
+        laws and regulations.
+    - source: https://www.storecove.com/fileadmin/editors-filemount/documents/Security_Principals_2023.pdf
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: All servers and data storage are located inside the EU.
+    note: >-
+      States a single storage location (Ireland, inside the EU) and announces regional data hubs as future
+      intent ("We will implement"), not as a customer-selectable residency option today. Storecove
+      describes itself as a processor of invoice data acting on customer instructions.
+  data_retention:
+    url: https://www.storecove.com/fileadmin/editors-filemount/documents/Security_Principals_2023.pdf
+    section: 1.5 GDPR
+    default_period: 365 days (document data)
+    configurable: true
+    evidence:
+    - source: https://www.storecove.com/fileadmin/editors-filemount/documents/Security_Principals_2023.pdf
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        We retain your document data for 365 days by default for us to be able to effectively troubleshoot
+        and diagnose problems. However, we can retain your data for longer or shorter time periods if you
+        so desire.
+    - source: https://www.storecove.com/fileadmin/editors-filemount/documents/Security_Principals_2023.pdf
+      http_status: 200
+      fetched: '2026-10-18'
+      quote: >-
+        When you delete a sender/receiver identity, by default all data pertaining to that identity is
+        deleted as well.
+    note: >-
+      A stated default retention period (365 days) for document data, adjustable on request, plus
+      cascade deletion of identity data when a sender/receiver identity is deleted. The document is dated
+      2022-11-18, so the period may have changed since.

@@ -1,0 +1,16 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.storecove.com/us/en/start-now
+name: Storecove pricing
+audience: business-product
+pricing_basis: negotiated
+published: false
+plan_count: 0
+note: No published pricing found. The website mentions "Test for 30 days in a sandbox environment" and requires contacting sales for pricing information.
+delivery:
+  delivery: managed
+  evidence: null
+  free_edition: null
+  managed_tier: null
+  open_source_license: null
+plans: []

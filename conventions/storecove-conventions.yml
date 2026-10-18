@@ -1,0 +1,34 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/storecove-openapi.yml
+auth_style: bearer
+idempotency:
+  coverage: partial
+  scope:
+  - DocumentSubmission
+  - InvoiceSubmission
+  mechanism: idempotencyGuid field
+  header: null
+  retention: Not specified
+  docs: https://api.storecove.com/api/v2/openapi-3.0.json
+pagination:
+  style: Not specified in OpenAPI
+  params: []
+  response_fields: []
+field_expansion: Not specified
+metadata: Not specified
+request_id_tracing: Not specified
+versioning:
+  scheme: path
+  current: v2
+  header: null
+error_envelope:
+  shape: ErrorModel object with source and details fields
+  format: application/json
+rate_limit_signaling: Not specified in OpenAPI
+reversibility:
+  documented: false
+  verified: false
+  window: Not specified
+  operation: Not specified
+  docs: null

@@ -1,0 +1,1033 @@
+openapi: 3.2.0
+info:
+  title: Storecove Purchase Invoices API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged PurchaseInvoices across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: PurchaseInvoices
+  x-deprecated: true
+paths:
+  /purchase_invoices/{guid}:
+    get:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseInvoice'
+      summary: DEPRECATED. Get Purchase invoice data as JSON
+      description: DEPRECATED. Use the /api/v2/received_documents endpoint. Get a specific PurchaseInvoice, in JSON format.
+      operationId: get_invoice_json
+      x-deployment-regions:
+      - global
+      tags:
+      - PurchaseInvoices
+      parameters:
+      - name: guid
+        in: path
+        description: The guid of the purchase invoice, from the webhook.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: pmv
+        in: query
+        description: 'DEPRECATED. The PaymentMeans version. The default (and deprecated) version 1.0 will give BankPaymentMean, DirectDebitPaymentMean, CardPaymentMean, NppPaymentMean, SeBankGiroPaymentMean, SePlusGiroPaymentMean, SgCardPaymentMean, SgGiroPaymentMean, SgPaynowPaymentMean.
+
+
+          Version 2.0 deprecates BankPaymentMean (now CreditTransferPaymentMean), CardPaymentMean (now CreditCardPaymentMean), NppPaymentMean (now AunzNppPayidPaymentMean), SeBankGiroPaymentMean (now SeBankgiroPaymentMean  -- note the lower ''g'' in ''bankgiro''). It also adds OnlinePaymentServicePaymentMean, StandingAgreementPaymentMean, AunzNppPaytoPaymentMean, AunzBpayPaymentMean, AunzPostbillpayPaymentMean, AunzUriPaymentMean.'
+        required: false
+        schema:
+          type: string
+          default: '1.0'
+        deprecated: true
+      - name: version
+        in: query
+        description: The JSON content version date. The default is '1970-01-01' meaning you get all deprecated elements since nothing was deprecated before that ;). If you do not want deprecated elements, use a later date. Do not use a dynamic date, because that means when we deprecate elements they will disappear from our responses.
+        required: false
+        schema:
+          type: string
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          default: '1970-01-01'
+      deprecated: true
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /purchase_invoices/{guid}/{packaging}:
+    get:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseInvoiceUbl'
+      summary: DEPRECATED. Get Purchase invoice data in a selectable format
+      description: DEPRECATED. Use the /api/v2/received_documents endpoint. Get a specific PurchaseInvoice.
+      operationId: get_invoice_ubl
+      x-deployment-regions:
+      - global
+      tags:
+      - PurchaseInvoices
+      parameters:
+      - name: guid
+        in: path
+        description: purchase invoice guid
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: packaging
+        in: path
+        description: How to package the purchase invoice. Note that "ubl" is deprecated.
+        required: true
+        schema:
+          type: string
+          enum:
+          - json
+          - ubl
+          - original
+          default: json
+      - name: pmv
+        in: query
+        description: 'DEPRECATED. The PaymentMeans version. The default (and deprecated) version 1.0 will give BankPaymentMean, DirectDebitPaymentMean, CardPaymentMean, NppPaymentMean, SeBankGiroPaymentMean, SePlusGiroPaymentMean, SgCardPaymentMean, SgGiroPaymentMean, SgPaynowPaymentMean.
+
+
+          Version 2.0 deprecates BankPaymentMean (now CreditTransferPaymentMean), CardPaymentMean (now CreditCardPaymentMean), NppPaymentMean (now AunzNppPayidPaymentMean), SeBankGiroPaymentMean (now SeBankgiroPaymentMean  -- note the lower ''g'' in ''bankgiro''). It also adds OnlinePaymentServicePaymentMean, StandingAgreementPaymentMean, AunzNppPaytoPaymentMean, AunzBpayPaymentMean, AunzPostbillpayPaymentMean, AunzUriPaymentMean.'
+        required: false
+        schema:
+          type: string
+          default: '1.0'
+        deprecated: true
+      - name: version
+        in: query
+        description: The JSON content version date. The default is '1970-01-01' meaning you get all deprecated elements since nothing was deprecated before that ;). If you do not want deprecated elements, use a later date. Do not use a dynamic date, because that means when we deprecate elements they will disappear from our responses. Only used for 'json' packaging, not for 'original'.
+        required: false
+        schema:
+          type: string
+          pattern: ^\d{4}-\d{2}-\d{2}$
+          default: '1970-01-01'
+      deprecated: true
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /purchase_invoices/{guid}/{packaging}/{package_version}:
+    get:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseInvoiceUbl'
+      summary: DEPRECATED.
+      description: DEPRECATED. Get a specific PurchaseInvoice in UBL format
+      operationId: get_invoice_ubl_versioned
+      x-deployment-regions:
+      - global
+      tags:
+      - PurchaseInvoices
+      parameters:
+      - name: guid
+        in: path
+        description: purchase invoice guid
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: packaging
+        in: path
+        description: How to package the purchase invoice.
+        required: true
+        schema:
+          type: string
+          enum:
+          - ubl
+          default: ubl
+      - name: package_version
+        in: path
+        description: The version of the package.
+        required: true
+        schema:
+          type: string
+          enum:
+          - si11
+          - si12
+          - si20
+          - aunz
+          - sg
+          - jp
+          - en16931
+          - original
+          default: si11
+      deprecated: true
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    PurchaseInvoiceInvoiceLine:
+      properties:
+        name:
+          title: Name
+          description: A short name for the invoice line.
+          type: string
+        allowance_charge:
+          title: Allowance Charge - DEPRECATED
+          description: DEPRECATED - use allowance_charges.
+          type: number
+          deprecated: true
+        amount_excluding_vat:
+          title: DEPRECATED - use amount_excluding_tax Amount Excluding VAT
+          description: DEPRECATED - use amount_excluding_tax. The amount excluding VAT.
+          type: number
+          deprecated: true
+        vat:
+          title: VAT Details
+          description: DEPRECATED - use tax. The VAT details for the invoice line.
+          type: object
+          properties:
+            amount:
+              title: Amount
+              description: The amount of VAT for the invoice line.
+              type: number
+            percentage:
+              title: Percentage
+              description: The percentage of VAT for the invoice line.
+              type: number
+            country:
+              title: Country
+              description: The ISO 3166 country of the VAT for the invoice line.
+              type: string
+          deprecated: true
+        description:
+          title: Description
+          description: The description for the invoice line.
+          type: string
+        period_start:
+          title: Start of Period
+          description: The start date of the period this invoice line relates to. Format "YYYY-MM-DD".
+          type: string
+        period_end:
+          title: End of Period
+          description: The end date of the period this invoice line relates to. Format "YYYY-MM-DD".
+          type: string
+        allowance_charge_array:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseInvoiceInvoiceLineAllowanceCharge'
+        allowance_charges:
+          type: array
+          description: Deprecated.
+          items:
+            type: number
+          deprecated: true
+        price:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceInvoiceLinePrice'
+          - title: Price
+            description: The price for one item, excluding VAT.
+        units:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceInvoiceLineItem'
+          - title: Units
+            description: The number of items
+        amount_excluding_tax:
+          title: Amount Excluding Tax
+          description: The amount excluding Tax. This is equal to quantity x price_amount + ∑ allowance_charges.
+          type: number
+        tax:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceTax'
+          - title: Tax Details
+            description: The tax details for the invoice line.
+        accounting:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceAccountingDetails'
+          - title: Accounting Details
+            description: The accounting details for the invoice line.
+      deprecated: true
+    PurchaseInvoiceTax:
+      properties:
+        tax:
+          properties:
+            category_code:
+              title: Category Code
+              description: Deprecated. The tax category code.
+              type: string
+              deprecated: true
+            amount:
+              title: Amount
+              description: The tax amount.
+              type: number
+            percentage:
+              title: Percentage
+              description: The tax percentage.
+              type: number
+            country:
+              title: Country
+              description: The tax country.
+              type: string
+            category:
+              title: Category
+              description: The tax category.
+              type: string
+              enum:
+              - standard
+              - zero_rated
+              - reverse_charge
+              - intra_community
+              - exempt
+              - export
+              - outside_scope
+              - foreign_place_of_supply
+              - regulation33_exempt
+              - nonregulation33_exempt
+              - deemed_supply
+              - srca_s
+              - srca_c
+              - not_registered
+              - igst
+              - cgst
+              - sgst
+              - cess
+              - state_cess
+              - srovr
+              - srovr_rs
+              - srovr_lvg
+              - srlvg
+              - sales
+              - service
+              - tourism
+              - high_value_goods
+              - low_value_goods
+              - not_applicable
+            type:
+              title: Type
+              description: The tax type.
+              type: string
+              enum:
+              - VAT
+              - GST
+          title: PurchaseInvoiceTaxElement
+          description: The tax element.
+          type: object
+      deprecated: true
+    PeppolIdentifier:
+      properties:
+        identifier:
+          type: string
+          title: Identifier
+          description: The identifier.
+          minLength: 2
+          maxLength: 64
+        scheme:
+          type: string
+          title: Type
+          description: The scheme of the identifier. See <<_receiver_identifiers_list>> for a list.
+          minLength: 2
+          maxLength: 64
+        superscheme:
+          type: string
+          title: Type
+          description: The superscheme of the identifier. Should always be "iso6523-actorid-upis".
+          minLength: 2
+          maxLength: 64
+        corppass:
+          allOf:
+          - $ref: '#/components/schemas/CorpPass'
+          - title: CorpPass Details
+            description: CorpPass details, if applicable.
+        annuaire_line_id_instance:
+          title: Annuaire Line Id Instance (DGFiP)
+          description: Read-only PPF idInstance for the directory line provisioned for this identifier. Omitted until the first successful sync. Present only for identifiers advertised on the "dgfip" network.
+          type: string
+          maxLength: 32
+          readOnly: true
+        annuaire_routing_code_id_instance:
+          title: Annuaire Routing Code Id Instance (DGFiP)
+          description: Read-only PPF idInstance for the routing code provisioned for this identifier. Omitted until the first successful sync, or when the identifier has no routing code. Present only for identifiers advertised on the "dgfip" network.
+          type: string
+          maxLength: 32
+          readOnly: true
+    PurchaseInvoice:
+      properties:
+        external_user_id:
+          title: External user id
+          description: Deprecated. Used for the embedded portal retrieval service. The external_user_id you provided when the ShopAccount was created.
+          type: string
+          deprecated: true
+        external_key:
+          title: External key
+          description: Deprecated. Used for accountants. The id you specified for the organization.
+          type: string
+          deprecated: true
+        document:
+          title: Document
+          description: DEPRECATED. Use the new atatchments array.
+          type: string
+          deprecated: true
+        invoice_type:
+          title: Invoice Type
+          description: The type of invoice.
+          type: string
+          enum:
+          - invoice
+          - creditnote
+          - correctioninvoice
+        vat_reverse_charge:
+          title: VAT Reverse Charge - DEPRECATED
+          description: DEPRECATED - This is now part of each invoice line.
+          type: boolean
+          deprecated: true
+        amount_including_vat:
+          title: Amount Including VAT - DEPRECATED
+          description: DEPRECATED - Use amount_including_tax.
+          type: number
+          deprecated: true
+        allowance_charge:
+          title: Allowance Charge - DEPRECATED
+          description: DEPRECATED - Use the allowance_charges array.
+          type: number
+          deprecated: true
+        payment_means:
+          title: Payment Means - DEPRECATED
+          description: DEPRECATED - Use the new payment_means_array array.
+          type: object
+          properties:
+            iban:
+              title: IBAN
+              description: The IBAN to which to transfer.
+              type: string
+            id:
+              title: Id
+              description: An id to mention in the transfer.
+              type: string
+          deprecated: true
+        accounting:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceAccountingDetails'
+          - title: Accounting Details - DEPRECATED
+            description: DEPRECATED - The accounting details for the invoice. Will only evern contain null properties.
+            deprecated: true
+          deprecated: true
+        payment_means_payment_id:
+          title: Payment Means Payment Id - DEPRECATED
+          description: DEPRECATED - use the payment_id property in the payment_means_array
+          type: string
+          deprecated: true
+        guid:
+          title: GUID
+          description: The GUID of the invoice
+          type: string
+          format: uuid
+        legal_entity_id:
+          title: LegalEntity id
+          description: The id of the LegalEntity the invoice was received for.
+          type: integer
+          format: int64
+        system_generated_primary_image:
+          title: System Generated Primary Image
+          description: Whether or not the document image (PDF) was generated by Storecove. If true, it means the invoice was received without any attachments and Storecove generated one for you. If false, the invoice will contain at least one attachment, which was received from the invoice sender.
+          type: boolean
+        document_type:
+          title: Document Type
+          description: The type of document. Only "invoice" for now.
+          type: string
+          enum:
+          - invoice
+        sub_type:
+          title: Document Subtype
+          description: The subtype of document.
+          type: string
+          enum:
+          - invoice
+          - creditnote
+          - correctioninvoice
+        source:
+          title: Invoice Source
+          description: The source the invoice was received from.
+          type: string
+          enum:
+          - peppol
+          - script
+          - supplier
+          - email
+        tax_system:
+          title: Tax System
+          description: The tax system of the invoice. Either tax_line_percentages or tax_line_amounts. The first tax system means the invoice lines contain only the tax percentages and the tax amounts are included only in the tax subtotals at the invoice level and so are only calculated at the invoice level. The tax system tax_line_amounts means that in addition to the percentage, each invoice line also contains the tax amount. The tax subtotals at the invoice level are calculated as the sum of the tax of the invoice lines. The distinction between the two tax systems has has implications for rounding.
+          type: string
+        invoice_number:
+          title: Invoicenumber
+          description: The invoicenumber.
+          type: string
+        issue_date:
+          title: Issue Date
+          description: The date the invoice was issued. Format "YYYY-MM-DD".
+          type: string
+        tax_point_date:
+          title: Tax Point Date
+          description: The date the invoice was issued for tax purposes. In most countries MUST match the issue_date. Format "YYYY-MM-DD".
+          type: string
+        tax_point_date_code:
+          title: Tax Point Date Code
+          description: 'The code describing which date is used as the tax point date. Supported values: 3 (invoice issue date), 35 (actual delivery date), 432 (paid to date).'
+          type: string
+          enum:
+          - '3'
+          - '35'
+          - '432'
+        due_date:
+          title: Due Date
+          description: The date the invoice must be payed by. Format "YYYY-MM-DD".
+          type: string
+        document_currency_code:
+          title: Currency
+          description: The ISO 4217 currency for the invoice.
+          type: string
+        period_start:
+          title: Start of Period
+          description: The start date of the period this invoice relates to. Format "YYYY-MM-DD".
+          type: string
+        period_end:
+          title: End of Period
+          description: The end date of the period this invoice relates to. Format "YYYY-MM-DD".
+          type: string
+        note:
+          title: Note
+          description: The invoice level note.
+          type: string
+        buyer_reference:
+          title: Buyer Reference
+          description: Reference provided by the buyer. Used for routing.
+          type: string
+        billing_reference:
+          title: Billing Reference
+          description: Reference to the previous invoice this invoice relates to.
+          type: string
+        contract_document_reference:
+          title: Contract Document Reference
+          description: Reference to the contract.
+          type: string
+        order_reference:
+          title: Order Reference
+          description: Reference to the order. Used for matching the invoice to an order.
+          type: string
+        project_reference:
+          title: Project Reference
+          description: Reference to the project.
+          type: string
+        accounting_cost:
+          title: Accounting Cost
+          description: The accounting cost code.
+          type: string
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseInvoiceAttachment'
+        sender:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceSender'
+          - title: Invoice Sender
+            description: The organzation that sent the invoice.
+        payment_terms_note:
+          title: Payment Terms Note
+          description: A textual description of the payment terms.
+          type: string
+        payment_means_array:
+          title: Payment Means
+          description: The different payment means that can be used to pay the invoice.
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseInvoicePaymentMeans'
+        delivery:
+          title: PurchaseInvoice Delivery
+          description: The details of the delivery associated with this invoice.
+          type: object
+          properties:
+            actual_date:
+              title: Actual Date
+              description: The actual delivery date.
+              type: string
+            party:
+              title: PurchaseInvoice Party
+              description: The party the goods/services were delivered to.
+              type: object
+              properties:
+                name:
+                  title: Name
+                  description: The name of the deliveyr party.
+                  type: string
+            location:
+              title: Location
+              description: The location the goods/services were delivered to.
+              type: object
+              properties:
+                id:
+                  title: Id
+                  description: The id of the location.
+                  type: string
+                scheme_id:
+                  title: Scheme Id
+                  description: The scheme id for the id of the location.
+                  type: string
+                department:
+                  title: Department
+                  description: Department name.
+                  type: string
+                line1:
+                  title: Line 1
+                  description: Address line 1.
+                  type: string
+                line2:
+                  title: Line 2
+                  description: Address line 2.
+                  type: string
+                zip:
+                  title: Zip
+                  description: Address zip code
+                  type: string
+                city:
+                  title: City
+                  description: Address city.
+                  type: string
+                building_number:
+                  title: Building Number
+                  description: The building number. Used in SA.
+                  type: string
+                secondary_number:
+                  title: Secondary Number
+                  description: The secondary number. Used in SA.
+                  type: string
+                neighborhood:
+                  title: Neighborhood
+                  description: The neighborhood. Used in SA.
+                  type: string
+                county:
+                  title: County
+                  description: Address county.
+                  type: string
+                country:
+                  title: Country
+                  description: Address country.
+                  type: string
+        invoice_lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseInvoiceInvoiceLine'
+        allowance_charges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseInvoiceAllowanceCharge'
+        document_totals:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceDocumentTotals'
+          - title: Document Totals
+            description: The total amounts for this document.
+        tax_subtotals:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseInvoiceTaxSubtotal'
+      deprecated: true
+    PurchaseInvoicePaymentMeans:
+      properties:
+        type:
+          title: Type
+          description: The type of payment means. Which type are returned is determined by the &pmv= query parameter. For details see documentation for that field.
+          enum:
+          - BankPaymentMean
+          - DirectDebitPaymentMean
+          - CardPaymentMean
+          - NppPaymentMean
+          - SeBankGiroPaymentMean
+          - SePlusgiroPaymentMean
+          - SgCardPaymentMean
+          - SgGiroPaymentMean
+          - SgPaynowPaymentMean
+          - CreditTransferPaymentMean
+          - CreditCardPaymentMean
+          - SeBankgiroPaymentMean
+          - AunzNppPayidPaymentMean
+          - OnlinePaymentServicePaymentMean
+          - StandingAgreementPaymentMean
+          - AunzNppPaytoPaymentMean
+          - AunzBpayPaymentMean
+          - AunzPostbillpayPaymentMean
+          - AunzUriPaymentMean
+        account:
+          title: Account Number
+          description: The account number to which to transfer.
+          type: string
+        holder:
+          title: Account Holder
+          description: The account holder name to which to transfer.
+          type: string
+        branch_code:
+          title: Branch code
+          description: The code identifying the bank branch. May contain a BIC/SWIFT or something appropriate for the payment method, such as "NPP" for type NppPaymentMean.
+          type: string
+        mandate:
+          title: Mandate
+          description: The mandate, used only for type DirectDebitPaymentMean.
+          type: string
+        network:
+          title: Network
+          description: The payment network. Used only for type CardPaymentType.
+          type: string
+        payment_id:
+          title: Id
+          description: The payment id to use when making the payment. The invoice sender will use this to match the received funds to the invoice.
+          type: string
+      deprecated: true
+    PurchaseInvoiceVat:
+      title: VAT - DEPRECATED
+      description: DEPRECATED - Use tax.
+      type: object
+      properties:
+        amount:
+          title: Country
+          description: The VAT country.
+          type: string
+        percentage:
+          title: Percentage
+          description: The VAT percentage.
+          type: string
+      deprecated: true
+    PurchaseInvoiceDocumentTotals:
+      properties:
+        total:
+          title: Total
+          description: The total invoice amount, including tax. This is equal to the sum of the invoice_lines (amount_excluding_tax + tax.amount) and the allowances and charges.
+          type: number
+        rounding:
+          title: Rounding
+          description: The difference between the payable amount and the total invoice amount including tax.
+          type: number
+        prepaid:
+          title: Prepaid
+          description: The amount already paid.
+          type: number
+        payable:
+          title: Payable
+          description: The total invoice amount payable including tax.
+          type: number
+      deprecated: true
+    PurchaseInvoiceTaxSubtotal:
+      properties:
+        amount_excluding_vat:
+          title: Amount Excluding VAT - DEPRECATED
+          description: DEPRECATED - use amount_excluding_tax.
+          type: string
+          deprecated: true
+        vat:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceVat'
+          - description: DEPRECATED.
+            deprecated: true
+          deprecated: true
+        amount_excluding_tax:
+          title: Amount Excluding Tax
+          description: The amount excluding tax.
+          type: number
+        tax:
+          $ref: '#/components/schemas/PurchaseInvoiceTax'
+      deprecated: true
+    PurchaseInvoiceSender:
+      properties:
+        peppol_identifiers:
+          allOf:
+          - $ref: '#/components/schemas/PeppolIdentifier'
+          - title: Peppol Identifiers - DEPRECATED
+            description: DEPRECATED - Use the identifiers array.
+            deprecated: true
+          deprecated: true
+        party_name:
+          title: Party Name
+          description: The party who sent the invoice.
+          type: string
+        legal_name:
+          title: Legal Name
+          description: The legal name of the party who sent the invoice.
+          type: string
+        department:
+          title: Department
+          description: The department who sent the invoice.
+          type: string
+        line1:
+          title: Address Line 1
+          description: The address
+          type: string
+        line2:
+          title: Address Line 2
+          description: The address, line 2
+          type: string
+        zip:
+          title: Zip
+          description: The zip code.
+          type: string
+        city:
+          title: City
+          description: The city.
+          type: string
+        building_number:
+          title: Building Number
+          description: The building number. Used in SA.
+          type: string
+        secondary_number:
+          title: Secondary Number
+          description: The secondary number. Used in SA.
+          type: string
+        neighborhood:
+          title: Neighborhood
+          description: The neighborhood. Used in SA.
+          type: string
+        county:
+          title: County
+          description: The county.
+          type: string
+        country:
+          title: Country
+          description: The country.
+          type: string
+        billing_contact:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceSenderBillingContact'
+          - title: Billing Contact
+            description: The billing contact for the invoice.
+        identifiers:
+          title: Identifiers
+          description: The array of identifiers for this sender.
+          type: array
+          items:
+            $ref: '#/components/schemas/PeppolIdentifier'
+      deprecated: true
+    PurchaseInvoiceInvoiceLineAllowanceCharge:
+      properties:
+        amount:
+          title: Allowance or Charge
+          description: The amount of the allowance or charge.
+          type: number
+        reason:
+          title: Allowance or Charge Reason
+          description: The reason for the allowance or charge.
+          type: string
+      deprecated: true
+    PurchaseInvoiceInvoiceLineItem:
+      properties:
+        quantity:
+          title: Quantity
+          description: The quantity of the item. Can have up to digits.
+          type: number
+        unit_code:
+          title: Unit Code
+          description: The unit code of the quantity.
+          type: string
+      deprecated: true
+    CorpPass:
+      properties:
+        enabled:
+          type: boolean
+          title: CorpPass
+          description: Whether or not the CorpPass flow is enabled.
+          default: false
+        flow_type:
+          title: Flow Type
+          description: The CorpPass flow type.
+          type: string
+          enum:
+          - corppass_flow_redirect
+          - corppass_flow_email
+          - corppass_flow_pdf
+        signer_name:
+          title: Signer Name
+          description: The name of the person who is going to perform the CorpPass process.
+          type: string
+          minLength: 2
+          maxLength: 64
+        signer_email:
+          title: Signer Email
+          description: The email of the person who is going to perform the CorpPass process.
+          type: string
+          minLength: 2
+          maxLength: 128
+        client_redirect_success_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of successful identity verfication.
+          type: string
+          minLength: 11
+          maxLength: 255
+        client_redirect_fail_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of a failure to perform identity verfication.
+          type: string
+          minLength: 11
+          maxLength: 255
+        corppass_url:
+          title: CorpPass redirect URL
+          description: The CorpPass redirect URL.
+          type: string
+          minLength: 11
+          maxLength: 512
+        status:
+          title: CorpPass Status
+          description: The status of the CorpPass process.
+          type: string
+          enum:
+          - corppass_no_status
+          - corppass_initiated
+          - corppass_cancelled
+          - corppass_failed
+          - corppass_succeeded
+        simulate_corppass:
+          type: boolean
+          title: Simulate CorpPass
+          description: Whether or not CorpPass is being simulated.
+          default: false
+    PurchaseInvoiceSenderBillingContact:
+      properties:
+        first_name:
+          title: First Name
+          description: The first name of the billing contact.
+          type: string
+        last_name:
+          title: Last Name
+          description: The last name of the billing contact.
+          type: string
+        email:
+          title: Email
+          description: The email of the billing contact.
+          type: string
+      deprecated: true
+    PurchaseInvoiceUbl:
+      properties:
+        guid:
+          title: GUID
+          description: The GUID of the invoice
+          type: string
+          format: uuid
+        tax_system:
+          title: Tax System
+          description: The tax system of the invoice. Either tax_line_percentages or tax_line_amounts. The first tax system means the invoice lines contain only the tax percentages and the tax amounts are included only in the tax subtotals at the invoice level and so are only calculated at the invoice level. The tax system tax_line_amounts means that in addition to the percentage, each invoice line also contains the tax amount. The tax subtotals at the invoice level are calculated as the sum of the tax of the invoice lines. The distinction between the two tax systems has has implications for rounding.
+          type: string
+        legal_entity_id:
+          title: LegalEntity id
+          description: The id of the LegalEntity the invoice was received for.
+          type: integer
+          format: int64
+        external_user_id:
+          title: External user id
+          description: Used for the embedded portal retrieval service. The external_user_id you provided when the ShopAccount was created.
+          type: string
+        external_key:
+          title: External key
+          description: Used for accountants. The id you specified for the organization.
+          type: string
+        system_generated_primary_image:
+          title: System Generated Primary Image
+          description: Whether or not the document image (PDF) was generated by Storecove. If true, it means the invoice was received without any attachments and Storecove generated one for you. If false, the invoice will contain at least one attachment, which was received from the invoice sender.
+          type: boolean
+        ubl:
+          title: UBL invoice
+          description: The Base64 encoded UBL invoice.
+          type: string
+      deprecated: true
+    PurchaseInvoiceAttachment:
+      properties:
+        document:
+          title: Document
+          description: The Base64 encoded document attachment.
+          type: string
+        content_type:
+          title: Content Type
+          description: The attachment content type (mime type).
+          type: string
+      deprecated: true
+    PurchaseInvoiceInvoiceLinePrice:
+      properties:
+        price_amount:
+          title: Price Amount
+          description: The price for one item, excluding VAT. Can have up to digits.
+          type: number
+        base_quantity:
+          title: Base Quantity
+          description: The number of items the price is for. Can have up to digits.
+          type: number
+      deprecated: true
+    PurchaseInvoiceAllowanceCharge:
+      properties:
+        amount_excluding_vat:
+          title: Amount Excluding VAT - DEPRECATED
+          description: DEPRECATED - use amount_excluding_tax.
+          type: string
+          deprecated: true
+        vat:
+          allOf:
+          - $ref: '#/components/schemas/PurchaseInvoiceVat'
+          - description: DEPRECATED.
+            deprecated: true
+          deprecated: true
+        amount_excluding_tax:
+          title: Amount Excluding Tax
+          description: The amount excluding tax.
+          type: number
+        tax:
+          $ref: '#/components/schemas/PurchaseInvoiceTax'
+        reason:
+          title: AllowanceCharge reason
+          description: The reason for the allowance or charge.
+          type: string
+      deprecated: true
+    PurchaseInvoiceAccountingDetails:
+      properties:
+        code:
+          title: Code
+          description: The the code of the general ledger account.
+          type: string
+        name:
+          title: Name
+          description: A textual description of the code.
+          type: string
+        list:
+          title: List
+          description: The name of the list for the code, e.g. "RGS".
+          type: string
+        list_version:
+          title: List Version
+          description: The version of the list for the code, e.g. "1.1".
+          type: string
+      deprecated: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

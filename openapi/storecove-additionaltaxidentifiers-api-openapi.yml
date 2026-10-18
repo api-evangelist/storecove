@@ -1,0 +1,299 @@
+openapi: 3.2.0
+info:
+  title: Storecove Additional Tax Identifiers API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged AdditionalTaxIdentifiers across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: AdditionalTaxIdentifiers
+paths:
+  /legal_entities/{legal_entity_id}/additional_tax_identifiers:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdditionalTaxIdentifier'
+      summary: Create a new AdditionalTaxIdentifier
+      description: Create a new AdditionalTaxIdentifier. An AdditionalTaxIdentifier is a seconday tax identifier that is used inside the EU when sending invoices to consumers. In that case, the VAT of the receiving country is used and if the sender has a local VAT identifier, that is used to identifiy the sender, instead of the sender's origin country VAT number. To use these identifiers, use the invoice.consumerTaxMode = true property. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: create_additional_tax_identifier
+      tags:
+      - AdditionalTaxIdentifiers
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the AdditionalTaxIdentifier
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: AdditionalTaxIdentifier to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdditionalTaxIdentifierCreate'
+      x-codegen-request-body-name: additional_tax_identifier
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /legal_entities/{legal_entity_id}/additional_tax_identifiers/{id}:
+    get:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdditionalTaxIdentifier'
+      summary: Get AdditionalTaxIdentifier
+      description: Get an AdditionalTaxIdentifier. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: get_additional_tax_identifier
+      tags:
+      - AdditionalTaxIdentifiers
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity the AdditionalTaxIdentifier belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: id
+        in: path
+        description: The id of the AdditionalTaxIdentifier
+        required: true
+        schema:
+          type: integer
+          format: int64
+      x-deployment-regions:
+      - global
+    delete:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '204':
+          description: Success
+      summary: Delete AdditionalTaxIdentifier
+      description: Delete an AdditionalTaxIdentifier. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: delete_additional_tax_identifier
+      tags:
+      - AdditionalTaxIdentifiers
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity the AdditionalTaxIdentifier belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: id
+        in: path
+        description: The id of the AdditionalTaxIdentifier
+        required: true
+        schema:
+          type: integer
+          format: int64
+      x-deployment-regions:
+      - global
+    patch:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AdditionalTaxIdentifier'
+      summary: Update AdditionalTaxIdentifier
+      description: Update an AdditionalTaxIdentifier. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: update_additional_tax_identifier
+      tags:
+      - AdditionalTaxIdentifiers
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity the AdditionalTaxIdentifier belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: id
+        in: path
+        description: The id of the AdditionalTaxIdentifier to be updated
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: AdditionalTaxIdentifier to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdditionalTaxIdentifierUpdate'
+      x-codegen-request-body-name: additional_tax_identifier
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    AdditionalTaxIdentifier:
+      properties:
+        id:
+          type: integer
+          title: Id
+          description: The Storecove assigned id for the AdditionalTaxIdentifier.
+          format: int64
+        country:
+          type: string
+          title: Country
+          description: The ISO3166 country code to use this identifier for in case of consumerTaxMode.
+          minLength: 2
+          maxLength: 2
+        county:
+          type: string
+          title: County
+          description: The county/state inside the country code to use this identifier for in case of consumerTaxMode.
+          minLength: 2
+          maxLength: 2
+        superscheme:
+          type: string
+          title: Type
+          description: The superscheme of the identifier.
+          minLength: 2
+          maxLength: 64
+        scheme:
+          type: string
+          title: Type
+          description: The scheme of the identifier.
+          minLength: 2
+          maxLength: 64
+        identifier:
+          title: Identifier
+          description: The identifier.
+          type: string
+    ErrorModel:
+      properties:
+        source:
+          type: string
+        details:
+          type: string
+    AdditionalTaxIdentifierCreate:
+      properties:
+        country:
+          type: string
+          title: Country
+          description: The ISO3166 country code to use this identifier for in case of consumerTaxMode.
+          minLength: 2
+          maxLength: 2
+        county:
+          type: string
+          title: County
+          description: The county/state inside the country code to use this identifier for in case of consumerTaxMode. Leave empty to create an additional tax identifier for the entire country. For India, use the two last characters of ISO 3166-2:IN (https://en.wikipedia.org/wiki/States_and_union_territories_of_India).
+          minLength: 2
+          maxLength: 2
+        superscheme:
+          type: string
+          title: Type
+          description: The superscheme of the identifier. Should always be "iso6523-actorid-upis".
+          minLength: 2
+          maxLength: 64
+        scheme:
+          type: string
+          title: Type
+          description: The scheme of the identifier.
+          minLength: 2
+          maxLength: 64
+        identifier:
+          title: Identifier
+          description: The identifier.
+          type: string
+        third_party_username:
+          type: string
+          title: Username
+          description: The username to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN tax identifier.
+          minLength: 2
+          maxLength: 64
+        third_party_password:
+          type: string
+          title: Password
+          description: The password to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN tax identifier.
+          minLength: 2
+          maxLength: 64
+      required:
+      - country
+      - identifier
+      - scheme
+      - superscheme
+    AdditionalTaxIdentifierUpdate:
+      properties:
+        identifier:
+          title: Identifier
+          description: The identifier.
+          type: string
+        third_party_username:
+          type: string
+          title: Username
+          description: The username to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN tax identifier.
+          minLength: 2
+          maxLength: 64
+        third_party_password:
+          type: string
+          title: Password
+          description: The password to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN tax identifier.
+          minLength: 2
+          maxLength: 64
+      required:
+      - identifier
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

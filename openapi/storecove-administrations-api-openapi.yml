@@ -1,0 +1,303 @@
+openapi: 3.2.0
+info:
+  title: Storecove Administrations API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged Administrations across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Administrations
+  x-deprecated: true
+paths:
+  /legal_entities/{legal_entity_id}/administrations:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administration'
+      summary: DEPRECATED. Create a new Administration
+      description: DEPRECATED. Create a new Administration. An Administration is an email destination for purchase invoices. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: create_administration
+      tags:
+      - Administrations
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the Administration
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: Administration to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdministrationCreate'
+      x-codegen-request-body-name: administration
+      x-deployment-regions:
+      - global
+      deprecated: true
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /legal_entities/{legal_entity_id}/administrations/{id}:
+    get:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administration'
+      summary: DEPRECATED. Get Administration
+      description: DEPRECATED. Get an Administration. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: get_administration
+      tags:
+      - Administrations
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity the Administration belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: id
+        in: path
+        description: The id of the Administration
+        required: true
+        schema:
+          type: integer
+          format: int64
+      x-deployment-regions:
+      - global
+      deprecated: true
+    delete:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '204':
+          description: Success
+      summary: DEPRECATED. Delete Administration
+      description: DEPRECATED. Delete an Administration. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: delete_administration
+      tags:
+      - Administrations
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity the Administration belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: id
+        in: path
+        description: The id of the Administration
+        required: true
+        schema:
+          type: integer
+          format: int64
+      x-deployment-regions:
+      - global
+      deprecated: true
+    patch:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Administration'
+      summary: DEPRECATED. Update Administration
+      description: DEPRECATED. Update an Administration. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: update_administration
+      tags:
+      - Administrations
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity the Administration belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: id
+        in: path
+        description: The id of the Administration to be updated
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: Administration to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdministrationUpdate'
+      x-codegen-request-body-name: administration
+      x-deployment-regions:
+      - global
+      deprecated: true
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    AdministrationCreate:
+      properties:
+        sender_email_identity_id:
+          title: Sender email identity
+          description: The id of the SenderEmailIdentity. If not provided, the Storecove default sender will be used
+          type: integer
+          format: int64
+        legal_entity_id:
+          type: integer
+          title: Legal etity
+          description: The LegalEntity the Administration belongs to.
+          format: int64
+        email:
+          type: string
+          title: Email
+          description: The email address to send the received document to
+          minLength: 5
+          maxLength: 128
+        packaging:
+          title: Packaging
+          description: How to package the purchase invoice.
+          type: string
+          enum:
+          - ubl
+          default: ubl
+        package_version:
+          title: Package version
+          description: The version of the package.
+          type: string
+          enum:
+          - peppol_bis_v3
+          - aunz
+          - sg
+          default: peppol_bis_v3
+      deprecated: true
+    Administration:
+      properties:
+        id:
+          type: integer
+          title: Id
+          description: The Storecove assigned id for the Administration.
+          format: int64
+        sender_email_identity_id:
+          title: Sender email identity
+          description: The id of the SenderEmailIdentity. If not provided, the Storecove default sender will be used
+          type: integer
+          format: int64
+        legal_entity_id:
+          type: integer
+          title: Legal etity
+          description: The LegalEntity the Administration belongs to.
+          format: int64
+        email:
+          type: string
+          title: Email
+          description: The email address to send the received document to
+          minLength: 5
+          maxLength: 128
+        packaging:
+          title: Packaging
+          description: How to package the purchase invoice.
+          type: string
+          enum:
+          - ubl
+        package_version:
+          title: Package version
+          description: The version of the package.
+          type: string
+          enum:
+          - peppol_bis_v3
+          - aunz
+          - sg
+      deprecated: true
+    AdministrationUpdate:
+      properties:
+        sender_email_identity_id:
+          title: Sender email identity
+          description: The id of the SenderEmailIdentity. If not provided, the Storecove default sender will be used
+          type: integer
+          format: int64
+        email:
+          type: string
+          title: Email
+          description: The email address to send the received document to
+          minLength: 5
+          maxLength: 128
+        packaging:
+          title: Packaging
+          description: How to package the purchase invoice.
+          type: string
+          enum:
+          - ubl
+        package_version:
+          title: Package version
+          description: The version of the package.
+          type: string
+          enum:
+          - peppol_bis_v3
+          - aunz
+          - sg
+      deprecated: true
+    ErrorModel:
+      properties:
+        source:
+          type: string
+        details:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

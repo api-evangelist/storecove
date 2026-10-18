@@ -1,0 +1,26 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/storecove-openapi.yml
+format: application/json
+envelope: ErrorModel
+problems:
+- status: '401'
+  title: Unauthorized
+  type: https://api.storecove.com/api/v2/#errors/unauthorized
+  description: Authentication failed or missing
+  remediation: Provide valid API key with Bearer token
+- status: '403'
+  title: Forbidden
+  type: https://api.storecove.com/api/v2/#errors/forbidden
+  description: Insufficient permissions
+  remediation: Check API key permissions and scope
+- status: '404'
+  title: Not Found
+  type: https://api.storecove.com/api/v2/#errors/not-found
+  description: Resource not found
+  remediation: Check resource ID and existence
+- status: '422'
+  title: Unprocessable Entity
+  type: https://api.storecove.com/api/v2/#errors/unprocessable-entity
+  description: Validation error
+  remediation: Check request payload against schema

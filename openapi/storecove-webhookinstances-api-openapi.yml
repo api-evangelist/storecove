@@ -1,0 +1,89 @@
+openapi: 3.2.0
+info:
+  title: Storecove Webhook Instances API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged WebhookInstances across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: WebhookInstances
+paths:
+  /webhook_instances/:
+    get:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookInstance'
+        '204':
+          description: Success
+      summary: GET a WebhookInstance
+      description: GET a WebhookInstance from the queue. After processing it successfully, DELETE it and GET the next one. When a 204 is received, the queue is empty and the polling process can sleep for a while.
+      operationId: get_webhook_instances
+      tags:
+      - WebhookInstances
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /webhook_instances/{guid}:
+    delete:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '204':
+          description: Success
+      summary: DELETE a WebhookInstance
+      description: DELETE a specific WebhookInstance
+      operationId: delete_webhook_instance
+      tags:
+      - WebhookInstances
+      parameters:
+      - name: guid
+        in: path
+        description: WebhookInstance guid
+        required: true
+        schema:
+          type: string
+          format: uuid
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    WebhookInstance:
+      properties:
+        guid:
+          title: GUID
+          description: The GUID of the WebhookInstance. Use this to delete it.
+          type: string
+          format: uuid
+        body:
+          type: string
+          title: Body
+          description: The webhook body that would have been pushed if this were a push-mode webhook.
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

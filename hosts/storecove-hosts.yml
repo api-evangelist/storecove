@@ -1,0 +1,180 @@
+generated: '2026-10-18'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 14
+  own: 8
+  other_domain: 4
+  platform: 2
+  roles:
+  - api
+  - collections
+  - identity
+  - marketing
+  - other
+  - status
+  - support
+  - website
+hosts:
+- host: api.fr.storecove.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: storecove.com
+  role: api
+  relation: own
+- host: api.statuspage.io
+  found_by:
+  - contract-discovery
+  types: []
+  serves: []
+  registrable_domain: statuspage.io
+  role: api
+  relation: other-domain
+- host: api.storecove.com
+  found_by:
+  - apis[]
+  - probed
+  - site-links
+  - spec-found
+  - well-known
+  types: []
+  serves:
+  - api
+  - spec
+  registrable_domain: storecove.com
+  role: api
+  relation: own
+- host: app.fr.storecove.com
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: storecove.com
+  role: other
+  relation: own
+- host: app.storecove.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - contract-discovery
+  - well-known
+  types:
+  - Login
+  serves: []
+  registrable_domain: storecove.com
+  role: identity
+  relation: own
+- host: blog.storecove.com
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: storecove.com
+  role: marketing
+  relation: own
+- host: content.storecove.com
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: storecove.com
+  role: other
+  relation: own
+- host: help.storecove.com
+  found_by:
+  - pointer
+  - probed
+  - site-links
+  - docs-index
+  - contract-discovery
+  - well-known
+  types:
+  - Support
+  serves:
+  - docs
+  registrable_domain: storecove.com
+  role: support
+  relation: own
+- host: storecove.statuspage.io
+  found_by:
+  - pointer
+  - probed
+  - contract-discovery
+  - well-known
+  - vendor-detect
+  types:
+  - StatusPage
+  serves:
+  - status-page
+  vendor: statuspage
+  registrable_domain: statuspage.io
+  role: status
+  relation: other-domain
+- host: webservices.statuspage.io
+  found_by:
+  - probed
+  - site-links
+  types: []
+  serves: []
+  registrable_domain: statuspage.io
+  role: status
+  relation: other-domain
+- host: ws.statuspage.io
+  found_by:
+  - probed
+  - site-links
+  - well-known
+  types: []
+  serves: []
+  registrable_domain: statuspage.io
+  role: status
+  relation: other-domain
+- host: www.linkedin.com
+  found_by:
+  - pointer
+  types:
+  - LinkedIn
+  serves: []
+  registrable_domain: linkedin.com
+  role: other
+  relation: platform
+- host: www.postman.com
+  found_by:
+  - pointer
+  types:
+  - Postman
+  serves: []
+  registrable_domain: postman.com
+  role: collections
+  relation: platform
+- host: www.storecove.com
+  found_by:
+  - pointer
+  - apis[]
+  - probed
+  - docs-index
+  - contract-discovery
+  - well-known
+  types:
+  - Website
+  - Documentation
+  - GettingStarted
+  - Blog
+  - Contact
+  - PrivacyPolicy
+  - Security
+  serves:
+  - docs
+  registrable_domain: storecove.com
+  role: website
+  relation: own

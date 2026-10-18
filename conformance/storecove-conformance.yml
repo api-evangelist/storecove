@@ -1,0 +1,44 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/storecove-openapi.yml
+standards:
+- id: iso6523-actorid-upis
+  conforms: true
+  evidence: OpenAPI spec defines identifier superscheme as 'iso6523-actorid-upis' for Peppol identifiers
+- id: un-edifact-6313
+  conforms: true
+  evidence: OpenAPI spec references UN/EDIFACT 6313 codes for property name codes
+- id: ubl
+  conforms: true
+  evidence: OpenAPI spec maps properties to UBL (Universal Business Language) standards
+- id: cii
+  conforms: true
+  evidence: OpenAPI spec maps properties to CII (Cross Industry Invoice) standards
+- id: peppol
+  conforms: true
+  evidence: API provides Peppol network integration and compliance
+- id: openapi-3.0
+  conforms: true
+  evidence: the document declares 3.0.3
+- id: oauth2
+  conforms: false
+  evidence: 'securitySchemes: bearerAuth (http)'
+- id: rfc9457
+  conforms: false
+  evidence: no response declares application/problem+json
+- id: idempotency
+  conforms: false
+  evidence: no idempotency key parameter on mutating operations
+domain_standard_conformance:
+- id: peppol
+  conforms: true
+  evidence: API implements Peppol e-invoicing network standards and protocols
+- id: dbnalliance
+  conforms: true
+  evidence: API supports DBNAlliance network for US e-invoicing
+- id: faceb2b
+  conforms: true
+  evidence: API supports FACeB2B network for Spanish public sector invoicing
+- id: finvoice
+  conforms: true
+  evidence: API supports Finvoice network for Finnish e-invoicing

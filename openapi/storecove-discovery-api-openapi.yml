@@ -1,0 +1,598 @@
+openapi: 3.2.0
+info:
+  title: Storecove Discovery API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged Discovery across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: Discovery
+paths:
+  /discovery/receives:
+    post:
+      summary: Discover Network Participant Capabilites
+      description: Discover a network participant and their capabilities.
+      operationId: discovery_receives
+      x-deployment-regions:
+      - global
+      tags:
+      - Discovery
+      requestBody:
+        description: The participant to check
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscoverableParticipant'
+      x-codegen-request-body-name: discoverable_participant
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveredParticipant'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /discovery/exists:
+    post:
+      summary: Discover Network Participant Existence
+      description: Discover if a network participant exists.
+      operationId: discovery_exists
+      x-deployment-regions:
+      - global
+      tags:
+      - Discovery
+      requestBody:
+        description: The participant to check
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DiscoverableParticipant'
+      x-codegen-request-body-name: discoverable_participant
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DiscoveredParticipant'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /discovery/identifiers:
+    get:
+      summary: Discover Country Identifiers ** EXPERIMENTAL
+      description: Discover the identifiers used in each country, for routing, for legal identification as well as for tax identification purposes. We are currently testing this endpoint with selected Customers. If you would like to participate, please contact us.
+      operationId: discovery_identifiers
+      x-deployment-regions:
+      - global
+      tags:
+      - Discovery
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CountrySpecifications'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    ErrorModel:
+      properties:
+        source:
+          type: string
+        details:
+          type: string
+    DiscoveryFlag:
+      title: DiscoveryFlag
+      description: A flag to filter for documents
+      type: object
+      properties:
+        supportsSelfBilling:
+          title: Supports Self Billing
+          description: Whether or not to filter for documents that support self billing.
+          type: string
+          enum:
+          - allowed
+          - required
+          - not_allowed
+          default: not_allowed
+    CountrySpecifications:
+      properties:
+        countries:
+          type: array
+          items:
+            $ref: '#/components/schemas/CountrySpecification'
+    DiscoveredParticipant:
+      title: Discovered Participant
+      description: A public identifier for this customer.
+      type: object
+      properties:
+        code:
+          title: Code
+          description: The response code.
+          type: string
+          enum:
+          - OK
+          - NOK
+        email:
+          title: Email
+          description: DEPRECATED. Whether or not an 'OK' response means the document will be sent via Peppol, but delivered by email. This happens in the Belgian Hermes system where all identifiers have been registered, but if the receiver hasn't registered with a service provider, the Hermes system will send a PDF created from the electronic invoice and email that. The electronic document will itself not be emailed. Also see https://einvoice.belgium.be/en/article/send-structured-invoices-all-your-customers-hermes[Hermes^].
+          type: boolean
+          deprecated: true
+    CountrySpecification:
+      properties:
+        country:
+          allOf:
+          - $ref: '#/components/schemas/Country'
+          - title: Country
+            description: The ISO 3166-2 country this specification is for.
+        region:
+          title: Region
+          description: The region this country belongs to. Within this region exchanging invoices is well defined. Between regions some care needs to be taken and Storecove may help in automatically converting some items. Contact us for details of inter-regional document exchange.
+          type: string
+          enum:
+          - eu_eea
+          - sg
+          - aunz
+          - in
+          - world
+        sender:
+          title: Sender
+          description: The sender of the document.
+          properties:
+            legal:
+              allOf:
+              - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+              - title: Sender Legal Identifier
+                description: The legal identifier of the sender.
+            tax:
+              allOf:
+              - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+              - title: Sender Tax Identifier
+                description: The tax identifier of the sender.
+        receiver:
+          title: Receiver
+          description: The receiver of the document.
+          properties:
+            business:
+              title: Business Receiver
+              description: The business receiver of the document.
+              properties:
+                legal:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Business Receiver Legal Identifier
+                    description: The legal identifier of the business receiver.
+                tax:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Business Receiver Tax Identifier
+                    description: The tax identifier of the business receiver.
+                routing:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Business Receiver Routing Identifier
+                    description: The routing identifier of the business receiver.
+            government:
+              title: Government Receiver
+              description: The government receiver of the document.
+              properties:
+                legal:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Government Receiver Legal Identifier
+                    description: The legal identifier of the government receiver.
+                tax:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Government Receiver Tax Identifier
+                    description: The tax identifier of the government receiver.
+                routing:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Government Receiver Routing Identifier
+                    description: The routing identifier of the government receiver.
+            consumer:
+              title: Consumer Receiver
+              description: The consumer receiver of the document.
+              properties:
+                legal:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Consumer Receiver Legal Identifier
+                    description: The legal identifier of the consumer receiver.
+                tax:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Consumer Receiver Tax Identifier
+                    description: The tax identifier of the consumer receiver.
+                routing:
+                  allOf:
+                  - $ref: '#/components/schemas/CountrySpecificationIdentifier'
+                  - title: Government Receiver Routing Identifier
+                    description: The routing identifier of the consumer receiver.
+    DiscoverableParticipant:
+      title: Discoverable Participant
+      description: A participant to be discovered.
+      type: object
+      properties:
+        documentTypes:
+          title: DocumentTypes
+          description: An array of document types to discover. The default is '["invoice", "creditnote"]'. This is ignored when only checking existence.
+          type: array
+          items:
+            type: string
+            enum:
+            - invoice
+            - creditnote
+            - invoice_response
+            - order
+            - ordering
+            - order_response
+        network:
+          title: Network
+          description: The network to check. Currently only 'peppol' is supported.
+          type: string
+          minLength: 3
+          default: peppol
+        flags:
+          allOf:
+          - $ref: '#/components/schemas/DiscoveryFlag'
+          - title: Flags
+            description: The flags for the check.
+        metaScheme:
+          title: Meta Scheme
+          description: The meta scheme of the identifier. For Peppol this is always 'iso6523-actorid-upis'.
+          type: string
+          minLength: 3
+          default: iso6523-actorid-upis
+        scheme:
+          title: Scheme
+          description: The scheme of the identifier. See <<_receiver_identifiers_list>> for a list.
+          type: string
+          minLength: 3
+        identifier:
+          title: Identifier
+          description: The actual identifier.
+          type: string
+          minLength: 1
+      required:
+      - scheme
+      - identifier
+    CountrySpecificationIdentifier:
+      properties:
+        scheme_type:
+          title: Scheme Type
+          description: The scheme type of the identifier. Currently always "iso6523-actorid-upis"
+          type: string
+          enum:
+          - iso6523-actorid-upis
+        scheme:
+          title: Scheme
+          description: The scheme of the identifier
+          type: string
+        scheme_numercial:
+          title: Scheme Numerical
+          description: The numerical version of the scheme of the identifier
+          type: string
+        description:
+          title: Description
+          description: Identifier description.
+          type: string
+        centralized:
+          title: Centralized
+          description: Whether or not the identifier represents a centralized routing identifier. This is used in SG, AT and FR where all government invoices are routed to a central accesspoint with a single identifier. This field can only be present for routing identifiers.
+          type: boolean
+        centralized_identifier:
+          title: Centralized Identifier
+          description: The centralized identifier to use for routing, if the "centralized" proprerty is true.
+          type: string
+        centalized_identifier_test:
+          title: Centralized Identifier Test
+          description: The centralized identifier to use for routing in test cases, if the "centralized" proprerty is true. May not always be available depending on the country and network.
+          type: string
+    Country:
+      title: Country
+      description: An ISO 3166-1 alpha-2 country code.
+      type: string
+      enum:
+      - AD
+      - AE
+      - AF
+      - AG
+      - AI
+      - AL
+      - AM
+      - AO
+      - AQ
+      - AR
+      - AS
+      - AT
+      - AU
+      - AW
+      - AX
+      - AZ
+      - BA
+      - BB
+      - BD
+      - BE
+      - BF
+      - BG
+      - BH
+      - BI
+      - BJ
+      - BL
+      - BM
+      - BN
+      - BO
+      - BQ
+      - BR
+      - BS
+      - BT
+      - BV
+      - BW
+      - BY
+      - BZ
+      - CA
+      - CC
+      - CD
+      - CF
+      - CG
+      - CH
+      - CI
+      - CK
+      - CL
+      - CM
+      - CN
+      - CO
+      - CR
+      - CU
+      - CV
+      - CW
+      - CX
+      - CY
+      - CZ
+      - DE
+      - DJ
+      - DK
+      - DM
+      - DO
+      - DZ
+      - EC
+      - EE
+      - EG
+      - EH
+      - ER
+      - ES
+      - ET
+      - FI
+      - FJ
+      - FK
+      - FM
+      - FO
+      - FR
+      - GA
+      - GB
+      - GD
+      - GE
+      - GF
+      - GG
+      - GH
+      - GI
+      - GL
+      - GM
+      - GN
+      - GP
+      - GQ
+      - GR
+      - GS
+      - GT
+      - GU
+      - GW
+      - GY
+      - HK
+      - HM
+      - HN
+      - HR
+      - HT
+      - HU
+      - ID
+      - IE
+      - IL
+      - IM
+      - IN
+      - IO
+      - IQ
+      - IR
+      - IS
+      - IT
+      - JE
+      - JM
+      - JO
+      - JP
+      - KE
+      - KG
+      - KH
+      - KI
+      - KM
+      - KN
+      - KP
+      - KR
+      - KW
+      - KY
+      - KZ
+      - LA
+      - LB
+      - LC
+      - LI
+      - LK
+      - LR
+      - LS
+      - LT
+      - LU
+      - LV
+      - LY
+      - MA
+      - MC
+      - MD
+      - ME
+      - MF
+      - MG
+      - MH
+      - MK
+      - ML
+      - MM
+      - MN
+      - MO
+      - MP
+      - MQ
+      - MR
+      - MS
+      - MT
+      - MU
+      - MV
+      - MW
+      - MX
+      - MY
+      - MZ
+      - NA
+      - NC
+      - NE
+      - NF
+      - NG
+      - NI
+      - NL
+      - 'NO'
+      - NP
+      - NR
+      - NU
+      - NZ
+      - OM
+      - PA
+      - PE
+      - PF
+      - PG
+      - PH
+      - PK
+      - PL
+      - PM
+      - PN
+      - PR
+      - PS
+      - PT
+      - PW
+      - PY
+      - QA
+      - RE
+      - RO
+      - RS
+      - RU
+      - RW
+      - SA
+      - SB
+      - SC
+      - SD
+      - SE
+      - SG
+      - SH
+      - SI
+      - SJ
+      - SK
+      - SL
+      - SM
+      - SN
+      - SO
+      - SR
+      - SS
+      - ST
+      - SV
+      - SX
+      - SY
+      - SZ
+      - TC
+      - TD
+      - TF
+      - TG
+      - TH
+      - TJ
+      - TK
+      - TL
+      - TM
+      - TN
+      - TO
+      - TR
+      - TT
+      - TV
+      - TW
+      - TZ
+      - UA
+      - UG
+      - UM
+      - US
+      - UY
+      - UZ
+      - VA
+      - VC
+      - VE
+      - VG
+      - VI
+      - VN
+      - VU
+      - WF
+      - WS
+      - YE
+      - YT
+      - ZA
+      - ZM
+      - ZW
+      - XK
+      - XI
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

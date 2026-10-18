@@ -1,0 +1,35 @@
+generated: '2026-10-18'
+method: generated
+generator: extract-docs-artifacts.py skills (deepseek)
+source: openapi/storecove-openapi.yml
+skills:
+- file: skills/storecove-submit-document-and-retrieve-evidence.md
+  name: storecove-submit-document-and-retrieve-evidence
+  api: openapi/storecove-openapi.yml
+  operations:
+  - create_document_submission
+  - show_document_submission_evidence
+  - show_document_submission_evidence_by_type
+- file: skills/storecove-receive-and-retrieve-document.md
+  name: storecove-receive-and-retrieve-document
+  api: openapi/storecove-openapi.yml
+  operations:
+  - receive_document
+  - get_received_document
+  - get_received_document_in_format
+- file: skills/storecove-create-and-manage-legal-entity.md
+  name: storecove-create-and-manage-legal-entity
+  api: openapi/storecove-openapi.yml
+  operations:
+  - create_legal_entity
+  - get_legal_entity
+  - update_legal_entity
+  - delete_legal_entity
+- file: skills/storecove-manage-administration.md
+  name: storecove-manage-administration
+  api: openapi/storecove-openapi.yml
+  operations:
+  - create_administration
+  - get_administration
+  - update_administration
+  - delete_administration

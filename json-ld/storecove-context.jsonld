@@ -1,0 +1,1653 @@
+{
+  "@context": {
+    "@vocab": "https://storecove.com/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "storecove": "https://storecove.com/schema#",
+    "AdditionalItemProperty": "storecove:AdditionalItemProperty",
+    "name": {
+      "@id": "storecove:name",
+      "@type": "xsd:string"
+    },
+    "value": {
+      "@id": "storecove:value",
+      "@type": "xsd:string"
+    },
+    "nameCode": {
+      "@id": "storecove:nameCode",
+      "@type": "xsd:string"
+    },
+    "valueQuantity": {
+      "@id": "storecove:valueQuantity",
+      "@type": "xsd:string"
+    },
+    "valueQuantityUnitCode": {
+      "@id": "storecove:valueQuantityUnitCode",
+      "@type": "xsd:string"
+    },
+    "Address": "storecove:Address",
+    "street1": {
+      "@id": "storecove:street1",
+      "@type": "xsd:string"
+    },
+    "street2": {
+      "@id": "storecove:street2",
+      "@type": "xsd:string"
+    },
+    "city": {
+      "@id": "storecove:city",
+      "@type": "xsd:string"
+    },
+    "zip": {
+      "@id": "storecove:zip",
+      "@type": "xsd:string"
+    },
+    "county": {
+      "@id": "storecove:county",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "storecove:country",
+      "@type": "@id"
+    },
+    "AllowanceCharge": "storecove:AllowanceCharge",
+    "amountExcludingVat": {
+      "@id": "storecove:amountExcludingVat",
+      "@type": "xsd:decimal"
+    },
+    "amountExcludingTax": {
+      "@id": "storecove:amountExcludingTax",
+      "@type": "xsd:decimal"
+    },
+    "baseAmountExcludingTax": {
+      "@id": "storecove:baseAmountExcludingTax",
+      "@type": "xsd:decimal"
+    },
+    "amountIncludingTax": {
+      "@id": "storecove:amountIncludingTax",
+      "@type": "xsd:decimal"
+    },
+    "baseAmountIncludingTax": {
+      "@id": "storecove:baseAmountIncludingTax",
+      "@type": "xsd:decimal"
+    },
+    "tax": {
+      "@id": "storecove:tax"
+    },
+    "taxesDutiesFees": {
+      "@id": "storecove:taxesDutiesFees",
+      "@container": "@list"
+    },
+    "reason": {
+      "@id": "storecove:reason",
+      "@type": "xsd:string"
+    },
+    "reasonCode": {
+      "@id": "storecove:reasonCode",
+      "@type": "xsd:string"
+    },
+    "taxExemptionReason": {
+      "@id": "storecove:taxExemptionReason",
+      "@type": "xsd:string"
+    },
+    "taxExemptionReasonCode": {
+      "@id": "storecove:taxExemptionReasonCode",
+      "@type": "xsd:string"
+    },
+    "Attachment": "storecove:Attachment",
+    "document": {
+      "@id": "storecove:document",
+      "@type": "xsd:string"
+    },
+    "mimeType": {
+      "@id": "storecove:mimeType",
+      "@type": "xsd:string"
+    },
+    "filename": {
+      "@id": "storecove:filename",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "storecove:description",
+      "@type": "xsd:string"
+    },
+    "documentId": {
+      "@id": "storecove:documentId",
+      "@type": "xsd:string"
+    },
+    "primaryImage": {
+      "@id": "storecove:primaryImage",
+      "@type": "xsd:boolean"
+    },
+    "C5ActivationRequest": "storecove:C5ActivationRequest",
+    "client_redirect_fail_url": {
+      "@id": "storecove:client_redirect_fail_url",
+      "@type": "xsd:string"
+    },
+    "client_redirect_success_url": {
+      "@id": "storecove:client_redirect_success_url",
+      "@type": "xsd:string"
+    },
+    "flow_type": {
+      "@id": "storecove:flow_type",
+      "@type": "xsd:string"
+    },
+    "simulate": {
+      "@id": "storecove:simulate",
+      "@type": "xsd:boolean"
+    },
+    "identifier": {
+      "@id": "storecove:identifier",
+      "@type": "xsd:string"
+    },
+    "scheme": {
+      "@id": "storecove:scheme",
+      "@type": "xsd:string"
+    },
+    "superscheme": {
+      "@id": "storecove:superscheme",
+      "@type": "xsd:string"
+    },
+    "C5ActivationResponse": "storecove:C5ActivationResponse",
+    "redirect_url": {
+      "@id": "storecove:redirect_url",
+      "@type": "xsd:string"
+    },
+    "C5DeactivationRequest": "storecove:C5DeactivationRequest",
+    "C5DeactivationResponse": "storecove:C5DeactivationResponse",
+    "C5EmailCancellationRequest": "storecove:C5EmailCancellationRequest",
+    "C5EmailRequest": "storecove:C5EmailRequest",
+    "email": {
+      "@id": "storecove:email",
+      "@type": "xsd:string"
+    },
+    "C5ErrorResponse": "storecove:C5ErrorResponse",
+    "errors": {
+      "@id": "storecove:errors",
+      "@container": "@list"
+    },
+    "C5RedirectCancellationRequest": "storecove:C5RedirectCancellationRequest",
+    "C5RedirectRequest": "storecove:C5RedirectRequest",
+    "C5RedirectResponse": "storecove:C5RedirectResponse",
+    "Country": "storecove:Country",
+    "CurrencyCode": "storecove:CurrencyCode",
+    "Delivery": "storecove:Delivery",
+    "deliveryLocation": {
+      "@id": "storecove:deliveryLocation"
+    },
+    "requestedDeliveryPeriod": {
+      "@id": "storecove:requestedDeliveryPeriod",
+      "@type": "xsd:string"
+    },
+    "actualDeliveryDate": {
+      "@id": "storecove:actualDeliveryDate",
+      "@type": "xsd:string"
+    },
+    "quantity": {
+      "@id": "storecove:quantity",
+      "@type": "xsd:decimal"
+    },
+    "deliveryPartyName": {
+      "@id": "storecove:deliveryPartyName",
+      "@type": "xsd:string"
+    },
+    "deliveryParty": {
+      "@id": "storecove:deliveryParty"
+    },
+    "shipment": {
+      "@id": "storecove:shipment"
+    },
+    "shippingMarks": {
+      "@id": "storecove:shippingMarks",
+      "@type": "xsd:string"
+    },
+    "DeliveryTerms": "storecove:DeliveryTerms",
+    "incoterms": {
+      "@id": "storecove:incoterms",
+      "@type": "xsd:string"
+    },
+    "specialTerms": {
+      "@id": "storecove:specialTerms",
+      "@type": "xsd:string"
+    },
+    "deliveryLocationId": {
+      "@id": "storecove:deliveryLocationId",
+      "@type": "xsd:string"
+    },
+    "LineDelivery": "storecove:LineDelivery",
+    "Shipment": "storecove:Shipment",
+    "originAddress": {
+      "@id": "storecove:originAddress"
+    },
+    "allowanceCharges": {
+      "@id": "storecove:allowanceCharges",
+      "@container": "@list"
+    },
+    "DiscoveryFlag": "storecove:DiscoveryFlag",
+    "supportsSelfBilling": {
+      "@id": "storecove:supportsSelfBilling",
+      "@type": "xsd:string"
+    },
+    "frEReport": "storecove:frEReport",
+    "typeCode": {
+      "@id": "storecove:typeCode",
+      "@type": "xsd:string"
+    },
+    "issueDate": {
+      "@id": "storecove:issueDate",
+      "@type": "xsd:string"
+    },
+    "issueTime": {
+      "@id": "storecove:issueTime",
+      "@type": "xsd:string"
+    },
+    "timeZone": {
+      "@id": "storecove:timeZone",
+      "@type": "xsd:string"
+    },
+    "declarantParty": {
+      "@id": "storecove:declarantParty",
+      "@type": "@id"
+    },
+    "transactionReport": {
+      "@id": "storecove:transactionReport",
+      "@type": "@id"
+    },
+    "paymentReport": {
+      "@id": "storecove:paymentReport",
+      "@type": "@id"
+    },
+    "frEReportDeclarantParty": "storecove:frEReportDeclarantParty",
+    "party": {
+      "@id": "storecove:party",
+      "@type": "@id"
+    },
+    "publicIdentifiers": {
+      "@id": "storecove:publicIdentifiers",
+      "@container": "@list"
+    },
+    "frEReportParty": "storecove:frEReportParty",
+    "companyName": {
+      "@id": "storecove:companyName",
+      "@type": "xsd:string"
+    },
+    "frEReportTransactionReport": "storecove:frEReportTransactionReport",
+    "period": {
+      "@id": "storecove:period",
+      "@type": "xsd:string"
+    },
+    "b2biInvoices": {
+      "@id": "storecove:b2biInvoices",
+      "@container": "@list"
+    },
+    "b2cTransactions": {
+      "@id": "storecove:b2cTransactions",
+      "@container": "@list"
+    },
+    "frEReportB2bCrossBorderInvoice": "storecove:frEReportB2bCrossBorderInvoice",
+    "invoiceNumber": {
+      "@id": "storecove:invoiceNumber",
+      "@type": "xsd:string"
+    },
+    "frCadreDeFacturation": {
+      "@id": "storecove:frCadreDeFacturation",
+      "@type": "xsd:string"
+    },
+    "dueDate": {
+      "@id": "storecove:dueDate",
+      "@type": "xsd:string"
+    },
+    "documentCurrency": {
+      "@id": "storecove:documentCurrency",
+      "@type": "xsd:string"
+    },
+    "amountIncludingVat": {
+      "@id": "storecove:amountIncludingVat",
+      "@type": "xsd:decimal"
+    },
+    "taxSubtotals": {
+      "@id": "storecove:taxSubtotals",
+      "@container": "@list"
+    },
+    "accountingSupplierParty": {
+      "@id": "storecove:accountingSupplierParty",
+      "@type": "@id"
+    },
+    "accountingCustomerParty": {
+      "@id": "storecove:accountingCustomerParty",
+      "@type": "@id"
+    },
+    "invoiceLines": {
+      "@id": "storecove:invoiceLines",
+      "@container": "@list"
+    },
+    "references": {
+      "@id": "storecove:references",
+      "@container": "@list"
+    },
+    "frEReportB2cTransaction": "storecove:frEReportB2cTransaction",
+    "date": {
+      "@id": "storecove:date",
+      "@type": "xsd:string"
+    },
+    "currency": {
+      "@id": "storecove:currency",
+      "@type": "xsd:string"
+    },
+    "vatPaymentOption": {
+      "@id": "storecove:vatPaymentOption",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "storecove:category",
+      "@type": "xsd:string"
+    },
+    "transactionsCount": {
+      "@id": "storecove:transactionsCount",
+      "@type": "xsd:integer"
+    },
+    "frEReportPaymentReport": "storecove:frEReportPaymentReport",
+    "b2biPayments": {
+      "@id": "storecove:b2biPayments",
+      "@container": "@list"
+    },
+    "b2cPayments": {
+      "@id": "storecove:b2cPayments",
+      "@container": "@list"
+    },
+    "frEReportB2bPayment": "storecove:frEReportB2bPayment",
+    "paymentDate": {
+      "@id": "storecove:paymentDate",
+      "@type": "xsd:string"
+    },
+    "amount": {
+      "@id": "storecove:amount",
+      "@type": "xsd:decimal"
+    },
+    "paymentMeansCode": {
+      "@id": "storecove:paymentMeansCode",
+      "@type": "xsd:string"
+    },
+    "frEReportB2cPayment": "storecove:frEReportB2cPayment",
+    "taxSubtotal": {
+      "@id": "storecove:taxSubtotal",
+      "@container": "@list"
+    },
+    "DocumentInvoiceReport": "storecove:DocumentInvoiceReport",
+    "action": {
+      "@id": "storecove:action",
+      "@type": "xsd:string"
+    },
+    "DocumentInvoiceResponse": "storecove:DocumentInvoiceResponse",
+    "id": {
+      "@id": "storecove:id",
+      "@type": "xsd:string"
+    },
+    "clarifications": {
+      "@id": "storecove:clarifications",
+      "@container": "@list"
+    },
+    "effectiveDate": {
+      "@id": "storecove:effectiveDate",
+      "@type": "xsd:string"
+    },
+    "note": {
+      "@id": "storecove:note",
+      "@type": "xsd:string"
+    },
+    "responseCode": {
+      "@id": "storecove:responseCode",
+      "@type": "xsd:string"
+    },
+    "InvoiceResponseClarification": "storecove:InvoiceResponseClarification",
+    "clarificationCodeType": {
+      "@id": "storecove:clarificationCodeType",
+      "@type": "xsd:string"
+    },
+    "clarificationCode": {
+      "@id": "storecove:clarificationCode",
+      "@type": "xsd:string"
+    },
+    "clarification": {
+      "@id": "storecove:clarification",
+      "@type": "xsd:string"
+    },
+    "conditions": {
+      "@id": "storecove:conditions",
+      "@container": "@list"
+    },
+    "InvoiceResponseCondition": "storecove:InvoiceResponseCondition",
+    "fieldCode": {
+      "@id": "storecove:fieldCode",
+      "@type": "xsd:string"
+    },
+    "fieldValue": {
+      "@id": "storecove:fieldValue",
+      "@type": "xsd:string"
+    },
+    "DocumentOrder": "storecove:DocumentOrder",
+    "taxSystem": {
+      "@id": "storecove:taxSystem",
+      "@type": "xsd:string"
+    },
+    "documentNumber": {
+      "@id": "storecove:documentNumber",
+      "@type": "xsd:string"
+    },
+    "orderType": {
+      "@id": "storecove:orderType",
+      "@type": "xsd:string"
+    },
+    "documentCurrencyCode": {
+      "@id": "storecove:documentCurrencyCode"
+    },
+    "accountingCost": {
+      "@id": "storecove:accountingCost",
+      "@type": "xsd:string"
+    },
+    "validityPeriod": {
+      "@id": "storecove:validityPeriod",
+      "@type": "xsd:string"
+    },
+    "buyerCustomerParty": {
+      "@id": "storecove:buyerCustomerParty"
+    },
+    "sellerSupplierParty": {
+      "@id": "storecove:sellerSupplierParty"
+    },
+    "delivery": {
+      "@id": "storecove:delivery"
+    },
+    "deliveryTerms": {
+      "@id": "storecove:deliveryTerms"
+    },
+    "paymentTerms": {
+      "@id": "storecove:paymentTerms"
+    },
+    "orderLines": {
+      "@id": "storecove:orderLines",
+      "@container": "@list"
+    },
+    "attachments": {
+      "@id": "storecove:attachments",
+      "@container": "@list"
+    },
+    "OrderLine": "storecove:OrderLine",
+    "lineId": {
+      "@id": "storecove:lineId",
+      "@type": "xsd:string"
+    },
+    "quantityUnitCode": {
+      "@id": "storecove:quantityUnitCode",
+      "@type": "xsd:string"
+    },
+    "itemPrice": {
+      "@id": "storecove:itemPrice",
+      "@type": "xsd:decimal"
+    },
+    "baseQuantity": {
+      "@id": "storecove:baseQuantity",
+      "@type": "xsd:decimal"
+    },
+    "allowPartialDelivery": {
+      "@id": "storecove:allowPartialDelivery",
+      "@type": "xsd:boolean"
+    },
+    "additionalItemProperties": {
+      "@id": "storecove:additionalItemProperties",
+      "@container": "@list"
+    },
+    "lotNumberIds": {
+      "@id": "storecove:lotNumberIds",
+      "@container": "@list"
+    },
+    "Invoice": "storecove:Invoice",
+    "accountingCurrencyExchangeRate": {
+      "@id": "storecove:accountingCurrencyExchangeRate",
+      "@type": "xsd:decimal"
+    },
+    "accountingCurrencyTaxableAmount": {
+      "@id": "storecove:accountingCurrencyTaxableAmount",
+      "@type": "xsd:decimal"
+    },
+    "accountingCurrencyTaxAmount": {
+      "@id": "storecove:accountingCurrencyTaxAmount",
+      "@type": "xsd:decimal"
+    },
+    "accountingCurrencyTaxAmountCurrency": {
+      "@id": "storecove:accountingCurrencyTaxAmountCurrency"
+    },
+    "payeeParty": {
+      "@id": "storecove:payeeParty"
+    },
+    "buyerAgentParty": {
+      "@id": "storecove:buyerAgentParty"
+    },
+    "salesAgentParty": {
+      "@id": "storecove:salesAgentParty"
+    },
+    "invoiceeParty": {
+      "@id": "storecove:invoiceeParty"
+    },
+    "invoicerParty": {
+      "@id": "storecove:invoicerParty"
+    },
+    "payerParty": {
+      "@id": "storecove:payerParty"
+    },
+    "aeTransactionType": {
+      "@id": "storecove:aeTransactionType"
+    },
+    "billingFrequency": {
+      "@id": "storecove:billingFrequency",
+      "@type": "xsd:string"
+    },
+    "consumerTaxMode": {
+      "@id": "storecove:consumerTaxMode",
+      "@type": "xsd:boolean"
+    },
+    "sellerAdditionalTaxIdentifierCountry": {
+      "@id": "storecove:sellerAdditionalTaxIdentifierCountry",
+      "@type": "xsd:string"
+    },
+    "creditNoteTypeCode": {
+      "@id": "storecove:creditNoteTypeCode",
+      "@type": "xsd:string"
+    },
+    "creditNoteReasonCode": {
+      "@id": "storecove:creditNoteReasonCode",
+      "@type": "xsd:string"
+    },
+    "documentUuid": {
+      "@id": "storecove:documentUuid",
+      "@type": "xsd:string"
+    },
+    "invoicePeriod": {
+      "@id": "storecove:invoicePeriod",
+      "@type": "xsd:string"
+    },
+    "invoiceTypeCode": {
+      "@id": "storecove:invoiceTypeCode",
+      "@type": "xsd:string"
+    },
+    "issueReasons": {
+      "@id": "storecove:issueReasons",
+      "@container": "@list"
+    },
+    "productionDate": {
+      "@id": "storecove:productionDate",
+      "@type": "xsd:string"
+    },
+    "productionTime": {
+      "@id": "storecove:productionTime",
+      "@type": "xsd:string"
+    },
+    "productionTimeZone": {
+      "@id": "storecove:productionTimeZone",
+      "@type": "xsd:string"
+    },
+    "connectedUnderPlArticle32": {
+      "@id": "storecove:connectedUnderPlArticle32",
+      "@type": "xsd:boolean"
+    },
+    "notes": {
+      "@id": "storecove:notes",
+      "@container": "@list"
+    },
+    "payableRoundingAmount": {
+      "@id": "storecove:payableRoundingAmount",
+      "@type": "xsd:decimal"
+    },
+    "paymentMeansArray": {
+      "@id": "storecove:paymentMeansArray",
+      "@container": "@list"
+    },
+    "preferredInvoiceType": {
+      "@id": "storecove:preferredInvoiceType",
+      "@type": "xsd:string"
+    },
+    "prepaidAmount": {
+      "@id": "storecove:prepaidAmount",
+      "@type": "xsd:decimal"
+    },
+    "prepaidPayments": {
+      "@id": "storecove:prepaidPayments",
+      "@container": "@list"
+    },
+    "priceMode": {
+      "@id": "storecove:priceMode",
+      "@type": "xsd:string"
+    },
+    "selfBillingMode": {
+      "@id": "storecove:selfBillingMode",
+      "@type": "xsd:boolean"
+    },
+    "subType": {
+      "@id": "storecove:subType",
+      "@type": "xsd:string"
+    },
+    "taxPointDate": {
+      "@id": "storecove:taxPointDate",
+      "@type": "xsd:string"
+    },
+    "taxPointDateCode": {
+      "@id": "storecove:taxPointDateCode",
+      "@type": "xsd:string"
+    },
+    "transactionType": {
+      "@id": "storecove:transactionType",
+      "@type": "xsd:string"
+    },
+    "taxAuthority": {
+      "@id": "storecove:taxAuthority"
+    },
+    "ublExtensions": {
+      "@id": "storecove:ublExtensions",
+      "@container": "@list"
+    },
+    "x2y": {
+      "@id": "storecove:x2y",
+      "@type": "xsd:string"
+    },
+    "vatReverseCharge": {
+      "@id": "storecove:vatReverseCharge",
+      "@type": "xsd:boolean"
+    },
+    "taxExemptReason": {
+      "@id": "storecove:taxExemptReason",
+      "@type": "xsd:string"
+    },
+    "invoiceType": {
+      "@id": "storecove:invoiceType",
+      "@type": "xsd:string"
+    },
+    "buyerReference": {
+      "@id": "storecove:buyerReference",
+      "@type": "xsd:string"
+    },
+    "orderReference": {
+      "@id": "storecove:orderReference",
+      "@type": "xsd:string"
+    },
+    "salesOrderId": {
+      "@id": "storecove:salesOrderId",
+      "@type": "xsd:string"
+    },
+    "billingReference": {
+      "@id": "storecove:billingReference",
+      "@type": "xsd:string"
+    },
+    "contractDocumentReference": {
+      "@id": "storecove:contractDocumentReference",
+      "@type": "xsd:string"
+    },
+    "projectReference": {
+      "@id": "storecove:projectReference",
+      "@type": "xsd:string"
+    },
+    "paymentMeansIban": {
+      "@id": "storecove:paymentMeansIban",
+      "@type": "xsd:string"
+    },
+    "paymentMeansBic": {
+      "@id": "storecove:paymentMeansBic",
+      "@type": "xsd:string"
+    },
+    "paymentMeansPaymentId": {
+      "@id": "storecove:paymentMeansPaymentId",
+      "@type": "xsd:string"
+    },
+    "InvoiceLine": "storecove:InvoiceLine",
+    "orderLineReferenceLineId": {
+      "@id": "storecove:orderLineReferenceLineId",
+      "@type": "xsd:string"
+    },
+    "price": {
+      "@id": "storecove:price"
+    },
+    "allowanceCharge": {
+      "@id": "storecove:allowanceCharge",
+      "@type": "xsd:decimal"
+    },
+    "itemType": {
+      "@id": "storecove:itemType",
+      "@type": "xsd:string"
+    },
+    "natureCode": {
+      "@id": "storecove:natureCode",
+      "@type": "xsd:string"
+    },
+    "serviceAccountingCode": {
+      "@id": "storecove:serviceAccountingCode",
+      "@type": "xsd:string"
+    },
+    "sellersItemIdentification": {
+      "@id": "storecove:sellersItemIdentification",
+      "@type": "xsd:string"
+    },
+    "buyersItemIdentification": {
+      "@id": "storecove:buyersItemIdentification",
+      "@type": "xsd:string"
+    },
+    "standardItemIdentification": {
+      "@id": "storecove:standardItemIdentification",
+      "@type": "xsd:string"
+    },
+    "standardItemIdentificationSchemeId": {
+      "@id": "storecove:standardItemIdentificationSchemeId",
+      "@type": "xsd:string"
+    },
+    "standardItemIdentificationSchemeAgencyId": {
+      "@id": "storecove:standardItemIdentificationSchemeAgencyId",
+      "@type": "xsd:string"
+    },
+    "AdditionalTaxIdentifier": "storecove:AdditionalTaxIdentifier",
+    "AdditionalTaxIdentifierCreate": "storecove:AdditionalTaxIdentifierCreate",
+    "third_party_username": {
+      "@id": "storecove:third_party_username",
+      "@type": "xsd:string"
+    },
+    "third_party_password": {
+      "@id": "storecove:third_party_password",
+      "@type": "xsd:string"
+    },
+    "AdditionalTaxIdentifierUpdate": "storecove:AdditionalTaxIdentifierUpdate",
+    "Administration": "storecove:Administration",
+    "sender_email_identity_id": {
+      "@id": "storecove:sender_email_identity_id",
+      "@type": "xsd:integer"
+    },
+    "legal_entity_id": {
+      "@id": "storecove:legal_entity_id",
+      "@type": "xsd:integer"
+    },
+    "packaging": {
+      "@id": "storecove:packaging",
+      "@type": "xsd:string"
+    },
+    "package_version": {
+      "@id": "storecove:package_version",
+      "@type": "xsd:string"
+    },
+    "AdministrationCreate": "storecove:AdministrationCreate",
+    "AdministrationUpdate": "storecove:AdministrationUpdate",
+    "CountrySpecification": "storecove:CountrySpecification",
+    "region": {
+      "@id": "storecove:region",
+      "@type": "xsd:string"
+    },
+    "sender": {
+      "@id": "storecove:sender"
+    },
+    "receiver": {
+      "@id": "storecove:receiver"
+    },
+    "CountrySpecificationIdentifier": "storecove:CountrySpecificationIdentifier",
+    "scheme_type": {
+      "@id": "storecove:scheme_type",
+      "@type": "xsd:string"
+    },
+    "scheme_numercial": {
+      "@id": "storecove:scheme_numercial",
+      "@type": "xsd:string"
+    },
+    "centralized": {
+      "@id": "storecove:centralized",
+      "@type": "xsd:boolean"
+    },
+    "centralized_identifier": {
+      "@id": "storecove:centralized_identifier",
+      "@type": "xsd:string"
+    },
+    "centalized_identifier_test": {
+      "@id": "storecove:centalized_identifier_test",
+      "@type": "xsd:string"
+    },
+    "CountrySpecifications": "storecove:CountrySpecifications",
+    "countries": {
+      "@id": "storecove:countries",
+      "@container": "@list"
+    },
+    "DiscoverableParticipant": "storecove:DiscoverableParticipant",
+    "documentTypes": {
+      "@id": "storecove:documentTypes",
+      "@container": "@list"
+    },
+    "network": {
+      "@id": "storecove:network",
+      "@type": "xsd:string"
+    },
+    "flags": {
+      "@id": "storecove:flags"
+    },
+    "metaScheme": {
+      "@id": "storecove:metaScheme",
+      "@type": "xsd:string"
+    },
+    "DiscoveredParticipant": "storecove:DiscoveredParticipant",
+    "code": {
+      "@id": "storecove:code",
+      "@type": "xsd:string"
+    },
+    "DocumentSubmission": "storecove:DocumentSubmission",
+    "routing": {
+      "@id": "storecove:routing"
+    },
+    "legalEntityId": {
+      "@id": "storecove:legalEntityId",
+      "@type": "xsd:integer"
+    },
+    "receiveGuid": {
+      "@id": "storecove:receiveGuid",
+      "@type": "xsd:string"
+    },
+    "forDocumentGuid": {
+      "@id": "storecove:forDocumentGuid",
+      "@type": "xsd:string"
+    },
+    "forDocumentSubmissionGuid": {
+      "@id": "storecove:forDocumentSubmissionGuid",
+      "@type": "xsd:string"
+    },
+    "idempotencyGuid": {
+      "@id": "storecove:idempotencyGuid",
+      "@type": "xsd:string"
+    },
+    "createPrimaryImage": {
+      "@id": "storecove:createPrimaryImage",
+      "@type": "xsd:boolean"
+    },
+    "DocumentSubmissionResult": "storecove:DocumentSubmissionResult",
+    "guid": {
+      "@id": "storecove:guid",
+      "@type": "xsd:string"
+    },
+    "EnvelopedData": "storecove:EnvelopedData",
+    "application": {
+      "@id": "storecove:application",
+      "@type": "xsd:string"
+    },
+    "processId": {
+      "@id": "storecove:processId",
+      "@type": "xsd:string"
+    },
+    "processIdSchemeId": {
+      "@id": "storecove:processIdSchemeId",
+      "@type": "xsd:string"
+    },
+    "documentIdSchemeId": {
+      "@id": "storecove:documentIdSchemeId",
+      "@type": "xsd:string"
+    },
+    "envelope": {
+      "@id": "storecove:envelope"
+    },
+    "metadata": {
+      "@id": "storecove:metadata"
+    },
+    "RawDocumentData": "storecove:RawDocumentData",
+    "parse": {
+      "@id": "storecove:parse",
+      "@type": "xsd:boolean"
+    },
+    "parseStrategy": {
+      "@id": "storecove:parseStrategy",
+      "@type": "xsd:string"
+    },
+    "ReceivableDocument": "storecove:ReceivableDocument",
+    "documentType": {
+      "@id": "storecove:documentType",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "storecove:source",
+      "@type": "xsd:string"
+    },
+    "invoice": {
+      "@id": "storecove:invoice"
+    },
+    "order": {
+      "@id": "storecove:order"
+    },
+    "SendableDocument": "storecove:SendableDocument",
+    "invoiceResponse": {
+      "@id": "storecove:invoiceResponse"
+    },
+    "invoiceReport": {
+      "@id": "storecove:invoiceReport",
+      "@type": "@id"
+    },
+    "paymentReceivedNotification": {
+      "@id": "storecove:paymentReceivedNotification"
+    },
+    "duplicateDetection": {
+      "@id": "storecove:duplicateDetection"
+    },
+    "rawDocumentData": {
+      "@id": "storecove:rawDocumentData",
+      "@type": "@id"
+    },
+    "envelopedData": {
+      "@id": "storecove:envelopedData",
+      "@type": "@id"
+    },
+    "Transportable": "storecove:Transportable",
+    "direction": {
+      "@id": "storecove:direction",
+      "@type": "xsd:string"
+    },
+    "original": {
+      "@id": "storecove:original",
+      "@type": "xsd:string"
+    },
+    "DocumentSubmissionEvidence": "storecove:DocumentSubmissionEvidence",
+    "documents": {
+      "@id": "storecove:documents",
+      "@container": "@list"
+    },
+    "evidence": {
+      "@id": "storecove:evidence"
+    },
+    "DocumentSubmissionEvidenceDocument": "storecove:DocumentSubmissionEvidenceDocument",
+    "expires_at": {
+      "@id": "storecove:expires_at",
+      "@type": "xsd:string"
+    },
+    "mime_type": {
+      "@id": "storecove:mime_type",
+      "@type": "xsd:string"
+    },
+    "DocumentSubmissionEvidenceEvidence": "storecove:DocumentSubmissionEvidenceEvidence",
+    "smtp_response": {
+      "@id": "storecove:smtp_response",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "storecove:timestamp",
+      "@type": "xsd:string"
+    },
+    "reporting_mta": {
+      "@id": "storecove:reporting_mta",
+      "@type": "xsd:string"
+    },
+    "remote_mta_ip": {
+      "@id": "storecove:remote_mta_ip",
+      "@type": "xsd:string"
+    },
+    "transmission_id": {
+      "@id": "storecove:transmission_id",
+      "@type": "xsd:string"
+    },
+    "message_id": {
+      "@id": "storecove:message_id",
+      "@type": "xsd:string"
+    },
+    "partner_key": {
+      "@id": "storecove:partner_key",
+      "@type": "xsd:string"
+    },
+    "long_id": {
+      "@id": "storecove:long_id",
+      "@type": "xsd:string"
+    },
+    "acknowledgement_id": {
+      "@id": "storecove:acknowledgement_id",
+      "@type": "xsd:string"
+    },
+    "correlation_id": {
+      "@id": "storecove:correlation_id",
+      "@type": "xsd:string"
+    },
+    "document_id": {
+      "@id": "storecove:document_id",
+      "@type": "xsd:string"
+    },
+    "receiving_accesspoint": {
+      "@id": "storecove:receiving_accesspoint",
+      "@type": "xsd:string"
+    },
+    "xml": {
+      "@id": "storecove:xml",
+      "@type": "xsd:string"
+    },
+    "signature": {
+      "@id": "storecove:signature",
+      "@type": "xsd:string"
+    },
+    "signature_date_time": {
+      "@id": "storecove:signature_date_time",
+      "@type": "xsd:string"
+    },
+    "signature_number": {
+      "@id": "storecove:signature_number",
+      "@type": "xsd:string"
+    },
+    "qr_code": {
+      "@id": "storecove:qr_code",
+      "@type": "xsd:string"
+    },
+    "tax_authority_id": {
+      "@id": "storecove:tax_authority_id",
+      "@type": "xsd:string"
+    },
+    "tax_authority_date": {
+      "@id": "storecove:tax_authority_date",
+      "@type": "xsd:string"
+    },
+    "tax_authority_timestamp": {
+      "@id": "storecove:tax_authority_timestamp",
+      "@type": "xsd:string"
+    },
+    "validated_at": {
+      "@id": "storecove:validated_at",
+      "@type": "xsd:string"
+    },
+    "document_signature": {
+      "@id": "storecove:document_signature",
+      "@type": "xsd:string"
+    },
+    "id_upload": {
+      "@id": "storecove:id_upload",
+      "@type": "xsd:string"
+    },
+    "id_download": {
+      "@id": "storecove:id_download",
+      "@type": "xsd:string"
+    },
+    "tax_authority_deep_link": {
+      "@id": "storecove:tax_authority_deep_link",
+      "@type": "xsd:string"
+    },
+    "InvoiceData": "storecove:InvoiceData",
+    "conversionStrategy": {
+      "@id": "storecove:conversionStrategy",
+      "@type": "xsd:string"
+    },
+    "InvoiceRecipient": "storecove:InvoiceRecipient",
+    "emails": {
+      "@id": "storecove:emails",
+      "@container": "@list"
+    },
+    "InvoiceRecipientPreflight": "storecove:InvoiceRecipientPreflight",
+    "InvoiceSubmission": "storecove:InvoiceSubmission",
+    "mode": {
+      "@id": "storecove:mode",
+      "@type": "xsd:string"
+    },
+    "supplierId": {
+      "@id": "storecove:supplierId",
+      "@type": "xsd:integer"
+    },
+    "legalSupplierId": {
+      "@id": "storecove:legalSupplierId",
+      "@type": "xsd:integer"
+    },
+    "invoiceRecipient": {
+      "@id": "storecove:invoiceRecipient"
+    },
+    "documentUrl": {
+      "@id": "storecove:documentUrl",
+      "@type": "@id"
+    },
+    "invoiceData": {
+      "@id": "storecove:invoiceData",
+      "@type": "@id"
+    },
+    "InvoiceSubmissionActionEvidence": "storecove:InvoiceSubmissionActionEvidence",
+    "transmission_datetime": {
+      "@id": "storecove:transmission_datetime",
+      "@type": "xsd:string"
+    },
+    "transmission_type": {
+      "@id": "storecove:transmission_type",
+      "@type": "xsd:string"
+    },
+    "transmission_result": {
+      "@id": "storecove:transmission_result",
+      "@type": "xsd:string"
+    },
+    "transmitted_document": {
+      "@id": "storecove:transmitted_document",
+      "@type": "xsd:string"
+    },
+    "receiver_response": {
+      "@id": "storecove:receiver_response",
+      "@type": "xsd:string"
+    },
+    "InvoiceSubmissionEvidence": "storecove:InvoiceSubmissionEvidence",
+    "status": {
+      "@id": "storecove:status",
+      "@type": "xsd:string"
+    },
+    "actions": {
+      "@id": "storecove:actions",
+      "@container": "@list"
+    },
+    "InvoiceSubmissionResult": "storecove:InvoiceSubmissionResult",
+    "PreflightInvoiceRecipientResult": "storecove:PreflightInvoiceRecipientResult",
+    "LegalEntityCreate": "storecove:LegalEntityCreate",
+    "party_name": {
+      "@id": "storecove:party_name",
+      "@type": "xsd:string"
+    },
+    "line1": {
+      "@id": "storecove:line1",
+      "@type": "xsd:string"
+    },
+    "line2": {
+      "@id": "storecove:line2",
+      "@type": "xsd:string"
+    },
+    "registration_authority_name": {
+      "@id": "storecove:registration_authority_name",
+      "@type": "xsd:string"
+    },
+    "passport_issuing_country": {
+      "@id": "storecove:passport_issuing_country",
+      "@type": "xsd:string"
+    },
+    "tenant_id": {
+      "@id": "storecove:tenant_id",
+      "@type": "xsd:string"
+    },
+    "public": {
+      "@id": "storecove:public",
+      "@type": "xsd:boolean"
+    },
+    "advertisements": {
+      "@id": "storecove:advertisements",
+      "@container": "@list"
+    },
+    "rea": {
+      "@id": "storecove:rea"
+    },
+    "acts_as_sender": {
+      "@id": "storecove:acts_as_sender",
+      "@type": "xsd:boolean"
+    },
+    "acts_as_receiver": {
+      "@id": "storecove:acts_as_receiver",
+      "@type": "xsd:boolean"
+    },
+    "tax_registered": {
+      "@id": "storecove:tax_registered",
+      "@type": "xsd:boolean"
+    },
+    "override_own_credentials": {
+      "@id": "storecove:override_own_credentials",
+      "@type": "xsd:boolean"
+    },
+    "LegalEntityUpdate": "storecove:LegalEntityUpdate",
+    "smart_inbox": {
+      "@id": "storecove:smart_inbox",
+      "@type": "xsd:string"
+    },
+    "classification_code": {
+      "@id": "storecove:classification_code",
+      "@type": "xsd:string"
+    },
+    "Rea": "storecove:Rea",
+    "province": {
+      "@id": "storecove:province",
+      "@type": "xsd:string"
+    },
+    "capital": {
+      "@id": "storecove:capital",
+      "@type": "xsd:decimal"
+    },
+    "partners": {
+      "@id": "storecove:partners",
+      "@type": "xsd:string"
+    },
+    "liquidation_status": {
+      "@id": "storecove:liquidation_status",
+      "@type": "xsd:string"
+    },
+    "CorpPass": "storecove:CorpPass",
+    "enabled": {
+      "@id": "storecove:enabled",
+      "@type": "xsd:boolean"
+    },
+    "signer_name": {
+      "@id": "storecove:signer_name",
+      "@type": "xsd:string"
+    },
+    "signer_email": {
+      "@id": "storecove:signer_email",
+      "@type": "xsd:string"
+    },
+    "corppass_url": {
+      "@id": "storecove:corppass_url",
+      "@type": "xsd:string"
+    },
+    "simulate_corppass": {
+      "@id": "storecove:simulate_corppass",
+      "@type": "xsd:boolean"
+    },
+    "CorpPassCreate": "storecove:CorpPassCreate",
+    "kyc_document": {
+      "@id": "storecove:kyc_document",
+      "@type": "xsd:string"
+    },
+    "DgfipAnnuaire": "storecove:DgfipAnnuaire",
+    "routing_code_label": {
+      "@id": "storecove:routing_code_label",
+      "@type": "xsd:string"
+    },
+    "address": {
+      "@id": "storecove:address"
+    },
+    "start_date": {
+      "@id": "storecove:start_date",
+      "@type": "xsd:date"
+    },
+    "formal_agreement": {
+      "@id": "storecove:formal_agreement"
+    },
+    "DgfipAnnuaireAddress": "storecove:DgfipAnnuaireAddress",
+    "DgfipAnnuaireUpdate": "storecove:DgfipAnnuaireUpdate",
+    "FormalAgreement": "storecove:FormalAgreement",
+    "NetworkSpecification": "storecove:NetworkSpecification",
+    "sub_networks": {
+      "@id": "storecove:sub_networks",
+      "@container": "@list"
+    },
+    "annuaire": {
+      "@id": "storecove:annuaire"
+    },
+    "PeppolIdentifier": "storecove:PeppolIdentifier",
+    "corppass": {
+      "@id": "storecove:corppass"
+    },
+    "annuaire_line_id_instance": {
+      "@id": "storecove:annuaire_line_id_instance",
+      "@type": "xsd:string"
+    },
+    "annuaire_routing_code_id_instance": {
+      "@id": "storecove:annuaire_routing_code_id_instance",
+      "@type": "xsd:string"
+    },
+    "PeppolIdentifierAnnuaireUpdate": "storecove:PeppolIdentifierAnnuaireUpdate",
+    "PeppolIdentifierCreate": "storecove:PeppolIdentifierCreate",
+    "networks": {
+      "@id": "storecove:networks",
+      "@container": "@list"
+    },
+    "networks_specification": {
+      "@id": "storecove:networks_specification",
+      "@container": "@list"
+    },
+    "PurchaseInvoice": "storecove:PurchaseInvoice",
+    "external_user_id": {
+      "@id": "storecove:external_user_id",
+      "@type": "xsd:string"
+    },
+    "external_key": {
+      "@id": "storecove:external_key",
+      "@type": "xsd:string"
+    },
+    "invoice_type": {
+      "@id": "storecove:invoice_type",
+      "@type": "xsd:string"
+    },
+    "vat_reverse_charge": {
+      "@id": "storecove:vat_reverse_charge",
+      "@type": "xsd:boolean"
+    },
+    "amount_including_vat": {
+      "@id": "storecove:amount_including_vat",
+      "@type": "xsd:decimal"
+    },
+    "allowance_charge": {
+      "@id": "storecove:allowance_charge",
+      "@type": "xsd:decimal"
+    },
+    "payment_means": {
+      "@id": "storecove:payment_means"
+    },
+    "accounting": {
+      "@id": "storecove:accounting"
+    },
+    "payment_means_payment_id": {
+      "@id": "storecove:payment_means_payment_id",
+      "@type": "xsd:string"
+    },
+    "system_generated_primary_image": {
+      "@id": "storecove:system_generated_primary_image",
+      "@type": "xsd:boolean"
+    },
+    "document_type": {
+      "@id": "storecove:document_type",
+      "@type": "xsd:string"
+    },
+    "sub_type": {
+      "@id": "storecove:sub_type",
+      "@type": "xsd:string"
+    },
+    "tax_system": {
+      "@id": "storecove:tax_system",
+      "@type": "xsd:string"
+    },
+    "invoice_number": {
+      "@id": "storecove:invoice_number",
+      "@type": "xsd:string"
+    },
+    "issue_date": {
+      "@id": "storecove:issue_date",
+      "@type": "xsd:string"
+    },
+    "tax_point_date": {
+      "@id": "storecove:tax_point_date",
+      "@type": "xsd:string"
+    },
+    "tax_point_date_code": {
+      "@id": "storecove:tax_point_date_code",
+      "@type": "xsd:string"
+    },
+    "due_date": {
+      "@id": "storecove:due_date",
+      "@type": "xsd:string"
+    },
+    "document_currency_code": {
+      "@id": "storecove:document_currency_code",
+      "@type": "xsd:string"
+    },
+    "period_start": {
+      "@id": "storecove:period_start",
+      "@type": "xsd:string"
+    },
+    "period_end": {
+      "@id": "storecove:period_end",
+      "@type": "xsd:string"
+    },
+    "buyer_reference": {
+      "@id": "storecove:buyer_reference",
+      "@type": "xsd:string"
+    },
+    "billing_reference": {
+      "@id": "storecove:billing_reference",
+      "@type": "xsd:string"
+    },
+    "contract_document_reference": {
+      "@id": "storecove:contract_document_reference",
+      "@type": "xsd:string"
+    },
+    "order_reference": {
+      "@id": "storecove:order_reference",
+      "@type": "xsd:string"
+    },
+    "project_reference": {
+      "@id": "storecove:project_reference",
+      "@type": "xsd:string"
+    },
+    "accounting_cost": {
+      "@id": "storecove:accounting_cost",
+      "@type": "xsd:string"
+    },
+    "payment_terms_note": {
+      "@id": "storecove:payment_terms_note",
+      "@type": "xsd:string"
+    },
+    "payment_means_array": {
+      "@id": "storecove:payment_means_array",
+      "@container": "@list"
+    },
+    "invoice_lines": {
+      "@id": "storecove:invoice_lines",
+      "@container": "@list"
+    },
+    "allowance_charges": {
+      "@id": "storecove:allowance_charges",
+      "@container": "@list"
+    },
+    "document_totals": {
+      "@id": "storecove:document_totals"
+    },
+    "tax_subtotals": {
+      "@id": "storecove:tax_subtotals",
+      "@container": "@list"
+    },
+    "PurchaseInvoiceAccountingDetails": "storecove:PurchaseInvoiceAccountingDetails",
+    "list": {
+      "@id": "storecove:list",
+      "@type": "xsd:string"
+    },
+    "list_version": {
+      "@id": "storecove:list_version",
+      "@type": "xsd:string"
+    },
+    "PurchaseInvoiceAllowanceCharge": "storecove:PurchaseInvoiceAllowanceCharge",
+    "amount_excluding_vat": {
+      "@id": "storecove:amount_excluding_vat",
+      "@type": "xsd:string"
+    },
+    "vat": {
+      "@id": "storecove:vat"
+    },
+    "amount_excluding_tax": {
+      "@id": "storecove:amount_excluding_tax",
+      "@type": "xsd:decimal"
+    },
+    "PurchaseInvoiceAttachment": "storecove:PurchaseInvoiceAttachment",
+    "content_type": {
+      "@id": "storecove:content_type",
+      "@type": "xsd:string"
+    },
+    "PurchaseInvoiceDocumentTotals": "storecove:PurchaseInvoiceDocumentTotals",
+    "total": {
+      "@id": "storecove:total",
+      "@type": "xsd:decimal"
+    },
+    "rounding": {
+      "@id": "storecove:rounding",
+      "@type": "xsd:decimal"
+    },
+    "prepaid": {
+      "@id": "storecove:prepaid",
+      "@type": "xsd:decimal"
+    },
+    "payable": {
+      "@id": "storecove:payable",
+      "@type": "xsd:decimal"
+    },
+    "PurchaseInvoiceInvoiceLine": "storecove:PurchaseInvoiceInvoiceLine",
+    "allowance_charge_array": {
+      "@id": "storecove:allowance_charge_array",
+      "@container": "@list"
+    },
+    "units": {
+      "@id": "storecove:units"
+    },
+    "PurchaseInvoiceInvoiceLineAllowanceCharge": "storecove:PurchaseInvoiceInvoiceLineAllowanceCharge",
+    "PurchaseInvoiceInvoiceLineItem": "storecove:PurchaseInvoiceInvoiceLineItem",
+    "unit_code": {
+      "@id": "storecove:unit_code",
+      "@type": "xsd:string"
+    },
+    "PurchaseInvoiceInvoiceLinePrice": "storecove:PurchaseInvoiceInvoiceLinePrice",
+    "price_amount": {
+      "@id": "storecove:price_amount",
+      "@type": "xsd:decimal"
+    },
+    "base_quantity": {
+      "@id": "storecove:base_quantity",
+      "@type": "xsd:decimal"
+    },
+    "PurchaseInvoicePaymentMeans": "storecove:PurchaseInvoicePaymentMeans",
+    "type": {
+      "@id": "storecove:type"
+    },
+    "account": {
+      "@id": "storecove:account",
+      "@type": "xsd:string"
+    },
+    "holder": {
+      "@id": "storecove:holder",
+      "@type": "xsd:string"
+    },
+    "branch_code": {
+      "@id": "storecove:branch_code",
+      "@type": "xsd:string"
+    },
+    "mandate": {
+      "@id": "storecove:mandate",
+      "@type": "xsd:string"
+    },
+    "payment_id": {
+      "@id": "storecove:payment_id",
+      "@type": "xsd:string"
+    },
+    "PurchaseInvoiceSender": "storecove:PurchaseInvoiceSender",
+    "peppol_identifiers": {
+      "@id": "storecove:peppol_identifiers"
+    },
+    "legal_name": {
+      "@id": "storecove:legal_name",
+      "@type": "xsd:string"
+    },
+    "department": {
+      "@id": "storecove:department",
+      "@type": "xsd:string"
+    },
+    "building_number": {
+      "@id": "storecove:building_number",
+      "@type": "xsd:string"
+    },
+    "secondary_number": {
+      "@id": "storecove:secondary_number",
+      "@type": "xsd:string"
+    },
+    "neighborhood": {
+      "@id": "storecove:neighborhood",
+      "@type": "xsd:string"
+    },
+    "billing_contact": {
+      "@id": "storecove:billing_contact"
+    },
+    "identifiers": {
+      "@id": "storecove:identifiers",
+      "@container": "@list"
+    },
+    "PurchaseInvoiceSenderBillingContact": "storecove:PurchaseInvoiceSenderBillingContact",
+    "first_name": {
+      "@id": "storecove:first_name",
+      "@type": "xsd:string"
+    },
+    "last_name": {
+      "@id": "storecove:last_name",
+      "@type": "xsd:string"
+    },
+    "PurchaseInvoiceTax": "storecove:PurchaseInvoiceTax",
+    "PurchaseInvoiceTaxSubtotal": "storecove:PurchaseInvoiceTaxSubtotal",
+    "PurchaseInvoiceUbl": "storecove:PurchaseInvoiceUbl",
+    "ubl": {
+      "@id": "storecove:ubl",
+      "@type": "xsd:string"
+    },
+    "PurchaseInvoiceVat": "storecove:PurchaseInvoiceVat",
+    "percentage": {
+      "@id": "storecove:percentage",
+      "@type": "xsd:string"
+    },
+    "ReceivedDocument": "storecove:ReceivedDocument",
+    "ReceivedDocumentCreate": "storecove:ReceivedDocumentCreate",
+    "WebhookInstance": "storecove:WebhookInstance",
+    "body": {
+      "@id": "storecove:body",
+      "@type": "xsd:string"
+    },
+    "Envelope": "storecove:Envelope",
+    "typeVersion": {
+      "@id": "storecove:typeVersion",
+      "@type": "xsd:string"
+    },
+    "Metadata": "storecove:Metadata",
+    "documentDate": {
+      "@id": "storecove:documentDate",
+      "@type": "xsd:string"
+    },
+    "receiverName": {
+      "@id": "storecove:receiverName",
+      "@type": "xsd:string"
+    },
+    "receiverCountry": {
+      "@id": "storecove:receiverCountry",
+      "@type": "xsd:string"
+    },
+    "payloadType": {
+      "@id": "storecove:payloadType",
+      "@type": "xsd:string"
+    },
+    "ErrorModel": "storecove:ErrorModel",
+    "details": {
+      "@id": "storecove:details",
+      "@type": "xsd:string"
+    },
+    "LineAllowanceCharge": "storecove:LineAllowanceCharge",
+    "NetworkSettings": "storecove:NetworkSettings",
+    "mock": {
+      "@id": "storecove:mock",
+      "@type": "xsd:boolean"
+    },
+    "AccountingCustomerParty": "storecove:AccountingCustomerParty",
+    "AccountingSupplierParty": "storecove:AccountingSupplierParty",
+    "BuyerAgentParty": "storecove:BuyerAgentParty",
+    "BuyerCustomerPartyOrder": "storecove:BuyerCustomerPartyOrder",
+    "Contact": "storecove:Contact",
+    "firstName": {
+      "@id": "storecove:firstName",
+      "@type": "xsd:string"
+    },
+    "lastName": {
+      "@id": "storecove:lastName",
+      "@type": "xsd:string"
+    },
+    "phone": {
+      "@id": "storecove:phone",
+      "@type": "xsd:string"
+    },
+    "Party": "storecove:Party",
+    "registrationName": {
+      "@id": "storecove:registrationName",
+      "@type": "xsd:string"
+    },
+    "additionalLegalInformation": {
+      "@id": "storecove:additionalLegalInformation",
+      "@type": "xsd:string"
+    },
+    "classificationCode": {
+      "@id": "storecove:classificationCode",
+      "@type": "xsd:string"
+    },
+    "registrationAuthorityName": {
+      "@id": "storecove:registrationAuthorityName",
+      "@type": "xsd:string"
+    },
+    "passportIssuingCountry": {
+      "@id": "storecove:passportIssuingCountry",
+      "@type": "xsd:string"
+    },
+    "contact": {
+      "@id": "storecove:contact",
+      "@type": "@id"
+    },
+    "PublicIdentifier": "storecove:PublicIdentifier",
+    "SenderParty": "storecove:SenderParty",
+    "DeliveryParty": "storecove:DeliveryParty",
+    "InvoiceeParty": "storecove:InvoiceeParty",
+    "InvoicerParty": "storecove:InvoicerParty",
+    "OriginatorCustomerParty": "storecove:OriginatorCustomerParty",
+    "OriginatorParty": "storecove:OriginatorParty",
+    "PayeeParty": "storecove:PayeeParty",
+    "PayerParty": "storecove:PayerParty",
+    "SalesAgentParty": "storecove:SalesAgentParty"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Storecove API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Storecove's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-18) from openapi/storecove-openapi.yml.",
+  "dcterms:created": "2026-10-18",
+  "dcterms:source": [
+    "openapi/storecove-openapi.yml"
+  ]
+}

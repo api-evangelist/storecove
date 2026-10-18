@@ -1,0 +1,497 @@
+openapi: 3.2.0
+info:
+  title: Storecove Peppol Identifiers API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged PeppolIdentifiers across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: PeppolIdentifiers
+paths:
+  /legal_entities/{legal_entity_id}/peppol_identifiers:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeppolIdentifier'
+      summary: Create a new PeppolIdentifier
+      description: 'Create a brand new PeppolIdentifier. For >, special rules apply. When the request includes a `dgfip` network, Annuaire provisioning runs synchronously and before the Peppol advertisement: a PPF rejection (line already held by another PDP, INSEE errors) is returned as HTTP 422 and the whole create is rolled back (no PeppolIdentifier is created). Fix the payload and retry the create. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.'
+      operationId: create_peppol_identifier
+      tags:
+      - PeppolIdentifiers
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity for which to create the PeppolIdentifier
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: PeppolIdentifier to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeppolIdentifierCreate'
+      x-codegen-request-body-name: peppol_identifier
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /legal_entities/{legal_entity_id}/peppol_identifiers/{superscheme}/{scheme}/{identifier}:
+    patch:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PeppolIdentifier'
+      summary: Update a PeppolIdentifier
+      description: 'Updates the DGFiP annuaire data of an existing PeppolIdentifier on the dgfip network. Mutable annuaire fields are the routing code label and address (when the identifier carries a routing code). Separately, an identifier whose formal_agreement_pending_since is set and that has no PDF yet can send `annuaire` containing only `formal_agreement`: that stores the agreement and does not send the annuaire line to the PPF again. Without that marker this PATCH is rejected. POST accepts the PDF only when creating a new identifier. The addressing mesh (SIREN/SIRET/suffix/routing encoded in the identifier path) is immutable — to change it, delete this PeppolIdentifier and create a new one. Pass the fields to update in the request body `annuaire` object. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.'
+      operationId: update_peppol_identifier
+      tags:
+      - PeppolIdentifiers
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity this PeppolIdentifier belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: superscheme
+        in: path
+        description: The superscheme of the identifier. Should always be "iso6523-actorid-upis".
+        required: true
+        schema:
+          type: string
+      - name: scheme
+        in: path
+        description: PEPPOL identifier scheme id, e.g. "FR:CTC". For a full list see <<_receiver_identifiers_list>>.
+        required: true
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: PEPPOL identifier
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The annuaire data to update
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PeppolIdentifierAnnuaireUpdate'
+      x-codegen-request-body-name: annuaire_update
+      x-deployment-regions:
+      - global
+    delete:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '204':
+          description: Success
+      summary: Delete PeppolIdentifier
+      description: Delete a PeppolIdentifier. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: delete_peppol_identifier
+      tags:
+      - PeppolIdentifiers
+      parameters:
+      - name: legal_entity_id
+        in: path
+        description: The id of the LegalEntity this PeppolIdentifier belongs to
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: superscheme
+        in: path
+        description: The superscheme of the identifier. Should always be "iso6523-actorid-upis".
+        required: true
+        schema:
+          type: string
+      - name: scheme
+        in: path
+        description: PEPPOL identifier scheme id, e.g. "DE:VAT". For a full list see <<_receiver_identifiers_list>>.
+        required: true
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: PEPPOL identifier
+        required: true
+        schema:
+          type: string
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    CorpPassCreate:
+      properties:
+        enabled:
+          type: boolean
+          title: CorpPass
+          description: DEPRECATED. Whether or not to enable the CorpPass flow. Must be true if provided.
+          default: true
+          deprecated: true
+        flow_type:
+          title: Flow Type
+          description: The CorpPass flow type. Note that using corppass_flow_pdf requires special setup of your account by Storecove.
+          type: string
+          enum:
+          - corppass_flow_redirect
+          - corppass_flow_email
+          - corppass_flow_pdf
+        signer_name:
+          title: Signer Name
+          description: The name of the person who is going to perform the CorpPass process. Mandatory for flow_type="corppass_flow_email" and for redirect KYC on Dex.
+          type: string
+          minLength: 2
+          maxLength: 64
+        signer_email:
+          title: Signer Email
+          description: The email of the person who is going to perform the CorpPass process. Mandatory for flow_type="corppass_flow_email" and for redirect KYC on Dex.
+          type: string
+          minLength: 2
+          maxLength: 128
+        client_redirect_success_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of successful identity verfication. Mandatory for flow_type="corppass_flow_redirect"
+          type: string
+          minLength: 11
+          maxLength: 255
+        client_redirect_fail_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of a failure to perform identity verfication. Mandatory for flow_type="corppass_flow_redirect"
+          type: string
+          minLength: 11
+          maxLength: 255
+        simulate_corppass:
+          type: boolean
+          title: Simulate CorpPass
+          description: 'Whether or not to simulate CorpPass. Instead of redirecting to a CorpPass URL, you will receive a redirect to a Storecove URL which will show a page with two buttons: success and fail. This makes development without having test CorpPass credentials possible. Note this only works in sandbox, not in the production environment.'
+          default: false
+        kyc_document:
+          title: KYC PDF document
+          description: The Base64-encoded PDF document used for KYC. Mandatory for flow_type="corppass_flow_pdf"
+          type: string
+      required:
+      - flow_type
+    DgfipAnnuaireAddress:
+      properties:
+        street1:
+          type: string
+          title: Street 1
+          description: The first address line.
+          maxLength: 192
+        street2:
+          type: string
+          title: Street 2
+          description: The second address line, if applicable.
+          maxLength: 192
+        zip:
+          type: string
+          title: Zip
+          description: The zipcode.
+          maxLength: 32
+        city:
+          type: string
+          title: City
+          description: The city.
+          maxLength: 64
+        country:
+          type: string
+          title: Country
+          description: ISO 3166-1 alpha-2 country code.
+          minLength: 2
+          maxLength: 2
+    DgfipAnnuaire:
+      properties:
+        routing_code_label:
+          type: string
+          title: Routing Code Label
+          description: Human-readable label for the routing code (annuaire central libelleCodeRoutage). Mandatory when the identifier carries a routing code.
+          minLength: 1
+          maxLength: 100
+        address:
+          allOf:
+          - $ref: '#/components/schemas/DgfipAnnuaireAddress'
+          - title: Address
+            description: Postal address of the routing code (annuaire central adresse). Mandatory when the identifier carries a routing code.
+        start_date:
+          title: Start Date
+          description: Planned start date (dateDebutEffet) for the annuaire line. Defaults to today + 1 day (annuaire central rule G1.87).
+          type: string
+          format: date
+        formal_agreement:
+          allOf:
+          - $ref: '#/components/schemas/FormalAgreement'
+          - title: Formal agreement
+            description: The formal agreement (accord formel) by which the taxable person designates Storecove as its plateforme de réception for the electronic addresses registered here. Mandatory on a production create from 2 November 2026 on; before that date a production create without it still succeeds, and one you do send is validated and stored all the same. Sandbox does not register in the annuaire central and never requires it.
+    PeppolIdentifierCreate:
+      properties:
+        identifier:
+          type: string
+          title: Identifier
+          description: The identifier.
+          minLength: 2
+          maxLength: 64
+        scheme:
+          type: string
+          title: Type
+          description: The scheme of the identifier. See <<_receiver_identifiers_list>> for a list.
+          minLength: 2
+          maxLength: 64
+        superscheme:
+          type: string
+          title: Type
+          description: The superscheme of the identifier. Should always be "iso6523-actorid-upis".
+          minLength: 2
+          maxLength: 64
+        networks:
+          title: Networks
+          description: DEPRECATED. Use the new "networks_specification" property. The networks to advertise the identifier on. Note that "dbnalliance" currently requires manual provisioning in the DBNAlliance SML, so you need to contact us before using this.
+          type: array
+          items:
+            title: Network
+            description: A network to advertise the identifier on.
+            type: string
+            enum:
+            - peppol
+            - dbnalliance
+            - dgfip
+          default:
+          - peppol
+          deprecated: true
+        networks_specification:
+          title: Networks Specification
+          description: A specification of the networks to advertise the identifier on.
+          type: array
+          items:
+            $ref: '#/components/schemas/NetworkSpecification'
+        corppass:
+          allOf:
+          - $ref: '#/components/schemas/CorpPassCreate'
+          - title: CorpPass Details
+            description: 'CorpPass details, used to create SG:UEN (numerical code: 0195) identifiers. For details, see <<_singapore_corppass_description>>.'
+      required:
+      - identifier
+      - scheme
+      - superscheme
+    ErrorModel:
+      properties:
+        source:
+          type: string
+        details:
+          type: string
+    PeppolIdentifierAnnuaireUpdate:
+      properties:
+        annuaire:
+          allOf:
+          - $ref: '#/components/schemas/DgfipAnnuaireUpdate'
+          - title: Annuaire (DGFiP)
+            description: DGFiP directory (annuaire) details for the French e-invoicing reform. Routing-code label and address, or the formal agreement on its own when formal_agreement_pending_since is set and no PDF is stored yet; to close a line, delete the PeppolIdentifier.
+      required:
+      - annuaire
+    DgfipAnnuaireUpdate:
+      properties:
+        routing_code_label:
+          type: string
+          title: Routing Code Label
+          description: Human-readable label for the routing code (annuaire central libelleCodeRoutage). Mandatory when the identifier carries a routing code.
+        address:
+          $ref: '#/components/schemas/DgfipAnnuaireAddress'
+        formal_agreement:
+          allOf:
+          - $ref: '#/components/schemas/FormalAgreement'
+          - title: Formal agreement
+            description: The formal agreement (accord formel) for a dgfip identifier whose formal_agreement_pending_since is set and that has no PDF yet. Send annuaire containing only this field, without routing_code_label or address. It is stored with its mandate number, and the annuaire line is not sent to the PPF again. Rejected with HTTP 422 when an agreement is already stored, or when formal_agreement_pending_since is absent. Without that marker this PATCH is rejected. POST accepts the PDF only when creating a new identifier.
+    FormalAgreement:
+      properties:
+        document:
+          title: Formal agreement
+          description: 'The Base64-encoded PDF of the formal agreement (accord formel). Optional until 2 November 2026, and mandatory from that date on when a production create registers an address in the annuaire central. Maximum size is 10 MB. It must be a readable PDF with at least one page: a file that is not a PDF, or that is password-protected, damaged, or empty, is rejected with HTTP 422. The contents are not inspected. A POST for an identifier that already exists returns already exists and leaves the stored file unchanged. An identifier whose formal_agreement_pending_since is set and that has no PDF yet adds the agreement with PATCH /legal_entities/{legal_entity_id}/peppol_identifiers/{superscheme}/{scheme}/{identifier}, sending annuaire containing only formal_agreement. Without that marker this PATCH is rejected. POST accepts the PDF only when creating a new identifier.'
+          type: string
+      required:
+      - document
+    CorpPass:
+      properties:
+        enabled:
+          type: boolean
+          title: CorpPass
+          description: Whether or not the CorpPass flow is enabled.
+          default: false
+        flow_type:
+          title: Flow Type
+          description: The CorpPass flow type.
+          type: string
+          enum:
+          - corppass_flow_redirect
+          - corppass_flow_email
+          - corppass_flow_pdf
+        signer_name:
+          title: Signer Name
+          description: The name of the person who is going to perform the CorpPass process.
+          type: string
+          minLength: 2
+          maxLength: 64
+        signer_email:
+          title: Signer Email
+          description: The email of the person who is going to perform the CorpPass process.
+          type: string
+          minLength: 2
+          maxLength: 128
+        client_redirect_success_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of successful identity verfication.
+          type: string
+          minLength: 11
+          maxLength: 255
+        client_redirect_fail_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of a failure to perform identity verfication.
+          type: string
+          minLength: 11
+          maxLength: 255
+        corppass_url:
+          title: CorpPass redirect URL
+          description: The CorpPass redirect URL.
+          type: string
+          minLength: 11
+          maxLength: 512
+        status:
+          title: CorpPass Status
+          description: The status of the CorpPass process.
+          type: string
+          enum:
+          - corppass_no_status
+          - corppass_initiated
+          - corppass_cancelled
+          - corppass_failed
+          - corppass_succeeded
+        simulate_corppass:
+          type: boolean
+          title: Simulate CorpPass
+          description: Whether or not CorpPass is being simulated.
+          default: false
+    NetworkSpecification:
+      properties:
+        name:
+          title: Network
+          description: A network to advertise the identifier on.
+          type: string
+          enum:
+          - peppol
+          - dbnalliance
+          - dgfip
+        sub_networks:
+          title: Sub Networks
+          description: 'A list of sub_networks to advertise documents for. The Peppol network has two sub_networks: "france" (for the upcoming French reform) and "eb2b" (enhanced B2B). Use "main" to advertise on the main Peppol network.'
+          type: array
+          items:
+            title: Sub Network
+            description: A sub_network to advertise documents for.
+            type: string
+            enum:
+            - main
+            - france
+            - eb2b
+        annuaire:
+          allOf:
+          - $ref: '#/components/schemas/DgfipAnnuaire'
+          - title: Annuaire (DGFiP)
+            description: DGFiP directory (annuaire) details for the French e-invoicing reform. Only applies to the "dgfip" network. Required when the identifier addresses below the SIREN level (SIRET, suffix or routing code); a bare SIREN may omit it until 2 November 2026, from which date every production create needs it to carry the formal agreement. When the identifier carries a routing code, "routing_code_label" and "address" are mandatory.
+    PeppolIdentifier:
+      properties:
+        identifier:
+          type: string
+          title: Identifier
+          description: The identifier.
+          minLength: 2
+          maxLength: 64
+        scheme:
+          type: string
+          title: Type
+          description: The scheme of the identifier. See <<_receiver_identifiers_list>> for a list.
+          minLength: 2
+          maxLength: 64
+        superscheme:
+          type: string
+          title: Type
+          description: The superscheme of the identifier. Should always be "iso6523-actorid-upis".
+          minLength: 2
+          maxLength: 64
+        corppass:
+          allOf:
+          - $ref: '#/components/schemas/CorpPass'
+          - title: CorpPass Details
+            description: CorpPass details, if applicable.
+        annuaire_line_id_instance:
+          title: Annuaire Line Id Instance (DGFiP)
+          description: Read-only PPF idInstance for the directory line provisioned for this identifier. Omitted until the first successful sync. Present only for identifiers advertised on the "dgfip" network.
+          type: string
+          maxLength: 32
+          readOnly: true
+        annuaire_routing_code_id_instance:
+          title: Annuaire Routing Code Id Instance (DGFiP)
+          description: Read-only PPF idInstance for the routing code provisioned for this identifier. Omitted until the first successful sync, or when the identifier has no routing code. Present only for identifiers advertised on the "dgfip" network.
+          type: string
+          maxLength: 32
+          readOnly: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

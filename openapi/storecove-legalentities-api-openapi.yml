@@ -1,0 +1,987 @@
+openapi: 3.2.0
+info:
+  title: Storecove Legal Entities API
+  version: 2.0.1
+  contact:
+    url: https://app.storecove.com
+  description: 'Operations tagged LegalEntities across 2 of this provider''s published API definitions: openapi-3.0-with-deprecated.json, storecove-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.storecove.com/api/v2
+  description: Production
+security:
+- bearerAuth: []
+tags:
+- name: LegalEntities
+paths:
+  /legal_entities:
+    post:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalEntity'
+      summary: Create a new LegalEntity
+      description: Create a new LegalEntity. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: create_legal_entity
+      tags:
+      - LegalEntities
+      requestBody:
+        description: LegalEntity to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LegalEntityCreate'
+      x-codegen-request-body-name: legal_entity
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+  /legal_entities/{id}:
+    get:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalEntity'
+      summary: Get LegalEntity
+      description: Get a specific LegalEntity. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: get_legal_entity
+      tags:
+      - LegalEntities
+      parameters:
+      - name: id
+        in: path
+        description: legal_entity id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      x-deployment-regions:
+      - global
+    delete:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '204':
+          description: Success
+      summary: Delete LegalEntity
+      description: Delete a specific LegalEntity. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: delete_legal_entity
+      tags:
+      - LegalEntities
+      parameters:
+      - name: id
+        in: path
+        description: legal_entity id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      x-deployment-regions:
+      - global
+    patch:
+      responses:
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '422':
+          description: Unprocessable Entity
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ErrorModel'
+        '404':
+          description: Not Found
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LegalEntity'
+      summary: Update LegalEntity
+      description: Update a specific LegalEntity. This operation is available only on the global API (https://api.storecove.com/api/v2/), not on https://api.fr.storecove.com/api/v2/.
+      operationId: update_legal_entity
+      tags:
+      - LegalEntities
+      parameters:
+      - name: id
+        in: path
+        description: legal_entity id
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        description: LegalEntity updates
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LegalEntityUpdate'
+      x-codegen-request-body-name: legal_entity
+      x-deployment-regions:
+      - global
+    servers:
+    - url: https://api.storecove.com/api/v2
+      description: Production
+components:
+  schemas:
+    ErrorModel:
+      properties:
+        source:
+          type: string
+        details:
+          type: string
+    LegalEntityUpdate:
+      properties:
+        id:
+          title: Id
+          description: The Storecove assigned id for the LegalEntity.
+          type: integer
+          format: int64
+        party_name:
+          type: string
+          title: Company name
+          description: The name of the company.
+          minLength: 2
+          maxLength: 64
+        line1:
+          type: string
+          title: Address line 1
+          description: The first address line.
+          minLength: 2
+          maxLength: 192
+        line2:
+          type: string
+          title: Address line 2
+          description: The second address line, if applicable
+          maxLength: 192
+        city:
+          type: string
+          title: City
+          description: The city.
+          minLength: 2
+          maxLength: 64
+        zip:
+          type: string
+          title: Zipcode
+          description: The zipcode.
+          minLength: 2
+          maxLength: 32
+        county:
+          type: string
+          title: County
+          description: County, if applicable
+          maxLength: 64
+        country:
+          $ref: '#/components/schemas/Country'
+        registration_authority_name:
+          type: string
+          title: Registration Authority Name
+          description: The name of the authority that issued the legal registration identifier. Used for UAE PINT-AE BTAE-11. See <<country_ae>>.
+          minLength: 1
+          maxLength: 255
+        passport_issuing_country:
+          type: string
+          title: Passport Issuing Country
+          description: The ISO 3166-1 alpha-2 country code, or Peppol extension 1A, for the authority that issued the passport. Used for UAE PINT-AE BTAE-19. See <<country_ae>>.
+          pattern: ^(?:[A-Z]{2}|1A)$
+        tenant_id:
+          type: string
+          title: Tenant Id
+          description: The id of the tenant, to be used in case of multi-tenant solutions. This property will included in webhook events.
+          maxLength: 64
+        public:
+          type: boolean
+          title: Public
+          description: Whether or not this LegalEntity is public. Public means it will be listed in the PEPPOL directory at https://directory.peppol.eu/ which is normally what you want. If you have a good reason to not want the LegalEntity listed, provide false. This property is ignored when for country SG, where it is always true.
+          default: true
+        advertisements:
+          title: Advertisements
+          description: 'A list of document groups to advertise.
+
+            ++++
+
+            <ul>    <li>        <strong>invoice</strong><br/>        Gives Invoice and where applicable CreditNote under the Billing process.<br/>    </li>    <li>        <strong>invoice_response</strong><br/>        Gives InvoiceResponse under the Invoice Response process.<br/>    </li>    <li>        <strong>selfbilling</strong><br/>        Gives Invoice and where applicable CreditNote under the Selfbilling process.<br/>    </li>    <li>        <strong>order</strong><br/>        Gives Order under the Order Only process.<br/>    </li>    <li>        <strong>ordering</strong><br/>        Gives Order and OrderResponse under the Ordering process.<br/>    </li>    <li>        <strong>advanced_ordering</strong><br/>        Gives Order, AdvancedOrderResponse, OrderChange and OrderCancellation under the Advanced Ordering process.<br/>    </li>    <li>        <strong>despatch_advice</strong><br/>        Gives DespatchAdvice under the Despatch Advice process.<br/>    </li>    <li>        <strong>advanced_ordering_sg_order_balance</strong><br/>        Gives OrderBalance under the Advanced Ordering SG Order Balance process.<br/>    </li>    <li>        <strong>remittance_advice</strong><br/>        Gives RemittanceAdvice (DBNAlliance only).<br/>    </li>    <li>        <strong>pidx_invoicing_ordering</strong><br/>        Gives PIDX Invoice, InvoiceResponse, OrderChange, OrderCreate and OrderResponse (DBNAlliance only).<br/>    </li></ul>
+
+            ++++
+
+            '
+          type: array
+          items:
+            type: string
+            enum:
+            - invoice
+            - invoice_response
+            - selfbilling
+            - order
+            - ordering
+            - advanced_ordering
+            - advanced_ordering_sg_order_balance
+            - remittance_advice
+            - despatch_advice
+            - pidx_invoicing_ordering
+          default:
+          - invoice
+        third_party_username:
+          type: string
+          title: Username
+          description: The username to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN LegalEntity.
+          minLength: 2
+          maxLength: 64
+        third_party_password:
+          type: string
+          title: Password
+          description: The password to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN LegalEntity.
+          minLength: 2
+          maxLength: 64
+        rea:
+          allOf:
+          - $ref: '#/components/schemas/Rea'
+          - title: REA Details
+            description: The REA details for the LegalEntity. Only applies to IT LegalEntities.
+        smart_inbox:
+          title: Smart Inbox Email Address
+          description: DEPRECATED. Use the <<_openapi_receiveddocuments_resource>> endpoint. The email address of the Smart Inbox for this LegalEntity.
+          type: string
+          deprecated: true
+        acts_as_sender:
+          type: boolean
+          title: Acts As Sender
+          description: Whether or not this LegalEntity can act as a sender of documents.
+          default: true
+        acts_as_receiver:
+          type: boolean
+          title: Acts As Receiver
+          description: Whether or not this LegalEntity can act as a receiver of documents. If not, no identifiers will be provioned on any exchange network.
+          default: true
+        tax_registered:
+          type: boolean
+          title: Tax Registered
+          description: Whether or not this LegalEntity is tax registered. This influences the validation of the data presented when sending documents.
+          default: true
+        override_own_credentials:
+          type: boolean
+          title: Override Own Credentials
+          description: If true, Storecove will use default credentials/signing artifacts even if specific ones are configured for this LegalEntity. Defaults to false.
+          default: false
+        classification_code:
+          type: string
+          title: Classification Code
+          description: The classification code for this LegalEntity. For Malaysia, this is the MSIC code. It is mandatory for MY legal entities.
+    AdditionalTaxIdentifier:
+      properties:
+        id:
+          type: integer
+          title: Id
+          description: The Storecove assigned id for the AdditionalTaxIdentifier.
+          format: int64
+        country:
+          type: string
+          title: Country
+          description: The ISO3166 country code to use this identifier for in case of consumerTaxMode.
+          minLength: 2
+          maxLength: 2
+        county:
+          type: string
+          title: County
+          description: The county/state inside the country code to use this identifier for in case of consumerTaxMode.
+          minLength: 2
+          maxLength: 2
+        superscheme:
+          type: string
+          title: Type
+          description: The superscheme of the identifier.
+          minLength: 2
+          maxLength: 64
+        scheme:
+          type: string
+          title: Type
+          description: The scheme of the identifier.
+          minLength: 2
+          maxLength: 64
+        identifier:
+          title: Identifier
+          description: The identifier.
+          type: string
+    LegalEntityCreate:
+      properties:
+        party_name:
+          type: string
+          title: Company name
+          description: The name of the company.
+          minLength: 2
+          maxLength: 64
+        line1:
+          type: string
+          title: Address line 1
+          description: The first address line.
+          minLength: 2
+          maxLength: 192
+        line2:
+          type: string
+          title: Address line 2
+          description: The second address line, if applicable
+          maxLength: 192
+        city:
+          type: string
+          title: City
+          description: The city.
+          minLength: 2
+          maxLength: 64
+        zip:
+          type: string
+          title: Zipcode
+          description: The zipcode.
+          minLength: 2
+          maxLength: 32
+        county:
+          type: string
+          title: County
+          description: County, if applicable
+          maxLength: 64
+        country:
+          $ref: '#/components/schemas/Country'
+        registration_authority_name:
+          type: string
+          title: Registration Authority Name
+          description: The name of the authority that issued the legal registration identifier. Used for UAE PINT-AE BTAE-11. See <<country_ae>>.
+          minLength: 1
+          maxLength: 255
+        passport_issuing_country:
+          type: string
+          title: Passport Issuing Country
+          description: The ISO 3166-1 alpha-2 country code, or Peppol extension 1A, for the authority that issued the passport. Used for UAE PINT-AE BTAE-19. See <<country_ae>>.
+          pattern: ^(?:[A-Z]{2}|1A)$
+        tenant_id:
+          type: string
+          title: Tenant Id
+          description: The id of the tenant, to be used in case of single-tenant solutions that share webhook URLs. This property will included in webhook events.
+          maxLength: 64
+        public:
+          type: boolean
+          title: Public
+          description: Whether or not this LegalEntity is public. Public means it will be entered into the PEPPOL directory at https://directory.peppol.eu/
+          default: true
+        advertisements:
+          title: Advertisements
+          description: 'A list of document groups to advertise.
+
+            ++++
+
+            <ul>    <li>        <strong>invoice</strong><br/>        Gives Invoice and where applicable CreditNote under the Billing process.<br/>    </li>    <li>        <strong>invoice_response</strong><br/>        Gives InvoiceResponse under the Invoice Response process.<br/>    </li>    <li>        <strong>selfbilling</strong><br/>        Gives Invoice and where applicable CreditNote under the Selfbilling process.<br/>    </li>    <li>        <strong>order</strong><br/>        Gives Order under the Order Only process.<br/>    </li>    <li>        <strong>ordering</strong><br/>        Gives Order and OrderResponse under the Ordering process.<br/>    </li>    <li>        <strong>advanced_ordering</strong><br/>        Gives Order, AdvancedOrderResponse, OrderChange and OrderCancellation under the Advanced Ordering process.<br/>    </li>    <li>        <strong>advanced_ordering_sg_order_balance</strong><br/>        Gives OrderBalance under the Advanced Ordering SG Order Balance process.<br/>    </li>    <li>        <strong>remittance_advice</strong><br/>        Gives RemittanceAdvice (DBNAlliance only).<br/>    </li>    <li>        <strong>pidx_invoicing_ordering</strong><br/>        Gives PIDX Invoice, InvoiceResponse, OrderChange, OrderCreate and OrderResponse (DBNAlliance only).<br/>    </li></ul>
+
+            ++++
+
+            '
+          type: array
+          items:
+            type: string
+            enum:
+            - invoice
+            - invoice_response
+            - selfbilling
+            - order
+            - ordering
+            - advanced_ordering
+            - advanced_ordering_sg_order_balance
+            - remittance_advice
+            - pidx_invoicing_ordering
+          default:
+          - invoice
+        third_party_username:
+          type: string
+          title: Username
+          description: The username to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN LegalEntity.
+          minLength: 2
+          maxLength: 64
+        third_party_password:
+          type: string
+          title: Password
+          description: The password to use to authenticate to a system through which to send the document, or to obtain tax authority approval to send it. This field is currently relevant only for India and mandatory when creating an IN LegalEntity.
+          minLength: 2
+          maxLength: 64
+        rea:
+          allOf:
+          - $ref: '#/components/schemas/Rea'
+          - title: REA Details
+            description: The REA details for the LegalEntity. Only applies to IT LegalEntities.
+        acts_as_sender:
+          type: boolean
+          title: Acts As Sender
+          description: Whether or not this LegalEntity can act as a sender of documents.
+          default: true
+        acts_as_receiver:
+          type: boolean
+          title: Acts As Receiver
+          description: Whether or not this LegalEntity can act as a receiver of documents. If not, no identifiers will be provioned on any exchange network.
+          default: true
+        tax_registered:
+          type: boolean
+          title: Tax Registered
+          description: Whether or not this LegalEntity is tax registered. This influences the validation of the data presented when sending documents.
+          default: true
+        override_own_credentials:
+          type: boolean
+          title: Override Own Credentials
+          description: If true, Storecove will use default credentials/signing artifacts even if specific ones are configured for this LegalEntity. Defaults to false.
+          default: false
+      required:
+      - party_name
+      - line1
+      - city
+      - zip
+      - country
+    CorpPass:
+      properties:
+        enabled:
+          type: boolean
+          title: CorpPass
+          description: Whether or not the CorpPass flow is enabled.
+          default: false
+        flow_type:
+          title: Flow Type
+          description: The CorpPass flow type.
+          type: string
+          enum:
+          - corppass_flow_redirect
+          - corppass_flow_email
+          - corppass_flow_pdf
+        signer_name:
+          title: Signer Name
+          description: The name of the person who is going to perform the CorpPass process.
+          type: string
+          minLength: 2
+          maxLength: 64
+        signer_email:
+          title: Signer Email
+          description: The email of the person who is going to perform the CorpPass process.
+          type: string
+          minLength: 2
+          maxLength: 128
+        client_redirect_success_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of successful identity verfication.
+          type: string
+          minLength: 11
+          maxLength: 255
+        client_redirect_fail_url:
+          title: Client Redirect Success URL
+          description: The URL the CorpPass system will redirect to in case of a failure to perform identity verfication.
+          type: string
+          minLength: 11
+          maxLength: 255
+        corppass_url:
+          title: CorpPass redirect URL
+          description: The CorpPass redirect URL.
+          type: string
+          minLength: 11
+          maxLength: 512
+        status:
+          title: CorpPass Status
+          description: The status of the CorpPass process.
+          type: string
+          enum:
+          - corppass_no_status
+          - corppass_initiated
+          - corppass_cancelled
+          - corppass_failed
+          - corppass_succeeded
+        simulate_corppass:
+          type: boolean
+          title: Simulate CorpPass
+          description: Whether or not CorpPass is being simulated.
+          default: false
+    Rea:
+      properties:
+        province:
+          title: Province
+          description: The provincia of the ufficio that issued the identifier.
+          type: string
+          enum:
+          - AG
+          - AL
+          - AN
+          - AO
+          - AQ
+          - AR
+          - AP
+          - AT
+          - AV
+          - BA
+          - BT
+          - BL
+          - BN
+          - BG
+          - BI
+          - BO
+          - BZ
+          - BS
+          - BR
+          - CA
+          - CL
+          - CB
+          - CI
+          - CE
+          - CT
+          - CZ
+          - CH
+          - CO
+          - CS
+          - CR
+          - KR
+          - CN
+          - EN
+          - FM
+          - FE
+          - FI
+          - FG
+          - FC
+          - FR
+          - GE
+          - GO
+          - GR
+          - IM
+          - IS
+          - SP
+          - LT
+          - LE
+          - LC
+          - LI
+          - LO
+          - LU
+          - MC
+          - MN
+          - MS
+          - MT
+          - VS
+          - ME
+          - MI
+          - MO
+          - MB
+          - NA
+          - 'NO'
+          - NU
+          - OG
+          - OT
+          - OR
+          - PD
+          - PA
+          - PR
+          - PV
+          - PG
+          - PU
+          - PE
+          - PC
+          - PI
+          - PT
+          - PN
+          - PZ
+          - PO
+          - RG
+          - RA
+          - RC
+          - RE
+          - RI
+          - RN
+          - RO
+          - SA
+          - SS
+          - SV
+          - SI
+          - SR
+          - SO
+          - TA
+          - TE
+          - TR
+          - TO
+          - TP
+          - TN
+          - TV
+          - TS
+          - UD
+          - VA
+          - VE
+          - VB
+          - VC
+          - VR
+          - VV
+          - VI
+          - VT
+        identifier:
+          title: Identifier
+          description: The identifier.
+          type: string
+          minLength: 2
+          maxLength: 20
+        capital:
+          title: Capital
+          description: The captial for the company.
+          type: number
+          minimum: 1
+          exclusiveMaximum: 1000000000000
+        partners:
+          title: Partners
+          description: The number of partners.
+          type: string
+          enum:
+          - SU
+          - SM
+        liquidation_status:
+          title: Liquidation Status
+          description: The liquidation status of the company.
+          type: string
+          enum:
+          - LN
+          - LS
+    LegalEntity:
+      allOf:
+      - $ref: '#/components/schemas/LegalEntityUpdate'
+      - properties:
+          peppol_identifiers:
+            type: array
+            items:
+              $ref: '#/components/schemas/PeppolIdentifier'
+      - properties:
+          additional_tax_identifiers:
+            type: array
+            items:
+              $ref: '#/components/schemas/AdditionalTaxIdentifier'
+      - properties:
+          api_keys:
+            type: array
+            items:
+              type: string
+    PeppolIdentifier:
+      properties:
+        identifier:
+          type: string
+          title: Identifier
+          description: The identifier.
+          minLength: 2
+          maxLength: 64
+        scheme:
+          type: string
+          title: Type
+          description: The scheme of the identifier. See <<_receiver_identifiers_list>> for a list.
+          minLength: 2
+          maxLength: 64
+        superscheme:
+          type: string
+          title: Type
+          description: The superscheme of the identifier. Should always be "iso6523-actorid-upis".
+          minLength: 2
+          maxLength: 64
+        corppass:
+          allOf:
+          - $ref: '#/components/schemas/CorpPass'
+          - title: CorpPass Details
+            description: CorpPass details, if applicable.
+        annuaire_line_id_instance:
+          title: Annuaire Line Id Instance (DGFiP)
+          description: Read-only PPF idInstance for the directory line provisioned for this identifier. Omitted until the first successful sync. Present only for identifiers advertised on the "dgfip" network.
+          type: string
+          maxLength: 32
+          readOnly: true
+        annuaire_routing_code_id_instance:
+          title: Annuaire Routing Code Id Instance (DGFiP)
+          description: Read-only PPF idInstance for the routing code provisioned for this identifier. Omitted until the first successful sync, or when the identifier has no routing code. Present only for identifiers advertised on the "dgfip" network.
+          type: string
+          maxLength: 32
+          readOnly: true
+    Country:
+      title: Country
+      description: An ISO 3166-1 alpha-2 country code.
+      type: string
+      enum:
+      - AD
+      - AE
+      - AF
+      - AG
+      - AI
+      - AL
+      - AM
+      - AO
+      - AQ
+      - AR
+      - AS
+      - AT
+      - AU
+      - AW
+      - AX
+      - AZ
+      - BA
+      - BB
+      - BD
+      - BE
+      - BF
+      - BG
+      - BH
+      - BI
+      - BJ
+      - BL
+      - BM
+      - BN
+      - BO
+      - BQ
+      - BR
+      - BS
+      - BT
+      - BV
+      - BW
+      - BY
+      - BZ
+      - CA
+      - CC
+      - CD
+      - CF
+      - CG
+      - CH
+      - CI
+      - CK
+      - CL
+      - CM
+      - CN
+      - CO
+      - CR
+      - CU
+      - CV
+      - CW
+      - CX
+      - CY
+      - CZ
+      - DE
+      - DJ
+      - DK
+      - DM
+      - DO
+      - DZ
+      - EC
+      - EE
+      - EG
+      - EH
+      - ER
+      - ES
+      - ET
+      - FI
+      - FJ
+      - FK
+      - FM
+      - FO
+      - FR
+      - GA
+      - GB
+      - GD
+      - GE
+      - GF
+      - GG
+      - GH
+      - GI
+      - GL
+      - GM
+      - GN
+      - GP
+      - GQ
+      - GR
+      - GS
+      - GT
+      - GU
+      - GW
+      - GY
+      - HK
+      - HM
+      - HN
+      - HR
+      - HT
+      - HU
+      - ID
+      - IE
+      - IL
+      - IM
+      - IN
+      - IO
+      - IQ
+      - IR
+      - IS
+      - IT
+      - JE
+      - JM
+      - JO
+      - JP
+      - KE
+      - KG
+      - KH
+      - KI
+      - KM
+      - KN
+      - KP
+      - KR
+      - KW
+      - KY
+      - KZ
+      - LA
+      - LB
+      - LC
+      - LI
+      - LK
+      - LR
+      - LS
+      - LT
+      - LU
+      - LV
+      - LY
+      - MA
+      - MC
+      - MD
+      - ME
+      - MF
+      - MG
+      - MH
+      - MK
+      - ML
+      - MM
+      - MN
+      - MO
+      - MP
+      - MQ
+      - MR
+      - MS
+      - MT
+      - MU
+      - MV
+      - MW
+      - MX
+      - MY
+      - MZ
+      - NA
+      - NC
+      - NE
+      - NF
+      - NG
+      - NI
+      - NL
+      - 'NO'
+      - NP
+      - NR
+      - NU
+      - NZ
+      - OM
+      - PA
+      - PE
+      - PF
+      - PG
+      - PH
+      - PK
+      - PL
+      - PM
+      - PN
+      - PR
+      - PS
+      - PT
+      - PW
+      - PY
+      - QA
+      - RE
+      - RO
+      - RS
+      - RU
+      - RW
+      - SA
+      - SB
+      - SC
+      - SD
+      - SE
+      - SG
+      - SH
+      - SI
+      - SJ
+      - SK
+      - SL
+      - SM
+      - SN
+      - SO
+      - SR
+      - SS
+      - ST
+      - SV
+      - SX
+      - SY
+      - SZ
+      - TC
+      - TD
+      - TF
+      - TG
+      - TH
+      - TJ
+      - TK
+      - TL
+      - TM
+      - TN
+      - TO
+      - TR
+      - TT
+      - TV
+      - TW
+      - TZ
+      - UA
+      - UG
+      - UM
+      - US
+      - UY
+      - UZ
+      - VA
+      - VC
+      - VE
+      - VG
+      - VI
+      - VN
+      - VU
+      - WF
+      - WS
+      - YE
+      - YT
+      - ZA
+      - ZM
+      - ZW
+      - XK
+      - XI
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+      bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+x-refined-from:
+- openapi-3.0-with-deprecated.json
+- storecove-openapi.yml

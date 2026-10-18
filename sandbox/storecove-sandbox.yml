@@ -1,0 +1,21 @@
+generated: '2026-10-18'
+method: searched
+source: https://www.storecove.com/docs/
+description: Storecove offers a 30-day free sandbox environment for testing e-invoicing API integration with test identifiers and simulated e-invoicing flows.
+docs: https://www.storecove.com/docs/#getting-started
+test_values:
+  test_identifiers:
+  - identifier: '10101010-STO-10'
+    scheme: de:lwid
+    network: peppol
+    description: Storecove Test Identifier for Peppol network
+  - identifier: '1200109963131'
+    scheme: gln
+    network: dbnalliance
+    description: Storecove Test Identifier for DBNAlliance network
+features:
+  - 30-day free testing period
+  - Simulated real e-invoicing flows
+  - Format validation
+  - Integration testing at own pace
+  - No commitments required

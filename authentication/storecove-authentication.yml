@@ -1,0 +1,14 @@
+generated: '2026-10-18'
+method: derived
+source: openapi/storecove-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: Bearer 9999999999999999999999999999999999999999999999999999999999999999
+  description: See https://datatracker.ietf.org/doc/html/rfc6750#section-2.1 for details
+  sources:
+  - openapi/storecove-openapi.yml

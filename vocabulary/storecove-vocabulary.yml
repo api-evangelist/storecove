@@ -1,0 +1,433 @@
+generated: '2026-10-18'
+method: derived
+generator: derive-vocabulary.py
+source: openapi/storecove-openapi.yml
+vocabulary:
+  name: Storecove Domain Vocabulary
+  description: 'Terms declared by Storecove''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions.
+    Derived, not authored.'
+  version: '2026-10-18'
+  terms:
+  - term: Additional Item Property
+    definition: 'An additional property for the item. Two valid forms: (a) textual — both `name` and `value` must be present; (b) coded measurement
+      (FR-FE EXT-FR-FE-159/160/161) — all of `nameCode`, `valueQuantity` and `valueQuantityUnitCode` must be present. Cross-form validation is
+      enforced by InvoiceSubmissionValidationService because our JSON Schema dialect does not support anyOf/allOf.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/AdditionalItemProperty
+  - term: Address
+    definition: The address
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Address
+  - term: Allowance or Charge
+    definition: 'Object declared by the contract with fields: amountExcludingVat, amountExcludingTax, baseAmountExcludingTax, amountIncludingTax,
+      baseAmountIncludingTax, tax, taxesDutiesFees, reason, reasonCode, taxExemptionReason, taxExemptionReasonCode.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/AllowanceCharge
+  - term: Invoice Attachment
+    definition: A document attachment to the invoice.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Attachment
+  - term: C5 Activation Request
+    definition: The C5 activation request
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5ActivationRequest
+  - term: C5 Activation Response
+    definition: The response to a C5 activation request
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5ActivationResponse
+  - term: C5 Deactivation Request
+    definition: The C5 deactivation request
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5DeactivationRequest
+  - term: C5 Deactivation Response
+    definition: The response to a C5 deactivation request
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5DeactivationResponse
+  - term: C5 Email Cancellation Request
+    definition: The C5 email cancellation request object
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5EmailCancellationRequest
+  - term: C5 Email Request
+    definition: The C5 email request object for both activation and deactivation
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5EmailRequest
+  - term: C5 Email Response
+    definition: The response to a C5 email request. A successful request returns 204 with no body.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5EmailResponse
+  - term: C5 Error Response
+    definition: The response to a C5 error
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5ErrorResponse
+  - term: C5 Redirect Cancellation Request
+    definition: The C5 redirect cancellation request object
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5RedirectCancellationRequest
+  - term: C5 Redirect Request
+    definition: The C5 redirect request object for both activation and deactivation
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5RedirectRequest
+  - term: C5 Redirect Response
+    definition: The response to a C5 redirect request
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/C5RedirectResponse
+  - term: Country
+    definition: An ISO 3166-1 alpha-2 country code.
+    tags:
+    - Enumeration
+    source: openapi/storecove-openapi.yml#/components/schemas/Country
+  - term: Currency
+    definition: The ISO 4217 currency code.
+    tags:
+    - Enumeration
+    source: openapi/storecove-openapi.yml#/components/schemas/CurrencyCode
+  - term: Delivery
+    definition: 'Object declared by the contract with fields: deliveryLocation, requestedDeliveryPeriod, actualDeliveryDate, quantity, deliveryPartyName,
+      deliveryParty, shipment, shippingMarks.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Delivery
+  - term: DeliveryTerms
+    definition: 'Object declared by the contract with fields: incoterms, specialTerms, deliveryLocationId.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DeliveryTerms
+  - term: LineDelivery
+    definition: 'Object declared by the contract with fields: deliveryLocation.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/LineDelivery
+  - term: Shipment
+    definition: 'Object declared by the contract with fields: shippingMarks, originAddress, allowanceCharges.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Shipment
+  - term: DiscoveryFlag
+    definition: A flag to filter for documents
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DiscoveryFlag
+  - term: French e-reporting (F10)
+    definition: 'E-reporting payload for France (DGFiP). Send with document.documentType "fr_e_report". The platform submits the report (FFE1025A)
+      in the fr-dgfip workflow. Both camelCase frEReport and snake fr_e_report keys are accepted in the request body; the public schema uses frEReport.
+      G6.29: exactly one of transactionReport (TB-2) or paymentReport (TB-3) must be present — not both, not neither (enforced at '
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReport
+  - term: Declarant (issuer of the e-report)
+    definition: 'Object declared by the contract with fields: party, publicIdentifiers.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportDeclarantParty
+  - term: Party (minimal)
+    definition: Legal name and address fields as used in e-reporting samples.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportParty
+  - term: Transaction report (B2B cross-border invoices and B2C aggregates)
+    definition: 'Object declared by the contract with fields: period, b2biInvoices, b2cTransactions.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportTransactionReport
+  - term: B2B cross-border invoice line in a transaction report
+    definition: 'Structured like a full invoice: identifiers, parties, taxSubtotals, and invoice lines.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportB2bCrossBorderInvoice
+  - term: B2C aggregate in France
+    definition: 'Object declared by the contract with fields: date, currency, vatPaymentOption, category, amountExcludingVat, amountIncludingVat,
+      transactionsCount, taxSubtotals.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportB2cTransaction
+  - term: Payment report (B2B and B2C payments)
+    definition: 'Object declared by the contract with fields: period, b2biPayments, b2cPayments.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportPaymentReport
+  - term: B2B payment line
+    definition: 'Object declared by the contract with fields: invoiceNumber, issueDate, paymentDate, amount, currency, paymentMeansCode, taxSubtotals.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportB2bPayment
+  - term: B2C payment aggregate
+    definition: 'Payment-report aggregate for B2C: the platform uses `date` and `taxSubtotal` to build the submitted report. Put `currency` and
+      per-rate amounts on each `taxSubtotal` line; a top-level `currency` (if present) is not used for the France payment XML. Do not use the
+      B2C *transaction* aggregate field set here (`vatPaymentOption`, `category`, `amountExcludingVat`, `amountIncludingVat`, `transactionsCoun'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/frEReportB2cPayment
+  - term: Document Invoice Report
+    definition: The invoice report to send. Reports a received invoice (forDocumentGuid) to the tax authority as a purchase, reusing the data
+      of the received invoice. ++++ For SG (IRAS) the received invoice is reported on the payables profile, so every GST category on it is converted
+      to its purchase invoice code (see the SG table in Tax). Received invoices can be reported with invoice_report when every GST catego
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentInvoiceReport
+  - term: Document Invoice Response
+    definition: The invoice response to send or received.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentInvoiceResponse
+  - term: Invoice Response Clarification
+    definition: A clarification for why a received invoice was rejected (RE) or under query (UQ) and what action to take.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceResponseClarification
+  - term: Invoice Response Condition
+    definition: Specifies an error in the received invoice.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceResponseCondition
+  - term: Order
+    definition: The order to send.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentOrder
+  - term: Order line
+    definition: 'Object declared by the contract with fields: lineId, quantity, quantityUnitCode, itemPrice, baseQuantity, amountExcludingTax,
+      allowanceCharges, allowPartialDelivery, accountingCost, delivery, description, name. (5 more)'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/OrderLine
+  - term: Invoice
+    definition: The invoice to send. Provide either invoice, or invoiceData, but not both.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Invoice
+  - term: Invoice line
+    definition: 'Object declared by the contract with fields: lineId, description, name, orderLineReferenceLineId, invoicePeriod, itemPrice, quantity,
+      baseQuantity, price, quantityUnitCode, allowanceCharge, allowanceCharges. (18 more)'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceLine
+  - term: Electronic identifiers
+    definition: A list of electronic routing identifiers. These are the identifiers used on the Peppol network or for other destinations.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/EIdentifiers
+  - term: AdditionalTaxIdentifier
+    definition: 'Object declared by the contract with fields: id, country, county, superscheme, scheme, identifier.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/AdditionalTaxIdentifier
+  - term: AdditionalTaxIdentifierCreate
+    definition: 'Object declared by the contract with fields: country, county, superscheme, scheme, identifier, third_party_username, third_party_password.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/AdditionalTaxIdentifierCreate
+  - term: AdditionalTaxIdentifierUpdate
+    definition: 'Object declared by the contract with fields: identifier, third_party_username, third_party_password.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/AdditionalTaxIdentifierUpdate
+  - term: Administration
+    definition: 'Object declared by the contract with fields: id, sender_email_identity_id, legal_entity_id, email, packaging, package_version.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Administration
+  - term: AdministrationCreate
+    definition: 'Object declared by the contract with fields: sender_email_identity_id, legal_entity_id, email, packaging, package_version.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/AdministrationCreate
+  - term: AdministrationUpdate
+    definition: 'Object declared by the contract with fields: sender_email_identity_id, email, packaging, package_version.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/AdministrationUpdate
+  - term: CountrySpecification
+    definition: 'Object declared by the contract with fields: country, region, sender, receiver.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/CountrySpecification
+  - term: CountrySpecificationIdentifier
+    definition: 'Object declared by the contract with fields: scheme_type, scheme, scheme_numercial, description, centralized, centralized_identifier,
+      centalized_identifier_test.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/CountrySpecificationIdentifier
+  - term: CountrySpecifications
+    definition: 'Object declared by the contract with fields: countries.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/CountrySpecifications
+  - term: Discoverable Participant
+    definition: A participant to be discovered.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DiscoverableParticipant
+  - term: Discovered Participant
+    definition: A public identifier for this customer.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DiscoveredParticipant
+  - term: Document submission
+    definition: The document you want Storecove to send, with some meta-data.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentSubmission
+  - term: Document submission result
+    definition: The result of a document submission
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentSubmissionResult
+  - term: Enveloped Data
+    definition: A document to send, in base64 encoded format, to be wrapped in an envelope.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/EnvelopedData
+  - term: Raw Document Data
+    definition: A document to send, in base64 encoded format.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/RawDocumentData
+  - term: Receivable Document
+    definition: The received document.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/ReceivableDocument
+  - term: Sendable Document
+    definition: The document to send.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/SendableDocument
+  - term: Transportable
+    definition: A transportable document. Currently only used for receiving.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Transportable
+  - term: DocumentSubmissionEvidence
+    definition: 'Object declared by the contract with fields: guid, sender, receiver, network, documents, evidence.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentSubmissionEvidence
+  - term: DocumentSubmissionEvidenceDocument
+    definition: 'Object declared by the contract with fields: document, expires_at, mime_type.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentSubmissionEvidenceDocument
+  - term: DocumentSubmissionEvidenceEvidence
+    definition: 'Object declared by the contract with fields: smtp_response, timestamp, reporting_mta, remote_mta_ip, transmission_id, message_id,
+      partner_key, long_id, acknowledgement_id, correlation_id, document_id, receiving_accesspoint. (13 more)'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DocumentSubmissionEvidenceEvidence
+  - term: Invoice Data
+    definition: DEPRECATED. Use RawDocumentData. The invoice to send, in base64 encoded format. Provide either invoice, or invoiceData, but not
+      both.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceData
+  - term: Recipient ids
+    definition: DEPRECATED. Use the Routing object. The different ways to send the invoice to the recipient. The publicIdentifiers are used to
+      send via the Peppol network, if the recipient is not registered on the Peppol network, the invoice will be sent to the email addresses in
+      the emails property. This property is only mandatory when sending the invoice data using the > property, not when sending using the > p
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceRecipient
+  - term: Invoice recipient preflight
+    definition: Identifies the invoice recipient to preflight
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceRecipientPreflight
+  - term: Invoice submission
+    definition: DEPRECATED. The invoice you want Storecove to process, with some meta-data.
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceSubmission
+  - term: InvoiceSubmissionActionEvidence
+    definition: 'Object declared by the contract with fields: transmission_datetime, transmission_type, transmission_result, transmitted_document,
+      receiver_response.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceSubmissionActionEvidence
+  - term: InvoiceSubmissionEvidence
+    definition: 'Object declared by the contract with fields: guid, status, actions.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceSubmissionEvidence
+  - term: Invoice submission result
+    definition: The result of an invoice submission
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/InvoiceSubmissionResult
+  - term: Preflight invoice recipient result
+    definition: The result of preflighting an invoice recipient
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/PreflightInvoiceRecipientResult
+  - term: LegalEntityCreate
+    definition: 'Object declared by the contract with fields: party_name, line1, line2, city, zip, county, country, registration_authority_name,
+      passport_issuing_country, tenant_id, public, advertisements. (7 more)'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/LegalEntityCreate
+  - term: LegalEntityUpdate
+    definition: 'Object declared by the contract with fields: id, party_name, line1, line2, city, zip, county, country, registration_authority_name,
+      passport_issuing_country, tenant_id, public. (10 more)'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/LegalEntityUpdate
+  - term: Rea
+    definition: 'Object declared by the contract with fields: province, identifier, capital, partners, liquidation_status.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/Rea
+  - term: CorpPass
+    definition: 'Object declared by the contract with fields: enabled, flow_type, signer_name, signer_email, client_redirect_success_url, client_redirect_fail_url,
+      corppass_url, status, simulate_corppass.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/CorpPass
+  - term: CorpPassCreate
+    definition: 'Object declared by the contract with fields: enabled, flow_type, signer_name, signer_email, client_redirect_success_url, client_redirect_fail_url,
+      simulate_corppass, kyc_document.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/CorpPassCreate
+  - term: DgfipAnnuaire
+    definition: 'Object declared by the contract with fields: routing_code_label, address, start_date, formal_agreement.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DgfipAnnuaire
+  - term: DgfipAnnuaireAddress
+    definition: 'Object declared by the contract with fields: street1, street2, zip, city, country.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DgfipAnnuaireAddress
+  - term: DgfipAnnuaireUpdate
+    definition: 'Object declared by the contract with fields: routing_code_label, address, formal_agreement.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/DgfipAnnuaireUpdate
+  - term: FormalAgreement
+    definition: 'Object declared by the contract with fields: document.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/FormalAgreement
+  - term: NetworkSpecification
+    definition: 'Object declared by the contract with fields: name, sub_networks, annuaire.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/NetworkSpecification
+  - term: PeppolIdentifier
+    definition: 'Object declared by the contract with fields: identifier, scheme, superscheme, corppass, annuaire_line_id_instance, annuaire_routing_code_id_instance.'
+    tags:
+    - Object
+    source: openapi/storecove-openapi.yml#/components/schemas/PeppolIdentifier

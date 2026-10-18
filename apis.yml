@@ -1,23 +1,443 @@
 aid: storecove
+
 name: Storecove
-description: 'Storecove is a company surfaced via the API Evangelist harvest backlog (source: kin-score-markets)
-  and added to the network as a stub for full-pipeline profiling.'
+
+description: Storecove provides e-invoicing software and a global compliance API. A single API connection gives businesses and ERP providers access
+  to the Peppol network and to other e-invoicing networks such as DBNAlliance (USA), FACeB2B and Finvoice, along with e-invoicing and reporting
+  compliance in markets including Belgium, France, Germany, India, Italy, Malaysia, Poland, Singapore and the UAE. Storecove handles invoice compliance,
+  format conversion and delivery, and offers a free 30-day test account.
+
 url: https://raw.githubusercontent.com/api-evangelist/storecove/refs/heads/main/apis.yml
+
 x-type: company
+
 x-source: harvest:kin-score-markets
-x-tier: stub
-x-tier-reason: harvest
+
+x-tier: profiled
+x-tier-reason: enrichment pass 2026-10-18 (modular-v1; was harvest)
+
 specificationVersion: '0.20'
+
 created: '2026-10-18'
+
 modified: '2026-10-18'
+
 tags:
 - Company
-apis: []
+- E-Invoicing
+- PEPPOL
+- Tax Compliance
+- Invoicing
+- Accounting
+- ERP Integration
+- Fintech
+tags_raw:
+- Company
+- E-Invoicing
+- Peppol
+- Tax Compliance
+- Invoicing
+- Accounting
+- ERP Integration
+- Fintech
+
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+
+image: https://www.storecove.com/typo3temp/assets/_processed_/3/a/csm_logo-storecove_af3bf9d4b5.webp
+
 common:
+- type: AgenticAccess
+  url: agentic-access/storecove-agentic-access.yml
+- type: Spectral
+  url: rules/storecove-rules.yml
+- type: JSONLD
+  url: json-ld/storecove-context.jsonld
+- type: Vocabulary
+  url: vocabulary/storecove-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/storecove-data-model.yml
+- type: ChangeLog
+  url: changelog/storecove-changelog.yml
+- type: Idempotency
+  url: conventions/storecove-conventions.yml
+- type: Conventions
+  url: conventions/storecove-conventions.yml
+- type: Sandbox
+  url: sandbox/storecove-sandbox.yml
+- type: Deprecation
+  url: lifecycle/storecove-lifecycle.yml
+- type: Lifecycle
+  url: lifecycle/storecove-lifecycle.yml
+- type: ErrorCatalog
+  url: errors/storecove-problem-types.yml
+- type: Conformance
+  url: conformance/storecove-conformance.yml
+- type: Overlay
+  url: overlays/storecove-openapi-overlay.yaml
+- type: LLMsTxt
+  url: llms/storecove-llms.txt
+- type: SecurityTxt
+  url: well-known/storecove-ws-security.txt
+- type: SecurityTxt
+  url: well-known/storecove-webservices-security.txt
+- type: SecurityTxt
+  url: well-known/storecove-storecove-security.txt
+- type: SecurityTxt
+  url: well-known/storecove-help-security.txt
+- type: SecurityTxt
+  url: well-known/storecove-api-security.txt
+- type: WellKnown
+  url: well-known/storecove-well-known.yml
+- type: Hosts
+  url: hosts/storecove-hosts.yml
+- type: IntegrationEdges
+  url: integrations/storecove-integration-edges.yml
+- type: Vendors
+  url: vendors/storecove-vendors.yml
+- type: SDKs
+  url: packages/storecove-packages.yml
+- type: Packages
+  url: packages/storecove-packages.yml
+- type: Postman
+  url: https://www.postman.com/downloads/
+- type: Authentication
+  url: authentication/storecove-authentication.yml
+- type: DomainSecurity
+  url: security/storecove-domain-security.yml
 - type: Website
-  url: https://storecove.com
+  url: https://www.storecove.com/us/en/
+- type: Documentation
+  url: https://www.storecove.com/docs/
+- type: GettingStarted
+  url: https://www.storecove.com/us/en/start-now
+- type: Support
+  url: https://help.storecove.com/en/
+- type: Blog
+  url: https://www.storecove.com/blog/en/
+- type: Login
+  url: https://app.storecove.com/users/sign_in
+- type: Contact
+  url: https://www.storecove.com/us/en/contact
+- type: PrivacyPolicy
+  url: https://www.storecove.com/fileadmin/editors-filemount/documents/Data_Privacy_Policy_Storecove_final_website.pdf
+- type: Security
+  url: https://www.storecove.com/fileadmin/editors-filemount/documents/Security_Principals_2023.pdf
+- type: StatusPage
+  url: https://storecove.statuspage.io/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/storecove/
+
+apis:
+- aid: storecove:storecove-additionaltaxidentifiers-api
+  name: Storecove Additional Tax Identifiers API
+  description: >-
+    The AdditionalTaxIdentifiers API from Storecove — 2 operation(s) for additionaltaxidentifiers.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - AdditionalTaxIdentifiers
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-additionaltaxidentifiers-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-administrations-api
+  name: Storecove Administrations API
+  description: The Administrations API from Storecove — 2 operation(s) for administrations.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - Administrations
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-administrations-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-c5activation-api
+  name: Storecove C5Activation API
+  description: The C5Activation API from Storecove — 8 operation(s) for c5activation.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - C5Activation
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-c5activation-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-discovery-api
+  name: Storecove Discovery API
+  description: The Discovery API from Storecove — 3 operation(s) for discovery.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-discovery-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-invoicesubmissions-api
+  name: Storecove Invoice Submissions API
+  description: The InvoiceSubmissions API from Storecove — 3 operation(s) for invoicesubmissions.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - InvoiceSubmissions
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-invoicesubmissions-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-legalentities-api
+  name: Storecove Legal Entities API
+  description: The LegalEntities API from Storecove — 2 operation(s) for legalentities.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - LegalEntities
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-legalentities-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-peppolidentifiers-api
+  name: Storecove Peppol Identifiers API
+  description: The PeppolIdentifiers API from Storecove — 2 operation(s) for peppolidentifiers.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - PeppolIdentifiers
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-peppolidentifiers-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-purchaseinvoices-api
+  name: Storecove Purchase Invoices API
+  description: The PurchaseInvoices API from Storecove — 3 operation(s) for purchaseinvoices.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - PurchaseInvoices
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-purchaseinvoices-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-receiveddocuments-api
+  name: Storecove Received Documents API
+  description: The ReceivedDocuments API from Storecove — 3 operation(s) for receiveddocuments.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - ReceivedDocuments
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-receiveddocuments-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-webhookinstances-api
+  name: Storecove Webhook Instances API
+  description: The WebhookInstances API from Storecove — 2 operation(s) for webhookinstances.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - WebhookInstances
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-webhookinstances-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+- aid: storecove:storecove-document-submissions-api
+  name: Storecove document submissions API
+  description: The document submissions API from Storecove — 3 operation(s) for document submissions.
+  humanURL: https://www.storecove.com/docs/
+  baseURL: https://api.storecove.com/api/v2
+  tags:
+  - document submissions
+  properties:
+  - type: OpenAPI
+    url: openapi/storecove-document-submissions-api-openapi.yml
+  - type: Swagger
+    url: https://api.storecove.com/api/v2/openapi.json
+  - type: Documentation
+    url: https://www.storecove.com/docs/
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-update-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-legal-entity-create-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-document-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-invoice-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/storecove-purchase-invoice-ubl-schema.json
+x-coverage:
+  state: covered
+  reason: identity-verified
+  detail: Website https://storecove.com redirects to https://www.storecove.com/us/en/ (same company, title "E-Invoicing Software & Global Compliance
+    API | Storecove"). No Pricing, TermsOfService, public Postman collection or verifiable GitHub org was found linked from the site.
+  evidence:
+  - url: https://storecove.com
+    status: 200
+  - url: https://www.storecove.com/us/en/
+    status: 200
+  - url: https://www.storecove.com/docs/
+    status: 200
+  - url: https://storecove.statuspage.io/
+    status: 200
+x-enrichment:
+  date: '2026-10-18'
+  status: enriched
+  artifacts_added: 52
+  pass: modular-v1
+  engine: identity=anthropic,contract=anthropic,surfaces=anthropic,docs=deepseek,regulatory=anthropic

@@ -1,0 +1,47 @@
+{
+  "provider": "storecove",
+  "sources": [
+    "_original/openapi-3.0-with-deprecated.json",
+    "storecove-openapi.yml"
+  ],
+  "outputs": [
+    "storecove-additionaltaxidentifiers-api-openapi.yml",
+    "storecove-administrations-api-openapi.yml",
+    "storecove-c5activation-api-openapi.yml",
+    "storecove-discovery-api-openapi.yml",
+    "storecove-documentsubmissions-api-openapi.yml",
+    "storecove-invoicesubmissions-api-openapi.yml",
+    "storecove-legalentities-api-openapi.yml",
+    "storecove-peppolidentifiers-api-openapi.yml",
+    "storecove-purchaseinvoices-api-openapi.yml",
+    "storecove-receiveddocuments-api-openapi.yml",
+    "storecove-webhookinstances-api-openapi.yml"
+  ],
+  "archived": [
+    "archived openapi/storecove-openapi.yml"
+  ],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "2 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi-3.0-with-deprecated.json: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "storecove-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "tag 'AdditionalTaxIdentifiers' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'Administrations' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'C5Activation' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'Discovery' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'DocumentSubmissions' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'InvoiceSubmissions' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'LegalEntities' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'PeppolIdentifiers' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'PurchaseInvoices' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'ReceivedDocuments' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "tag 'WebhookInstances' spans 2 source specs (openapi-3.0-with-deprecated.json, storecove-openapi.yml): per-path servers applied",
+    "apis.yml register: written (+11 apis, 11 total)"
+  ],
+  "skipped": [
+    "_original/openapi.json: archived document superseded by a larger archived document",
+    "_original/openapi-3.0.json: archived document superseded by a larger archived document"
+  ]
+}

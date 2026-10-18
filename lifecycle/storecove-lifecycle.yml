@@ -1,0 +1,14 @@
+generated: '2026-10-18'
+method: searched
+generator: extract-docs-artifacts.py (deepseek)
+source: https://www.storecove.com/docs/with_deprecated
+sources:
+- https://www.storecove.com/docs/with_deprecated
+versioning:
+  scheme: path
+  current: v2
+deprecation:
+  policy: We deprecate features without releasing a new API version
+  docs: The document that keeps those features, flagged as deprecated, is https://api.storecove.com/api/v2/openapi-3.0-with-deprecated.json
+status_page: null
+docs: https://www.storecove.com/docs/with_deprecated
