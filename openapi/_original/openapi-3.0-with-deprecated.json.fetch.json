@@ -1,0 +1,12 @@
+{
+ "url": "https://api.storecove.com/api/v2/openapi.json",
+ "requested_url": "https://api.storecove.com/api/v2/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 305544,
+ "sha256": "f0c00280fa87c35578f4fdad38ee8da3cf14ae2a1b318b6389422a5b89f6c9b5",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.95), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

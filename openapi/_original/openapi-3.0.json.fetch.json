@@ -1,0 +1,12 @@
+{
+ "url": "https://api.storecove.com/api/v2/openapi-3.0.json",
+ "requested_url": "https://api.storecove.com/api/v2/openapi-3.0.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 247596,
+ "sha256": "d2df8a374b38978d7c7d9d058bb297f69f8a761f612b9c7abc86e2d7af9e8bf5",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the archived file is byte-identical to what the provider serves."
+}
