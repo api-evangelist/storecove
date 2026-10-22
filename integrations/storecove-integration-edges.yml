@@ -22,6 +22,8 @@ checked:
 - https://www.storecove.com/us/en/integrators/zoho
 - https://www.streamlinedsalestax.org/certified-service-providers/certified-service-providers-list
 - https://zapier.com/apps/storecove/integrations
+- https://api.apis.guru/v2/list.json
+- https://api.apis.guru/v2/providers.json
 summary: null
 marketplace_apps: []
 edges:
@@ -125,4 +127,45 @@ edges:
     detected: '2026-10-19'
   detected_by: sweep-einvoicing-tax.py
   first_seen: '2026-10-19'
+- partner_name: APIs.guru OpenAPI Directory
+  partner: apis-guru
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: third-party
+  evidence: https://apis.guru/
+  category: API definition directory listing (OpenAPI)
+  contract_reference:
+    register: APIs.guru OpenAPI Directory
+    spec_file: null
+    standard: APIs.guru OpenAPI Directory
+    role: listed-in-directory
+    directory_provider: storecove.com
+    matched_domain: storecove.com
+    matched_by: domain
+    apis_listed: 1
+    version_count: 1
+    first_added: '2017-08-15'
+    last_updated: '2023-03-06'
+    origin_publisher_hosted: true
+    origin_hosts:
+    - www.storecove.com
+    categories:
+    - financial
+    own_openapi_files: 11
+    listings:
+    - key: storecove.com
+      title: Storecove API
+      preferred: 2.0.1
+      versions: 1
+      swagger_url: https://api.apis.guru/v2/specs/storecove.com/2.0.1/openapi.json
+      origin_url: https://www.storecove.com/api/v2/openapi.json
+      openapi_version: 3.0.0
+    signal_note: 'participation only: a community directory listing (APIs.guru collects definitions; the provider
+      did not file them). Signals: version_count, apis_listed, origin_publisher_hosted.'
+    detected_by: sweep-openapi-directory-apis-guru.py
+    detected: '2026-10-22'
+  detected_by: sweep-openapi-directory-apis-guru.py
+  first_seen: '2026-10-22'
 templates: []
