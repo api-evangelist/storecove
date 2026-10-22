@@ -9,6 +9,8 @@ checked:
 - https://composio.dev/toolkits/storecove
 - https://monid.ai/tools/storecove
 - https://n8n.io/integrations/storecove/
+- https://peppol.org/members/peppol-certified-service-providers/
+- https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
 - https://www.storecove.com/us/en/integrators
 - https://www.storecove.com/us/en/integrators/certinia
 - https://www.storecove.com/us/en/integrators/microsoft
@@ -18,6 +20,7 @@ checked:
 - https://www.storecove.com/us/en/integrators/sage
 - https://www.storecove.com/us/en/integrators/sap
 - https://www.storecove.com/us/en/integrators/zoho
+- https://www.streamlinedsalestax.org/certified-service-providers/certified-service-providers-list
 - https://zapier.com/apps/storecove/integrations
 summary: null
 marketplace_apps: []
@@ -94,4 +97,32 @@ edges:
   marketplace: null
   operations: []
   notes: Zoho integration partner page
+- partner_name: DGFiP plateformes agreees (France e-invoicing reform)
+  partner: null
+  partner_match: register
+  type: register
+  direction: partner-built
+  evidence: https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
+  category: French e-invoicing platform
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: DGFiP liste des plateformes agreees (impots.gouv.fr)
+    spec_file: null
+    standard: France e-invoicing (plateforme agreee)
+    role: plateforme-agreee
+    registered_name: STORECOVE
+    website: https://www.storecove.com/fr/fr
+    matched_domain: storecove.com
+    matched_by: domain
+    certified_products:
+    - product: plateforme agreee (PA)
+      lapsed: false
+      registered: '2026-04-28'
+    signal_note: certified_products = the immatriculation (one per operator); an operator awaiting the interop tests
+      is participation only
+    detected_by: sweep-einvoicing-tax.py
+    detected: '2026-10-19'
+  detected_by: sweep-einvoicing-tax.py
+  first_seen: '2026-10-19'
 templates: []
